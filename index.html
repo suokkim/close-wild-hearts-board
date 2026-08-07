@@ -449,8 +449,7 @@
         </p>
         <nav class="secnav">
           <a href="#next">다음 할 일</a><a href="#gantt">일정</a
-          ><a href="#pipeline">제작 파이프라인</a
-          ><a href="#tracks">시스템 트랙</a><a href="#docs">문서 체계</a>
+          ><a href="#recent">최근 완료</a><a href="#tracks">시스템 트랙</a>
         </nav>
         <div class="pulse">
           <div class="chip">
@@ -671,79 +670,41 @@
         </div>
       </section>
 
-      <!-- ══════════ 제작 파이프라인 ══════════ -->
-      <section id="pipeline">
-        <h2>제작 파이프라인 — 지시 한 줄이 게임이 되기까지</h2>
-        <p class="sub">
-          메이저 작업(30줄+·시스템·정책)은 여섯 단계를 지난다. 5줄 이하
-          마이크로·30줄 이하 마이너는 구현 직행, 검수는 상태기계·저장복원·전투
-          등 위험 영역을 건드릴 때만 수행한다(8/2 선별제).
-        </p>
+      <!-- ══════════ 최근 완료 ══════════ -->
+      <section id="recent">
+        <h2>최근 완료 — 직전 세션 8/2</h2>
+        <p class="sub">마지막 작업 세션에서 끝난 것. 진행 감각 기준점.</p>
         <div class="krow">
-          <div class="who">
-            <span class="dot" style="background: var(--crit)"></span
-            >디렉터<small>기획·결정</small>
-          </div>
+          <div class="who">먹이 대개편 4연속 완주<small>N61~N64</small></div>
           <div class="desc">
-            방향 지시와 옵션 카드 확정. 모든 수치·정책의 최종 결정권.
+            보이는 열매 = 재고 → 다음 새 선추첨 → 규칙 단순화 → 간식까지 먹여야
+            친구(요건 4축·13종) — 최종 형태 확정.
           </div>
-          <div class="st">시작</div>
+          <div class="st"><b class="fin">완료</b></div>
         </div>
         <div class="krow">
-          <div class="who">
-            <span class="dot" style="background: var(--bl)"></span>하늘<small
-              >시스템 설계</small
-            >
-          </div>
+          <div class="who">버그 수정 6건</div>
           <div class="desc">
-            실코드 실측 기반 설계 문서 작성 — 변경 지점·검증 기준 명세.
+            FruitTree 도구 반응 · Berry 줍기 · 포토카드 배지 · 장착 도구
+            저장/복원 · 맵 중복 스폰 · 새집 친구 재접속 소실.
           </div>
-          <div class="st">N문서 1건</div>
+          <div class="st"><b>재검증 대기</b></div>
         </div>
         <div class="krow">
-          <div class="who">
-            <span class="dot" style="background: var(--un)"></span>가온<small
-              >구현</small
-            >
-          </div>
+          <div class="who">정책 확정 3건</div>
           <div class="desc">
-            설계대로 코드 작성. 설계와 실코드가 어긋나면 임의 해석 없이 보고.
+            친구 성립 시 그릇 보존 · 간식 그릇 잠금+자동 해제 · 검수 선별제(위험
+            영역만).
           </div>
-          <div class="st">코드 커밋</div>
+          <div class="st"><b class="fin">확정</b></div>
         </div>
         <div class="krow">
-          <div class="who">
-            <span class="dot" style="background: var(--vid)"></span>하늘<small
-              >검수 — 선별</small
-            >
-          </div>
+          <div class="who">코드 커밋 14건</div>
           <div class="desc">
-            위험 영역 접촉 시에만. 8/2 실측: 검수 5회 중 2회에서 심각 결함을
-            커밋 전 차단.
+            코드·문서 repo push 완료. 단, Studio place publish는 아직 — 도구
+            패치·파츠 등 git 밖 자산 누적 중(다음 할 일 ②).
           </div>
-          <div class="st">PASS / 지적</div>
-        </div>
-        <div class="krow">
-          <div class="who">
-            <span class="dot" style="background: var(--vfx)"></span>디렉터<small
-              >Play 검증</small
-            >
-          </div>
-          <div class="desc">
-            Studio 실플레이 시나리오 검증. 디렉터의 통과 선언이 곧 완료.
-          </div>
-          <div class="st">통과 선언</div>
-        </div>
-        <div class="krow">
-          <div class="who">
-            <span class="dot" style="background: var(--fin)"></span>이음<small
-              >기록·배포</small
-            >
-          </div>
-          <div class="desc">
-            결정·실수·사이클 문서화와 커밋·push. 게임 배포(publish)는 디렉터.
-          </div>
-          <div class="st">마감</div>
+          <div class="st"><b class="crit">publish 남음</b></div>
         </div>
       </section>
 
@@ -804,46 +765,6 @@
             P4 빛나는 열매·장애물 코스, P5 물가 물고기(어식 7종 승격).
           </div>
           <div class="st"><b>대기</b></div>
-        </div>
-      </section>
-
-      <!-- ══════════ 문서 체계 ══════════ -->
-      <section id="docs">
-        <h2>문서 체계 — 기획이 사는 곳</h2>
-        <p class="sub">
-          모든 결정은 문서로 남고, 코드와 문서가 별도 저장소에서 짝을 이룬다. 이
-          보드는 그 요약본이다.
-        </p>
-        <div class="krow">
-          <div class="who">게임 기획서</div>
-          <div class="desc">
-            비전(아이들의 긍정적 성장) · 핵심 컨셉 · 42종 도감 · 먹이·경제
-            수치의 단일 원본.
-          </div>
-          <div class="st">비공개 repo</div>
-        </div>
-        <div class="krow">
-          <div class="who">설계 문서 N6~N64</div>
-          <div class="desc">
-            메이저 사이클마다 1건: 실측 → 설계 → 구현 계획 → 검증 기준. 약 50건
-            누적.
-          </div>
-          <div class="st num">50여 건</div>
-        </div>
-        <div class="krow">
-          <div class="who">운영 기록</div>
-          <div class="desc">
-            스프린트 일지 · 버그/폴리시 트래커 · 실수 점수판 — 세션 마감마다
-            갱신.
-          </div>
-          <div class="st">상시</div>
-        </div>
-        <div class="krow">
-          <div class="who">게임 코드</div>
-          <div class="desc">
-            Rojo로 파일과 Roblox Studio를 동기화. 커밋 이력이 곧 제작 일지.
-          </div>
-          <div class="st">비공개 repo</div>
         </div>
       </section>
     </div>
