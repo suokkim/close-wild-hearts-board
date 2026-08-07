@@ -431,6 +431,57 @@
           grid-column: 1/-1;
         }
       }
+
+      /* ── 42종 선호 표 ── */
+      .twrap {
+        overflow-x: auto;
+      }
+      .btable {
+        width: 100%;
+        min-width: 560px;
+        border-collapse: collapse;
+        font-size: 0.76rem;
+      }
+      .btable th {
+        text-align: left;
+        font-size: 0.68rem;
+        font-weight: 600;
+        color: var(--sub);
+        padding: 6px 8px;
+        border-bottom: 1px solid var(--line);
+        white-space: nowrap;
+      }
+      .btable td {
+        padding: 5px 8px;
+        border-top: 1px solid var(--rule);
+        vertical-align: baseline;
+      }
+      .btable td.t {
+        color: var(--sub);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .btable td.star {
+        color: var(--sub);
+        white-space: nowrap;
+        font-size: 0.68rem;
+      }
+      .btable td.now {
+        color: var(--fin);
+        white-space: nowrap;
+        font-size: 0.72rem;
+      }
+      .btable td.wait {
+        color: var(--sub);
+        white-space: nowrap;
+        font-size: 0.72rem;
+      }
+      .btable tr.combo td {
+        background: var(--zebra);
+      }
+      .btable tr.combo td:nth-child(3) {
+        font-weight: 700;
+      }
     </style>
   </head>
   <body>
@@ -449,7 +500,8 @@
         </p>
         <nav class="secnav">
           <a href="#next">다음 할 일</a><a href="#gantt">일정</a
-          ><a href="#recent">최근 완료</a><a href="#tracks">시스템 트랙</a>
+          ><a href="#recent">최근 완료</a><a href="#tracks">시스템 트랙</a
+          ><a href="#birds42">42종 선호</a>
         </nav>
         <div class="pulse">
           <div class="chip">
@@ -774,6 +826,321 @@
             P4 빛나는 열매·장애물 코스, P5 물가 물고기(어식 7종 승격).
           </div>
           <div class="st"><b>대기</b></div>
+        </div>
+      </section>
+
+      <!-- ══════════ 42종 선호 조합 ══════════ -->
+      <section id="birds42">
+        <h2>42종 선호 조합 — N65 제안</h2>
+        <p class="sub">
+          디렉터 확정 전 제안치. 진한 배경 = 2가지 조합 종(가장 어려운 새).
+          "가능 시점" = 그 선호로 간식을 줄 수 있는 때 — 지금(기존 13종) → 희귀
+          열매(P4) → 물고기(P5) → 씨앗·벌레 간식 신설 후.
+        </p>
+        <div class="twrap">
+          <table class="btable">
+            <tr>
+              <th>티어</th>
+              <th>종</th>
+              <th>좋아하는 것</th>
+              <th>가능 시점</th>
+              <th>난도</th>
+            </tr>
+            <tr>
+              <td class="t">T1</td>
+              <td>쇠박새</td>
+              <td>🌰 씨앗 (땅콩)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★</td>
+            </tr>
+            <tr>
+              <td class="t">T1</td>
+              <td>진박새</td>
+              <td>🌰 씨앗 (해바라기)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★</td>
+            </tr>
+            <tr>
+              <td class="t">T1</td>
+              <td>박새</td>
+              <td>🌰 씨앗 (땅콩)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★</td>
+            </tr>
+            <tr>
+              <td class="t">T1</td>
+              <td>곤줄박이</td>
+              <td>🍒 열매 (Berry)</td>
+              <td class="now">✅ 지금</td>
+              <td class="star">★</td>
+            </tr>
+            <tr>
+              <td class="t">T1</td>
+              <td>참새</td>
+              <td>🌰 씨앗 (좁쌀)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★</td>
+            </tr>
+            <tr>
+              <td class="t">T1</td>
+              <td>딱새</td>
+              <td>🍒 열매 (Berry)</td>
+              <td class="now">✅ 지금</td>
+              <td class="star">★</td>
+            </tr>
+            <tr>
+              <td class="t">T1</td>
+              <td>휘파람새</td>
+              <td>🐛 벌레 (작은 곤충)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★</td>
+            </tr>
+            <tr>
+              <td class="t">T1</td>
+              <td>카나리아</td>
+              <td>🌰 씨앗 (작은 씨앗)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★</td>
+            </tr>
+            <tr>
+              <td class="t">T1</td>
+              <td>금화조</td>
+              <td>🌰 씨앗 (작은 씨앗)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★</td>
+            </tr>
+            <tr>
+              <td class="t">T2</td>
+              <td>동고비</td>
+              <td>🌰 씨앗 (해바라기)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★</td>
+            </tr>
+            <tr>
+              <td class="t">T2</td>
+              <td>노랑턱멧새</td>
+              <td>🌰 씨앗 (좁쌀)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★</td>
+            </tr>
+            <tr>
+              <td class="t">T2</td>
+              <td>동박새</td>
+              <td>🍯 꿀 → 🍒 열매 재배정 권고</td>
+              <td class="wait">결정 #3 대기</td>
+              <td class="star">★★</td>
+            </tr>
+            <tr>
+              <td class="t">T2</td>
+              <td>찌르레기</td>
+              <td>🍒 열매 (Berry)</td>
+              <td class="now">✅ 지금</td>
+              <td class="star">★★</td>
+            </tr>
+            <tr>
+              <td class="t">T2</td>
+              <td>노랑배진박새</td>
+              <td>🌰 씨앗 (해바라기)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★</td>
+            </tr>
+            <tr>
+              <td class="t">T2</td>
+              <td>콩새</td>
+              <td>🍒 열매 (Berry)</td>
+              <td class="now">✅ 지금</td>
+              <td class="star">★★</td>
+            </tr>
+            <tr>
+              <td class="t">T2</td>
+              <td>되새</td>
+              <td>🌰 씨앗 (좁쌀)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★</td>
+            </tr>
+            <tr>
+              <td class="t">T2</td>
+              <td>세키세이잉꼬</td>
+              <td>🍒 열매 (Berry)</td>
+              <td class="now">✅ 지금</td>
+              <td class="star">★★</td>
+            </tr>
+            <tr>
+              <td class="t">T2</td>
+              <td>십자매</td>
+              <td>🌰 씨앗 (좁쌀·기장)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★</td>
+            </tr>
+            <tr>
+              <td class="t">T3</td>
+              <td>큰유리새</td>
+              <td>🐛 벌레 (딱정벌레)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T3</td>
+              <td>꾀꼬리</td>
+              <td>🍒 열매 (Berry)</td>
+              <td class="now">✅ 지금</td>
+              <td class="star">★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T3</td>
+              <td>오색딱따구리</td>
+              <td>🐛 벌레 (애벌레)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T3</td>
+              <td>호랑지빠귀</td>
+              <td>🍒 열매 (Berry)</td>
+              <td class="now">✅ 지금</td>
+              <td class="star">★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T3</td>
+              <td>청딱따구리</td>
+              <td>🐛 벌레 (애벌레)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T3</td>
+              <td>검은딱새</td>
+              <td>🐛 벌레 (애벌레)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T3</td>
+              <td>물까치</td>
+              <td>🍒 열매 (Berry)</td>
+              <td class="now">✅ 지금</td>
+              <td class="star">★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T3</td>
+              <td>모란앵무</td>
+              <td>🍒 열매 (Berry)</td>
+              <td class="now">✅ 지금</td>
+              <td class="star">★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T4</td>
+              <td>물총새</td>
+              <td>🐟 물고기 (SmallFish)</td>
+              <td class="wait">P5 물가</td>
+              <td class="star">★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T4</td>
+              <td>호반새</td>
+              <td>🐟 물고기 (SmallFish)</td>
+              <td class="wait">P5 물가</td>
+              <td class="star">★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T4</td>
+              <td>파랑새</td>
+              <td>🐛 벌레 (큰 곤충·매미)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T4</td>
+              <td>청호반새</td>
+              <td>🐟 물고기 (SmallFish)</td>
+              <td class="wait">P5 물가</td>
+              <td class="star">★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T4</td>
+              <td>후투티</td>
+              <td>🐛 벌레 (큰 곤충·번데기)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★★★</td>
+            </tr>
+            <tr class="combo">
+              <td class="t">T4</td>
+              <td>되지빠귀</td>
+              <td>🐛 벌레 + 🍒 열매 조합</td>
+              <td class="now">✅ 열매는 지금</td>
+              <td class="star">★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T4</td>
+              <td>꼬까직박구리</td>
+              <td>🍒 열매 → ✨ 빛나는 열매 승격</td>
+              <td class="now">✅ 지금 (승격 P4)</td>
+              <td class="star">★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T4</td>
+              <td>왕관앵무</td>
+              <td>🍒 열매 → ✨ 빛나는 열매 승격</td>
+              <td class="now">✅ 지금 (승격 P4)</td>
+              <td class="star">★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T5</td>
+              <td>황새</td>
+              <td>🐟 물고기 전용</td>
+              <td class="wait">P5 물가</td>
+              <td class="star">★★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T5</td>
+              <td>두루미</td>
+              <td>🐟 물고기 전용</td>
+              <td class="wait">P5 물가</td>
+              <td class="star">★★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T5</td>
+              <td>재두루미</td>
+              <td>🌰 씨앗 (습지 낟알)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T5</td>
+              <td>저어새</td>
+              <td>🐟 물고기 전용</td>
+              <td class="wait">P5 물가</td>
+              <td class="star">★★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T5</td>
+              <td>따오기</td>
+              <td>🐟 물고기 전용</td>
+              <td class="wait">P5 물가</td>
+              <td class="star">★★★★★</td>
+            </tr>
+            <tr class="combo">
+              <td class="t">T5</td>
+              <td>오목눈이</td>
+              <td>🐛 벌레 + 🌰 씨앗 조합</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★★★★</td>
+            </tr>
+            <tr>
+              <td class="t">T5</td>
+              <td>긴꼬리딱새</td>
+              <td>🐛 벌레 (작은 비행 곤충)</td>
+              <td class="wait">간식 신설 후</td>
+              <td class="star">★★★★★</td>
+            </tr>
+            <tr class="combo">
+              <td class="t">T5</td>
+              <td>회색앵무</td>
+              <td>🌰 씨앗 + 🍒 열매 조합</td>
+              <td class="now">✅ 열매는 지금</td>
+              <td class="star">★★★★★</td>
+            </tr>
+          </table>
         </div>
       </section>
     </div>
