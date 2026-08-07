@@ -482,6 +482,34 @@
       .btable tr.combo td:nth-child(3) {
         font-weight: 700;
       }
+
+      /* ── 재검증 체크리스트 ── */
+      .vgroup {
+        font-size: 0.73rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin: 20px 0 4px;
+      }
+      .vlist label {
+        display: flex;
+        gap: 9px;
+        align-items: baseline;
+        padding: 5px 0;
+        font-size: 0.76rem;
+        color: var(--sub);
+        border-top: 1px solid var(--rule);
+        cursor: pointer;
+      }
+      .vlist input {
+        accent-color: var(--crit);
+        flex: none;
+        position: relative;
+        top: 1px;
+      }
+      .vlist label:has(input:checked) {
+        text-decoration: line-through;
+        opacity: 0.45;
+      }
     </style>
   </head>
   <body>
@@ -499,9 +527,9 @@
           기간 표기는 커밋 이력 기준 근사
         </p>
         <nav class="secnav">
-          <a href="#next">다음 할 일</a><a href="#gantt">일정</a
-          ><a href="#recent">최근 완료</a><a href="#tracks">시스템 트랙</a
-          ><a href="#birds42">42종 선호</a>
+          <a href="#next">다음 할 일</a><a href="#verify">재검증</a
+          ><a href="#gantt">일정</a><a href="#recent">최근 완료</a
+          ><a href="#tracks">시스템 트랙</a><a href="#birds42">42종 선호</a>
         </nav>
         <div class="pulse">
           <div class="chip">
@@ -573,6 +601,98 @@
             · 개체별 간식 선호(P4 재상정)
           </div>
           <div class="st"><b>이월</b></div>
+        </div>
+      </section>
+
+      <!-- ══════════ 재검증 체크리스트 ══════════ -->
+      <section id="verify">
+        <h2>재검증 체크리스트 — Play 한 판</h2>
+        <p class="sub">
+          8/2 수정분 전체를 한 판 동선으로 검증. 체크는 화면에서만 유지(새로고침
+          시 초기화) — 통과 선언은 이음에게 말로. 같은 세션에서 외곽 FruitTree
+          배치 + place publish까지 처리 권장.
+        </p>
+        <div class="vlist">
+          <div class="vgroup">A. 그릇·물통 기본 (낮 시작)</div>
+          <label
+            ><input type="checkbox" />물통 이름 "물통" 표시 · 물 0이면 내용물
+            숨김</label
+          >
+          <label
+            ><input type="checkbox" />기존 3그릇(씨앗·벌레·물) 정상 작동 — 회귀
+            확인</label
+          >
+          <label
+            ><input type="checkbox" />씨앗 붓기 = 1칸씩·하트 없음 · 붓기 한도 =
+            다음 새 필요량까지만(초과 거부)</label
+          >
+          <div class="vgroup">B. 간식 그릇 잠금·해제 (N64)</div>
+          <label
+            ><input type="checkbox" />다음 새 예고가 비요건 종이면 간식 그릇 🔒
+            잠금 + 부어도 거부</label
+          >
+          <label
+            ><input type="checkbox" />예고가 요건
+            13종(곤줄박이·딱새·찌르레기·사랑앵무·콩새·꾀꼬리·호랑지빠귀·물까치·모란앵무·되지빠귀·꼬까직박구리·왕관앵무·회색앵무)이면
+            자동 해제</label
+          >
+          <div class="vgroup">C. 친구 성립 (N64 핵심)</div>
+          <label
+            ><input type="checkbox" />요건 종: 게이지 4번째 🍒 축 표시 · 3축
+            만충 + 간식까지 먹어야 성립(간식 1칸 + 💗)</label
+          >
+          <label
+            ><input type="checkbox" />비요건 29종: 3축만으로 성립 — 기존 체감
+            그대로</label
+          >
+          <label
+            ><input type="checkbox" />간식 소진 시 타입 해제·아이콘 폴백</label
+          >
+          <div class="vgroup">D. 저장·복원 왕복</div>
+          <label
+            ><input type="checkbox" />간식 잔량·타입 Stop → 재접속 복원</label
+          >
+          <label
+            ><input type="checkbox" />장착 도구 든 채 Stop → 재접속 = 도구 복원
+            (8/2 수정분)</label
+          >
+          <label
+            ><input type="checkbox" />친구 보유 계정 재접속 = 4그릇 복원 + 친구
+            IDLE 복귀 + 야생 새 정상 스폰</label
+          >
+          <label
+            ><input type="checkbox" />15/15 만석 계정 복원 = 추가 스폰 없음·에러
+            없음</label
+          >
+          <label
+            ><input type="checkbox" />옛 세이브(간식 필드 없던 계정) 접속 = 에러
+            없음</label
+          >
+          <div class="vgroup">E. 새집 친구 재접속 (8/2 마지막 수정분)</div>
+          <label
+            ><input type="checkbox" />새집 입주 상태 Stop → 낮 재접속 = 머리 위
+            플록 전원 합류</label
+          >
+          <label
+            ><input type="checkbox" />같은 상태에서 밤 재접속 = 새집 안</label
+          >
+          <div class="vgroup">F. 기타</div>
+          <label
+            ><input type="checkbox" />선추첨 로그 접속당 1회 + 첫 스폰 종 = 예고
+            종 일치</label
+          >
+          <label><input type="checkbox" />맵 중복 스폰 없음 (8/2 수정분)</label>
+          <label
+            ><input type="checkbox" />/resetdata 후 포토카드 배지 정상</label
+          >
+          <div class="vgroup">마무리</div>
+          <label
+            ><input type="checkbox" />외곽 위험지 FruitTree 추가 배치</label
+          >
+          <label
+            ><input type="checkbox" />place 저장 + publish (git 밖 자산: 도구
+            패치·간식 그릇 파츠·BerryTemplate·맵 배치)</label
+          >
         </div>
       </section>
 
