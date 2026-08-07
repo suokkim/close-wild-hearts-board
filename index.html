@@ -527,7 +527,7 @@
           기간 표기는 커밋 이력 기준 근사
         </p>
         <nav class="secnav">
-          <a href="#next">다음 할 일</a><a href="#verify">재검증</a
+          <a href="#next">다음 할 일</a><a href="#verify">Play 확인</a
           ><a href="#gantt">일정</a><a href="#recent">최근 완료</a
           ><a href="#tracks">시스템 트랙</a><a href="#birds42">42종 선호</a>
         </nav>
@@ -548,7 +548,7 @@
           </div>
           <div class="chip hot">
             <span class="k">진행 중</span
-            ><span class="n">먹이 대개편 검증</span>
+            ><span class="n">8/7 수정 3건 Play 확인</span>
           </div>
         </div>
       </header>
@@ -561,13 +561,14 @@
           정책).
         </p>
         <div class="krow">
-          <div class="who">① 재검증 묶음<small>디렉터 Play</small></div>
-          <div class="desc">
-            먼저 하네스 1줄 실행(자동 10항목) → 남는 시각 항목만 Play: 새집 친구
-            재접속(낮 플록/밤 새집) · 물통 표기 · 게이지 🍒 표시 · 플록 위치
-            체감
+          <div class="who">
+            ① 수정 3건 + 오픈 2건 확인<small>디렉터 Play</small>
           </div>
-          <div class="st"><b class="crit">검증 대기</b></div>
+          <div class="desc">
+            게이지 세로 · 붓기 부족분 · 적 데미지 ×3 (Rojo 반영됨) + B-91 통나무
+            복원 스킵 · B-92 플록 로그 2회 — 목록 = Play 확인 섹션
+          </div>
+          <div class="st"><b class="crit">확인 대기</b></div>
         </div>
         <div class="krow">
           <div class="who">② 맵 + publish<small>디렉터</small></div>
@@ -604,51 +605,36 @@
         </div>
       </section>
 
-      <!-- ══════════ 재검증 체크리스트 ══════════ -->
+      <!-- ══════════ Play 확인 ══════════ -->
       <section id="verify">
-        <h2>재검증 체크리스트 — 시각 확인만 잔존</h2>
+        <h2>Play 확인 — 8/7 수정 3건 + 오픈 2건</h2>
         <p class="sub">
-          서버 로직 항목(저장·복원 왕복 5 · 선추첨 · 간식 판정 · 붓기 한도 ·
-          도구 중복)은 8/7 하네스 9/9 PASS ×2회로 검증 완료 — 아래는 눈으로 봐야
-          하는 것만. 체크는 화면에서만 유지(새로고침 시 초기화), 통과 선언은
-          이음에게 말로.
+          8/2 수정분 재검증은 8/7 통과 완료 (하네스 9/9 + 디렉터 Play). 아래는
+          그 직후 반영한 수정 3건과 로그에서 발견된 오픈 2건의 확인 목록.
         </p>
         <div class="vlist">
-          <div class="vgroup">A. 그릇·물통 (낮 시작)</div>
+          <div class="vgroup">수정 3건 (8/7 가온, Rojo 반영됨)</div>
           <label
-            ><input type="checkbox" />물통 이름 "물통" 표시 · 물 0이면 내용물
-            숨김</label
+            ><input type="checkbox" />게이지 세로 전환 — 상단 세로 스택 균형 ·
+            시간 표시와 간섭 없음 · 4축 종에서 아래로 확장</label
           >
           <label
-            ><input type="checkbox" />기존 3그릇(씨앗·벌레·물) 육안 정상 · 씨앗
-            붓기 1칸씩·하트 없음 체감</label
-          >
-          <div class="vgroup">B. 간식 그릇 표시 (N64)</div>
-          <label
-            ><input type="checkbox" />비요건 종 예고 시 간식 그릇 🔒 표시 ·
-            부으면 거부 안내</label
-          >
-          <label><input type="checkbox" />요건 종 예고 시 잠금 해제 표시</label>
-          <div class="vgroup">C. 친구 성립 화면 (N64 핵심)</div>
-          <label
-            ><input type="checkbox" />요건 종: 게이지 4번째 🍒 축 표시 · 간식
-            급여 시 💗 연출</label
+            ><input type="checkbox" />붓기 부족분 — 새가 절반 먹고 떠난 뒤
+            재붓기 = "이미 충분" 거부(추가 소모 0) · 돌아온 새가 남은 그릇으로
+            성립</label
           >
           <label
-            ><input type="checkbox" />비요건 29종: 3축만으로 성립 — 기존 체감
-            그대로</label
+            ><input type="checkbox" />적 데미지 ×3 — 접촉·공격 모두 -21 체감 (HP
+            100 기준 5타 — 과격하면 수치 재조정)</label
           >
-          <div class="vgroup">D. 새집 친구 재접속 (8/2 마지막 수정분)</div>
+          <div class="vgroup">오픈 2건 (로그 발견)</div>
           <label
-            ><input type="checkbox" />새집 입주 상태 Stop → 낮 재접속 = 머리 위
-            플록 전원 합류</label
+            ><input type="checkbox" />B-91: HUD 통나무 수량 36 표시 여부 (0이면
+            템플릿 누락 확정)</label
           >
           <label
-            ><input type="checkbox" />같은 상태에서 밤 재접속 = 새집 안</label
-          >
-          <div class="vgroup">E. 기타</div>
-          <label
-            ><input type="checkbox" />/resetdata 후 포토카드 배지 정상</label
+            ><input type="checkbox" />B-92: 접속 직후 머리 위 플록 = 3마리인지
+            6마리인지</label
           >
           <div class="vgroup">마무리</div>
           <label
@@ -821,6 +807,15 @@
         <h2>최근 완료</h2>
         <p class="sub">최근 세션에서 끝난 것. 진행 감각 기준점.</p>
         <div class="krow">
+          <div class="who">8/2 수정분 재검증<small>8/7</small></div>
+          <div class="desc">
+            서버 로직 9항목 = 하네스 9/9 PASS ×2 · 시각 항목 = 디렉터 Play 통과.
+            로그에서 오픈 2건 발견 (B-91 통나무 복원 스킵 · B-92 플록 로그 2회)
+            — Play 확인 섹션으로 이관.
+          </div>
+          <div class="st"><b class="fin">통과</b></div>
+        </div>
+        <div class="krow">
           <div class="who">자동 검증 하네스<small>N66 · 8/7</small></div>
           <div class="desc">
             서버 로직 재검증 자동화 (저장·복원 왕복 5 · 선추첨 · 간식 판정 ·
@@ -903,9 +898,10 @@
           <div class="who">먹이 시스템 대개편</div>
           <div class="desc">
             보이는 열매 = 재고(N61) → 다음 새 선추첨(N62) → 규칙 단순화(N63) →
-            간식까지 먹여야 친구가 되는 요건 4축(N64, 13종·티어 곡선 1~3).
+            간식까지 먹여야 친구가 되는 요건 4축(N64, 13종·티어 곡선 1~3). 8/7
+            재검증 통과.
           </div>
-          <div class="st"><b class="crit">검증 중</b></div>
+          <div class="st"><b class="fin">완료</b></div>
         </div>
         <div class="krow">
           <div class="who">다음 새 예고 UI</div>
