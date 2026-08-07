@@ -4,631 +4,799 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Close: Wild Hearts — 기획·제작 보드</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
     <style>
       :root {
-        --pine: #1e3a2a; /* 깊은 숲 — 본문 텍스트 */
-        --moss: #4c7a5c; /* 이끼 초록 — 구조·선 */
-        --dawn: #f7f3e8; /* 아침 종이 — 배경 */
-        --nest: #efe7d3; /* 둥지 — 카드 배경 */
-        --berry: #c94f5f; /* 열매 — 강조 */
-        --sun: #e8b84b; /* 햇살 — 게이지 */
-        --bark: #6b5641; /* 나무껍질 — 보조 텍스트 */
-        --line: #d8cfb8;
+        --paper: #fafafa;
+        --card: #ffffff;
+        --ink: #4b4f56;
+        --sub: #9a9aa0;
+        --line: #e8e8e9;
+        --rule: #f5f5f6;
+        --zebra: #fcfcfd;
+        --bl: #5d6e80;
+        --un: #93aba6;
+        --mut: #cfcfd1;
+        --dim: #bebec3;
+        --crit: #b5493f;
+        --ch: #8a7563;
+        --vfx: #9c8a52;
+        --vid: #7b7391;
+        --fin: #9dba9a;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: #0f0f11;
+          --card: #18181b;
+          --ink: #c2c4c9;
+          --sub: #84848b;
+          --line: #282a2e;
+          --rule: #1a1b1e;
+          --zebra: #131416;
+          --bl: #75899e;
+          --un: #628079;
+          --mut: #3c3c41;
+          --dim: #55555c;
+          --crit: #c97f77;
+          --ch: #a08c79;
+          --vfx: #b3a06a;
+          --vid: #918aa6;
+          --fin: #5c7a58;
+        }
       }
       * {
-        margin: 0;
-        padding: 0;
         box-sizing: border-box;
       }
       html {
         scroll-behavior: smooth;
       }
       body {
-        background: var(--dawn);
-        color: var(--pine);
+        background: var(--paper);
+        color: var(--ink);
         font-family:
-          "Noto Sans KR",
-          -apple-system,
-          "Apple SD Gothic Neo",
-          sans-serif;
-        font-size: 16px;
-        line-height: 1.65;
+          "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+        margin: 0;
+        line-height: 1.45;
+        -webkit-font-smoothing: antialiased;
       }
       .wrap {
-        max-width: 920px;
+        max-width: 1060px;
         margin: 0 auto;
-        padding: 0 24px;
-      }
-      .serif {
-        font-family: "Gowun Batang", "Noto Sans KR", serif;
-      }
-      .mono {
-        font-family: ui-monospace, "SF Mono", Menlo, monospace;
-        font-size: 0.85em;
-        letter-spacing: 0.02em;
-      }
-
-      /* ---------- 헤더 ---------- */
-      header {
-        padding: 72px 0 40px;
-        border-bottom: 2px solid var(--pine);
-      }
-      .eyebrow {
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 0.14em;
-        color: var(--moss);
-        text-transform: uppercase;
-      }
-      h1 {
-        font-family: "Gowun Batang", serif;
-        font-weight: 700;
-        font-size: clamp(34px, 6vw, 54px);
-        line-height: 1.2;
-        margin: 10px 0 14px;
-      }
-      h1 .accent {
-        color: var(--berry);
-      }
-      .tagline {
-        font-family: "Gowun Batang", serif;
-        font-size: clamp(16px, 2.4vw, 19px);
-        color: var(--bark);
-        max-width: 640px;
-      }
-      .meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 22px;
-        margin-top: 26px;
-        font-size: 14px;
-        color: var(--bark);
-      }
-      .meta b {
-        color: var(--pine);
-        font-weight: 700;
-      }
-
-      /* 핵심 루프 사슬 */
-      .loop {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 6px;
-        margin-top: 30px;
-      }
-      .loop span.step {
-        background: var(--pine);
-        color: var(--dawn);
-        padding: 7px 14px;
-        border-radius: 999px;
-        font-size: 14px;
-        font-weight: 500;
-        white-space: nowrap;
-        opacity: 0;
-        transform: translateY(6px);
-        animation: rise 0.5s forwards;
-      }
-      .loop span.step:nth-child(1) {
-        animation-delay: 0.05s;
-      }
-      .loop span.step:nth-child(3) {
-        animation-delay: 0.2s;
-      }
-      .loop span.step:nth-child(5) {
-        animation-delay: 0.35s;
-      }
-      .loop span.step:nth-child(7) {
-        animation-delay: 0.5s;
-      }
-      .loop span.step:nth-child(9) {
-        animation-delay: 0.65s;
-        background: var(--berry);
-      }
-      .loop span.arrow {
-        color: var(--moss);
-        font-weight: 700;
-      }
-      @keyframes rise {
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .loop span.step {
-          animation: none;
-          opacity: 1;
-          transform: none;
-        }
-      }
-
-      /* ---------- 공통 섹션 ---------- */
-      section {
-        padding: 56px 0 8px;
-      }
-      h2 {
-        font-family: "Gowun Batang", serif;
-        font-size: 26px;
-        margin-bottom: 6px;
-      }
-      .sub {
-        color: var(--bark);
-        font-size: 14.5px;
-        margin-bottom: 28px;
-        max-width: 660px;
-      }
-      h2 .no {
-        color: var(--berry);
-        margin-right: 10px;
-        font-size: 20px;
-        vertical-align: 2px;
-      }
-
-      /* ---------- 파이프라인 (가로 홰나무) ---------- */
-      .pipeline {
-        position: relative;
-        margin: 36px 0 20px;
-      }
-      .pipeline::before {
-        content: "";
-        position: absolute;
-        left: 8px;
-        right: 8px;
-        top: 11px;
-        height: 3px;
-        background: var(--moss);
-        border-radius: 2px;
-      }
-      .stations {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 10px;
-      }
-      .station {
-        position: relative;
-        padding-top: 34px;
-      }
-      .station::before {
-        content: "";
-        position: absolute;
-        top: 4px;
-        left: 0;
-        width: 17px;
-        height: 17px;
-        border-radius: 50%;
-        background: var(--dawn);
-        border: 4px solid var(--moss);
-      }
-      .station.final::before {
-        border-color: var(--berry);
-      }
-      .station .who {
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        color: var(--berry);
-      }
-      .station h3 {
-        font-size: 16px;
-        margin: 2px 0 4px;
-      }
-      .station p {
-        font-size: 13px;
-        color: var(--bark);
-        line-height: 1.5;
-      }
-      @media (max-width: 720px) {
-        .pipeline::before {
-          left: 11px;
-          right: auto;
-          top: 8px;
-          bottom: 8px;
-          width: 3px;
-          height: auto;
-        }
-        .stations {
-          grid-template-columns: 1fr;
-        }
-        .station {
-          padding: 0 0 22px 34px;
-        }
-        .station::before {
-          top: 2px;
-        }
-      }
-      .note {
-        background: var(--nest);
-        border-left: 4px solid var(--sun);
-        padding: 14px 18px;
-        font-size: 14px;
-        color: var(--bark);
-        border-radius: 0 8px 8px 0;
-        margin-top: 26px;
-      }
-      .note b {
-        color: var(--pine);
-      }
-
-      /* ---------- 문서 층위 ---------- */
-      .layers {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
-        margin-top: 8px;
-      }
-      .layer {
-        background: var(--nest);
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 20px;
-      }
-      .layer .tag {
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--moss);
-        letter-spacing: 0.1em;
-      }
-      .layer h3 {
-        font-size: 17px;
-        margin: 4px 0 8px;
-      }
-      .layer p {
-        font-size: 13.5px;
-        color: var(--bark);
-      }
-      .layer .mono {
-        color: var(--pine);
-      }
-      @media (max-width: 720px) {
-        .layers {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* ---------- 시스템 트랙 (게이지) ---------- */
-      .tracks {
+        padding: 52px 22px 88px;
         display: flex;
         flex-direction: column;
-        gap: 18px;
-        margin-top: 8px;
+        gap: 120px;
       }
-      .track {
+      .wrap > section {
+        border-top: 1px solid var(--line);
+        padding-top: 46px;
+        scroll-margin-top: 26px;
+      }
+      .num {
+        font-variant-numeric: tabular-nums;
+      }
+
+      header .eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+        color: var(--sub);
+        font-weight: 600;
+      }
+      header h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 6px 0 0;
+        letter-spacing: -0.02em;
+      }
+      header .lede {
+        color: var(--sub);
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin: 7px 0 0;
+        max-width: 60ch;
+      }
+      .secnav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 14px;
+        margin: 12px 0 0;
+        font-size: 0.73rem;
+      }
+      .secnav a {
+        color: var(--sub);
+        text-decoration: none;
+        padding: 3px 0;
+        border-bottom: 1px solid transparent;
+      }
+      .secnav a:hover {
+        color: var(--ink);
+        border-bottom-color: var(--crit);
+      }
+      .stamp {
+        color: var(--sub);
+        font-size: 0.72rem;
+        margin: 0;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+      .stamp b {
+        color: var(--ink);
+        font-weight: 650;
+      }
+
+      section h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+      section .sub {
+        font-size: 0.79rem;
+        color: var(--sub);
+        line-height: 1.55;
+        margin: 8px 0 22px;
+        max-width: 78ch;
+      }
+
+      /* ── 요약 스트립 ── */
+      .pulse {
         display: grid;
-        grid-template-columns: 190px 1fr 88px;
-        gap: 14px;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 0;
+        margin-top: 22px;
+        border-top: 1px solid var(--line);
+      }
+      .pulse .chip {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        padding: 9px 0;
+        font-size: 0.73rem;
+        color: var(--ink);
+        border-bottom: 1px solid var(--rule);
+      }
+      .pulse .chip .k {
+        color: var(--sub);
+        flex: none;
+      }
+      .pulse .chip .n {
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        flex: none;
+      }
+      .pulse .chip.hot .k,
+      .pulse .chip.hot .n {
+        color: var(--crit);
+      }
+
+      /* ── 간트 ── */
+      .gantt {
+        overflow-x: auto;
+        padding: 2px 0 10px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--mut) transparent;
+      }
+      .gantt::-webkit-scrollbar {
+        height: 9px;
+      }
+      .gantt::-webkit-scrollbar-thumb {
+        background: var(--mut);
+        border-radius: 5px;
+      }
+      .g-inner {
+        min-width: 900px;
+      }
+      .g-axis {
+        position: relative;
+        height: 28px;
+        margin: 0 12px 0 200px;
+        font-size: 0.68rem;
+        color: var(--sub);
+      }
+      .g-axis span {
+        position: absolute;
+        top: 0;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+      .g-axis span:first-child {
+        transform: none;
+      }
+      .g-axis span.now {
+        top: auto;
+        bottom: 0;
+        background: var(--crit);
+        color: var(--paper);
+        font-weight: 700;
+        padding: 0 5px;
+        font-size: 0.6rem;
+        line-height: 1.5;
+        transform: none;
+        margin-left: -1px;
+        border-radius: 2px 2px 0 0;
+      }
+      .g-body {
+        position: relative;
+      }
+      .g-lanes {
+        position: absolute;
+        left: 200px;
+        right: 12px;
+        top: 0;
+        bottom: 0;
+        pointer-events: none;
+      }
+      .g-lanes i {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: var(--line);
+      }
+      .g-lanes i.today {
+        background: var(--crit);
+        width: 1.5px;
+        opacity: 0.9;
+        top: -13px;
+        bottom: -4px;
+        z-index: 3;
+      }
+      .g-row {
+        display: flex;
+        align-items: flex-start;
+        height: 30px;
+        background: var(--paper);
+      }
+      .g-row:nth-child(odd) {
+        background: var(--zebra);
+      }
+      .g-group {
+        display: flex;
+        align-items: center;
+        height: 26px;
+        margin-top: 14px;
+      }
+      .g-group b {
+        width: 200px;
+        flex: none;
+        padding-right: 12px;
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: var(--sub);
+        white-space: nowrap;
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        background: var(--paper);
+      }
+      .g-group i {
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+        margin-right: 12px;
+      }
+      .g-group + .g-row {
+        background: var(--paper);
+      }
+      .g-label {
+        width: 200px;
+        flex: none;
+        font-size: 0.78rem;
+        line-height: 1.05;
+        padding-right: 12px;
+        display: flex;
+        align-items: baseline;
+        gap: 5px;
+        overflow: hidden;
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        background: inherit;
+      }
+      .g-label b {
+        font-weight: 600;
+        color: var(--ink);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .g-label b.off {
+        color: var(--dim);
+      }
+      .g-track {
+        position: relative;
+        flex: 1;
+        height: 10px;
+        margin-top: 9px;
+        margin-right: 12px;
+      }
+      .seg {
+        position: absolute;
+        top: 0;
+        height: 10px;
+      }
+      .seg.bl {
+        background: var(--bl);
+      }
+      .seg.un {
+        background: var(--un);
+      }
+      .seg.ch {
+        background: var(--ch);
+      }
+      .seg.vfx {
+        background: var(--vfx);
+      }
+      .seg.vid {
+        background: var(--vid);
+      }
+      .seg.fin {
+        background: var(--fin);
+      }
+      .seg.crit {
+        background: var(--crit);
+      }
+      .seg.tbd {
+        opacity: 0.6;
+        background-image: repeating-linear-gradient(
+          45deg,
+          transparent 0 3px,
+          var(--paper) 3px 5px
+        );
+      }
+      .tip {
+        position: absolute;
+        top: -4px;
+        font-size: 0.66rem;
+        line-height: 18px;
+        white-space: nowrap;
+        color: var(--sub);
+        font-variant-numeric: tabular-nums;
+        padding-left: 7px;
+      }
+      .tip b {
+        color: var(--ink);
+        font-weight: 650;
+      }
+      .legend {
+        display: flex;
+        gap: 20px;
+        font-size: 0.71rem;
+        color: var(--sub);
+        margin-top: 20px;
+        flex-wrap: wrap;
         align-items: center;
       }
-      .track .name {
-        font-weight: 700;
-        font-size: 15px;
+      .legend i {
+        display: inline-block;
+        width: 16px;
+        height: 8px;
+        vertical-align: -1px;
+        margin-right: 5px;
       }
-      .track .name small {
+
+      /* ── 행 목록 (파이프라인·트랙) ── */
+      .krow {
+        display: grid;
+        grid-template-columns: 170px 1fr 110px;
+        gap: 14px;
+        align-items: baseline;
+        padding: 10px 0;
+        border-top: 1px solid var(--rule);
+        font-size: 0.79rem;
+      }
+      .krow:first-of-type {
+        border-top: none;
+      }
+      .krow .who {
+        font-weight: 700;
+      }
+      .krow .who small {
         display: block;
         font-weight: 400;
-        font-size: 12px;
-        color: var(--bark);
+        font-size: 0.68rem;
+        color: var(--sub);
       }
-      .gauge {
-        height: 18px;
-        background: #e4dcc6;
-        border-radius: 9px;
-        overflow: hidden;
-        border: 1px solid var(--line);
+      .krow .desc {
+        color: var(--sub);
+        line-height: 1.5;
       }
-      .gauge i {
-        display: block;
-        height: 100%;
-        border-radius: 8px;
-        background: var(--sun);
-      }
-      .gauge i.full {
-        background: var(--moss);
-      }
-      .gauge i.hot {
-        background: var(--berry);
-      }
-      .track .val {
-        font-size: 13px;
-        color: var(--bark);
+      .krow .st {
         text-align: right;
+        font-size: 0.72rem;
+        color: var(--sub);
+        font-variant-numeric: tabular-nums;
       }
-      .track .val b {
-        color: var(--pine);
+      .krow .st b {
+        color: var(--ink);
       }
-      @media (max-width: 720px) {
-        .track {
-          grid-template-columns: 1fr 70px;
+      .krow .st b.fin {
+        color: var(--fin);
+      }
+      .krow .st b.crit {
+        color: var(--crit);
+      }
+      .dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+        margin-right: 7px;
+        vertical-align: 0;
+      }
+      @media (max-width: 640px) {
+        .krow {
+          grid-template-columns: 1fr 90px;
         }
-        .track .name {
+        .krow .desc {
           grid-column: 1/-1;
         }
-      }
-
-      /* ---------- 타임라인 ---------- */
-      .timeline {
-        border-left: 3px solid var(--moss);
-        margin: 10px 0 0 8px;
-        padding-left: 26px;
-      }
-      .tl {
-        position: relative;
-        padding-bottom: 30px;
-      }
-      .tl::before {
-        content: "";
-        position: absolute;
-        left: -34.5px;
-        top: 5px;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: var(--moss);
-        border: 3px solid var(--dawn);
-      }
-      .tl.now::before {
-        background: var(--berry);
-      }
-      .tl .when {
-        font-size: 12.5px;
-        font-weight: 700;
-        color: var(--moss);
-        letter-spacing: 0.06em;
-      }
-      .tl h3 {
-        font-size: 17px;
-        margin: 2px 0 4px;
-      }
-      .tl p {
-        font-size: 14px;
-        color: var(--bark);
-        max-width: 600px;
-      }
-      .tl.next {
-        opacity: 0.75;
-      }
-      .tl.next::before {
-        background: var(--dawn);
-        border: 3px solid var(--moss);
-      }
-
-      footer {
-        margin-top: 64px;
-        padding: 26px 0 48px;
-        border-top: 1px solid var(--line);
-        font-size: 13px;
-        color: var(--bark);
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 8px;
       }
     </style>
   </head>
   <body>
-    <header>
-      <div class="wrap">
-        <div class="eyebrow">
-          Roblox · 힐링 + 서바이벌 새 돌보기 · 기획—제작 보드
-        </div>
-        <h1>Close: <span class="accent">Wild Hearts</span></h1>
-        <p class="tagline">
-          야생 새에게 먹이를 주고, 거리를 좁혀가며 친구가 되고, 집을 지어주고,
-          적으로부터 지켜주는 돌봄 디펜스 게임.
+    <div class="wrap">
+      <header>
+        <div class="eyebrow">CLOSE: WILD HEARTS — 기획 · 제작 보드</div>
+        <h1>야생 새와 친구가 되는 돌봄 디펜스</h1>
+        <p class="lede">
+          먹이를 주고, 거리를 좁혀 친구가 되고, 집을 지어주고, 밤에는
+          천적으로부터 지킨다. Roblox · 힐링+서바이벌 · 타겟 10~15세 · 디렉터
+          1인 + AI 5역할 팀.
         </p>
-        <div class="meta">
-          <span>버전 <b>v0.3.5</b></span>
-          <span>스프린트 <b>4 — 천적 + 경제</b></span>
-          <span>타겟 <b>10~15세</b></span>
-          <span>새 <b>42종 (T1~T5)</b></span>
-          <span>팀 <b>디렉터 + AI 5역할</b></span>
+        <nav class="secnav">
+          <a href="#gantt">일정</a><a href="#pipeline">제작 파이프라인</a
+          ><a href="#tracks">시스템 트랙</a><a href="#docs">문서 체계</a>
+        </nav>
+        <div class="pulse">
+          <div class="chip">
+            <span class="k">버전</span><span class="n">v0.3.5</span>
+          </div>
+          <div class="chip">
+            <span class="k">스프린트</span><span class="n">4</span
+            ><span class="k">천적 + 경제</span>
+          </div>
+          <div class="chip">
+            <span class="k">새</span><span class="n num">42종</span
+            ><span class="k">T1~T5</span>
+          </div>
+          <div class="chip">
+            <span class="k">설계 문서</span><span class="n num">N6~N64</span>
+          </div>
+          <div class="chip hot">
+            <span class="k">진행 중</span
+            ><span class="n">먹이 대개편 검증</span>
+          </div>
         </div>
-        <div class="loop" aria-label="핵심 루프">
-          <span class="step">자원 수집</span><span class="arrow">→</span>
-          <span class="step">새 먹이주기</span><span class="arrow">→</span>
-          <span class="step">친구 새 등록</span><span class="arrow">→</span>
-          <span class="step">새집 건설</span><span class="arrow">→</span>
-          <span class="step">밤 방어</span>
-        </div>
-      </div>
-    </header>
+      </header>
 
-    <main class="wrap">
+      <!-- ══════════ 일정 간트 ══════════ -->
+      <section id="gantt">
+        <h2>일정 — 스프린트와 사이클</h2>
+        <p class="sub">
+          축은 2026년 3월~10월. 기간은 커밋 이력 기준 근사치, 빗금 = 일정
+          미정(순서만 확정).
+        </p>
+        <div class="gantt">
+          <div class="g-inner">
+            <div class="g-axis">
+              <span style="left: 0">3월</span
+              ><span style="left: 14.5%">4월</span
+              ><span style="left: 28.5%">5월</span>
+              <span style="left: 43%">6월</span
+              ><span style="left: 57%">7월</span
+              ><span style="left: 71.5%">8월</span>
+              <span style="left: 86%">9월</span>
+              <span class="now" style="left: 74.3%">8/7</span>
+            </div>
+            <div class="g-body">
+              <div class="g-lanes">
+                <i style="left: 14.5%"></i><i style="left: 28.5%"></i
+                ><i style="left: 43%"></i> <i style="left: 57%"></i
+                ><i style="left: 71.5%"></i><i style="left: 86%"></i>
+                <i class="today" style="left: 74.3%"></i>
+              </div>
+
+              <div class="g-group"><b>스프린트</b><i></i></div>
+              <div class="g-row">
+                <div class="g-label"><b class="off">1 — 기반 루프</b></div>
+                <div class="g-track">
+                  <span class="seg fin" style="left: 0; width: 14.5%"></span
+                  ><span class="tip" style="left: 14.5%">~3/31</span>
+                </div>
+              </div>
+              <div class="g-row">
+                <div class="g-label"><b class="off">2 — 도구·밸런스</b></div>
+                <div class="g-track">
+                  <span class="seg fin" style="left: 14.5%; width: 1.9%"></span
+                  ><span class="tip" style="left: 16.4%">~4/4</span>
+                </div>
+              </div>
+              <div class="g-row">
+                <div class="g-label"><b class="off">3 — 폴리싱 v0.3.2</b></div>
+                <div class="g-track">
+                  <span class="seg fin" style="left: 16.4%; width: 2.3%"></span
+                  ><span class="tip" style="left: 18.7%">~4/10</span>
+                </div>
+              </div>
+              <div class="g-row">
+                <div class="g-label"><b>4 — 천적 + 경제</b></div>
+                <div class="g-track">
+                  <span class="seg bl" style="left: 19.2%; width: 55.1%"></span
+                  ><span class="tip" style="left: 74.3%"><b>진행 중</b></span>
+                </div>
+              </div>
+
+              <div class="g-group"><b>스프린트 4 주요 사이클</b><i></i></div>
+              <div class="g-row">
+                <div class="g-label">
+                  <b class="off">천적·밤 방어 N26~46</b>
+                </div>
+                <div class="g-track">
+                  <span class="seg ch" style="left: 33%; width: 30.5%"></span
+                  ><span class="tip" style="left: 63.5%">5월~7/17</span>
+                </div>
+              </div>
+              <div class="g-row">
+                <div class="g-label">
+                  <b class="off">전투 히트박스 N47~51</b>
+                </div>
+                <div class="g-track">
+                  <span class="seg vid" style="left: 64%; width: 2%"></span
+                  ><span class="tip" style="left: 66%">7/18~21</span>
+                </div>
+              </div>
+              <div class="g-row">
+                <div class="g-label">
+                  <b class="off">친구 루프·낮밤 N53~60</b>
+                </div>
+                <div class="g-track">
+                  <span class="seg un" style="left: 64.4%; width: 1.5%"></span
+                  ><span class="tip" style="left: 65.9%">7/19~21</span>
+                </div>
+              </div>
+              <div class="g-row">
+                <div class="g-label"><b class="off">먹이 대개편 N61~64</b></div>
+                <div class="g-track">
+                  <span class="seg vfx" style="left: 64.9%; width: 7%"></span
+                  ><span class="tip" style="left: 71.9%">7/20~8/2</span>
+                </div>
+              </div>
+              <div class="g-row">
+                <div class="g-label"><b>먹이 대개편 통합 검증</b></div>
+                <div class="g-track">
+                  <span class="seg crit" style="left: 71.9%; width: 2.4%"></span
+                  ><span class="tip" style="left: 74.3%"><b>진행 중</b></span>
+                </div>
+              </div>
+
+              <div class="g-group">
+                <b>다음 — 순서 확정 · 일정 미정</b><i></i>
+              </div>
+              <div class="g-row">
+                <div class="g-label">
+                  <b class="off">다음 새 예고 UI (N62 P2)</b>
+                </div>
+                <div class="g-track">
+                  <span
+                    class="seg un tbd"
+                    style="left: 74.3%; width: 6%"
+                  ></span>
+                </div>
+              </div>
+              <div class="g-row">
+                <div class="g-label"><b class="off">동굴 4→1 통합</b></div>
+                <div class="g-track">
+                  <span
+                    class="seg ch tbd"
+                    style="left: 80.3%; width: 8%"
+                  ></span>
+                </div>
+              </div>
+              <div class="g-row">
+                <div class="g-label"><b class="off">멀티플레이 M1~M4</b></div>
+                <div class="g-track">
+                  <span
+                    class="seg vid tbd"
+                    style="left: 88.3%; width: 11.7%"
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="legend">
+          <span><i style="background: var(--fin)"></i>완료 스프린트</span>
+          <span><i style="background: var(--bl)"></i>진행 스프린트</span>
+          <span><i style="background: var(--crit)"></i>지금 하는 일</span>
+          <span
+            ><i
+              style="
+                background: var(--mut);
+                background-image: repeating-linear-gradient(
+                  45deg,
+                  transparent 0 3px,
+                  var(--paper) 3px 5px
+                );
+              "
+            ></i
+            >일정 미정</span
+          >
+        </div>
+      </section>
+
+      <!-- ══════════ 제작 파이프라인 ══════════ -->
       <section id="pipeline">
-        <h2><span class="no serif">하나</span>제작 파이프라인</h2>
+        <h2>제작 파이프라인 — 지시 한 줄이 게임이 되기까지</h2>
         <p class="sub">
-          디렉터의 자연어 지시 한 줄이 게임 속 동작이 되기까지 — 매
-          사이클(N번호)이 이 여섯 홰를 지난다.
+          메이저 작업(30줄+·시스템·정책)은 여섯 단계를 지난다. 5줄 이하
+          마이크로·30줄 이하 마이너는 구현 직행, 검수는 상태기계·저장복원·전투
+          등 위험 영역을 건드릴 때만 수행한다(8/2 선별제).
         </p>
-        <div class="pipeline">
-          <div class="stations">
-            <div class="station">
-              <div class="who">디렉터</div>
-              <h3>기획·결정</h3>
-              <p>방향 지시, 옵션 카드 확정. 모든 수치·정책의 최종 결정권.</p>
-            </div>
-            <div class="station">
-              <div class="who">하늘</div>
-              <h3>시스템 설계</h3>
-              <p>실코드 실측 기반 설계 문서 작성. 앵커·검증 기준 명세.</p>
-            </div>
-            <div class="station">
-              <div class="who">가온</div>
-              <h3>구현</h3>
-              <p>설계대로 코드 작성. 어긋남 발견 시 임의 해석 없이 보고.</p>
-            </div>
-            <div class="station">
-              <div class="who">하늘</div>
-              <h3>검수 (선별)</h3>
-              <p>상태기계·저장/복원·전투 등 위험 영역 접촉 시에만 수행.</p>
-            </div>
-            <div class="station">
-              <div class="who">디렉터</div>
-              <h3>Play 검증</h3>
-              <p>Studio 실플레이로 시나리오 검증. 통과 선언 = 완료.</p>
-            </div>
-            <div class="station final">
-              <div class="who">이음</div>
-              <h3>기록·배포</h3>
-              <p>결정·실수·사이클 문서화, 커밋·push. 디렉터가 place publish.</p>
-            </div>
+        <div class="krow">
+          <div class="who">
+            <span class="dot" style="background: var(--crit)"></span
+            >디렉터<small>기획·결정</small>
           </div>
+          <div class="desc">
+            방향 지시와 옵션 카드 확정. 모든 수치·정책의 최종 결정권.
+          </div>
+          <div class="st">시작</div>
         </div>
-        <div class="note">
-          <b>규모별 지름길</b> — 5줄 이하 마이크로·30줄 이하 마이너 수정은
-          설계·검수 없이 가온 직행. 모델링은 새롬, 자료 조사·사전은 슬기가
-          맡는다. 검수 선별제는 8/2 실측(검수 5회 중 위험 영역 2회만 결함
-          검출)으로 확정.
+        <div class="krow">
+          <div class="who">
+            <span class="dot" style="background: var(--bl)"></span>하늘<small
+              >시스템 설계</small
+            >
+          </div>
+          <div class="desc">
+            실코드 실측 기반 설계 문서 작성 — 변경 지점·검증 기준 명세.
+          </div>
+          <div class="st">N문서 1건</div>
+        </div>
+        <div class="krow">
+          <div class="who">
+            <span class="dot" style="background: var(--un)"></span>가온<small
+              >구현</small
+            >
+          </div>
+          <div class="desc">
+            설계대로 코드 작성. 설계와 실코드가 어긋나면 임의 해석 없이 보고.
+          </div>
+          <div class="st">코드 커밋</div>
+        </div>
+        <div class="krow">
+          <div class="who">
+            <span class="dot" style="background: var(--vid)"></span>하늘<small
+              >검수 — 선별</small
+            >
+          </div>
+          <div class="desc">
+            위험 영역 접촉 시에만. 8/2 실측: 검수 5회 중 2회에서 심각 결함을
+            커밋 전 차단.
+          </div>
+          <div class="st">PASS / 지적</div>
+        </div>
+        <div class="krow">
+          <div class="who">
+            <span class="dot" style="background: var(--vfx)"></span>디렉터<small
+              >Play 검증</small
+            >
+          </div>
+          <div class="desc">
+            Studio 실플레이 시나리오 검증. 디렉터의 통과 선언이 곧 완료.
+          </div>
+          <div class="st">통과 선언</div>
+        </div>
+        <div class="krow">
+          <div class="who">
+            <span class="dot" style="background: var(--fin)"></span>이음<small
+              >기록·배포</small
+            >
+          </div>
+          <div class="desc">
+            결정·실수·사이클 문서화와 커밋·push. 게임 배포(publish)는 디렉터.
+          </div>
+          <div class="st">마감</div>
         </div>
       </section>
 
-      <section id="docs">
-        <h2><span class="no serif">둘</span>기획이 사는 곳</h2>
-        <p class="sub">
-          모든 결정은 문서로 남고, 코드와 문서가 서로 다른 저장소에서 짝을
-          이룬다.
-        </p>
-        <div class="layers">
-          <div class="layer">
-            <div class="tag">비전·수치</div>
-            <h3>게임 기획서</h3>
-            <p>
-              <span class="mono">GAME_DESIGN.md</span> — 비전(아이들의 긍정적
-              성장), 핵심 컨셉, 42종 새 도감, 먹이·경제 수치의 단일 원본.
-            </p>
-          </div>
-          <div class="layer">
-            <div class="tag">사이클 설계</div>
-            <h3>설계 문서 N6 ~ N64</h3>
-            <p>
-              메이저 작업마다 1건 — 실측 → 설계 → 구현 계획 → 검증 기준. 약 50건
-              누적, 최신은 <span class="mono">N64 간식 요건</span>.
-            </p>
-          </div>
-          <div class="layer">
-            <div class="tag">코드</div>
-            <h3>게임 코드 저장소</h3>
-            <p>
-              Rojo로 파일 ↔ Roblox Studio 동기화. 문서 저장소와 분리, 커밋
-              이력이 곧 제작 일지.
-            </p>
-          </div>
-        </div>
-      </section>
-
+      <!-- ══════════ 시스템 트랙 ══════════ -->
       <section id="tracks">
-        <h2><span class="no serif">셋</span>시스템 트랙 현황</h2>
+        <h2>시스템 트랙 현황</h2>
         <p class="sub">
-          스프린트 4에서 굴러가는 큰 축들. 게이지는 게임 속 먹이 게이지처럼 —
-          가득 차면 완성이다.
+          스프린트 4에서 굴러가는 큰 축. 완료 = 디렉터 Play 통과 기준.
         </p>
-        <div class="tracks">
-          <div class="track">
-            <div class="name">
-              새 42종 + 길들이기<small>모델·cfg·게이지·도감 T1~T5</small>
-            </div>
-            <div class="gauge"><i class="full" style="width: 100%"></i></div>
-            <div class="val"><b>완료</b></div>
+        <div class="krow">
+          <div class="who">새 42종 + 길들이기</div>
+          <div class="desc">
+            모델·종별 설정·게이지·도감 T1~T5. 종별 게이지 상한 차등(N61).
           </div>
-          <div class="track">
-            <div class="name">
-              천적·밤 방어<small>N26~N46 — 적 AI·웨이브·울타리</small>
-            </div>
-            <div class="gauge"><i class="full" style="width: 100%"></i></div>
-            <div class="val"><b>완료</b></div>
+          <div class="st"><b class="fin">완료</b></div>
+        </div>
+        <div class="krow">
+          <div class="who">천적·밤 방어</div>
+          <div class="desc">
+            적 AI 바닥부터 재설계(N28), 웨이브·울타리·동굴 스폰(N26~46).
           </div>
-          <div class="track">
-            <div class="name">
-              전투 체계<small>N47~N51 — 히트박스·스윙·튜닝</small>
-            </div>
-            <div class="gauge"><i class="full" style="width: 100%"></i></div>
-            <div class="val"><b>완료</b></div>
+          <div class="st"><b class="fin">완료</b></div>
+        </div>
+        <div class="krow">
+          <div class="who">전투 체계</div>
+          <div class="desc">
+            판정 = 히트박스 확정, 수치 단일 원본(CombatConfig), 스윙
+            커밋(N47~51).
           </div>
-          <div class="track">
-            <div class="name">
-              먹이 시스템 대개편<small
-                >N61~N64 — 채집 재고·선추첨·간식 요건</small
-              >
-            </div>
-            <div class="gauge"><i class="hot" style="width: 90%"></i></div>
-            <div class="val"><b>90%</b> 검증 중</div>
+          <div class="st"><b class="fin">완료</b></div>
+        </div>
+        <div class="krow">
+          <div class="who">먹이 시스템 대개편</div>
+          <div class="desc">
+            보이는 열매 = 재고(N61) → 다음 새 선추첨(N62) → 규칙 단순화(N63) →
+            간식까지 먹여야 친구가 되는 요건 4축(N64, 13종·티어 곡선 1~3).
           </div>
-          <div class="track">
-            <div class="name">
-              다음 새 예고 UI<small>N62 P2 — 실루엣 뷰포트</small>
-            </div>
-            <div class="gauge"><i style="width: 30%"></i></div>
-            <div class="val"><b>30%</b> 설계</div>
+          <div class="st"><b class="crit">검증 중</b></div>
+        </div>
+        <div class="krow">
+          <div class="who">다음 새 예고 UI</div>
+          <div class="desc">
+            실루엣 뷰포트 + 미등록 종 "???" 숨김. N64 안정 후 착수.
           </div>
-          <div class="track">
-            <div class="name">
-              희귀 채집 축<small>P4 빛나는 열매·코스 / P5 물고기</small>
-            </div>
-            <div class="gauge"><i style="width: 15%"></i></div>
-            <div class="val"><b>15%</b> 대기</div>
+          <div class="st"><b>설계 확정</b></div>
+        </div>
+        <div class="krow">
+          <div class="who">희귀 채집 축</div>
+          <div class="desc">
+            P4 빛나는 열매·장애물 코스, P5 물가 물고기(어식 7종 승격).
           </div>
+          <div class="st"><b>대기</b></div>
         </div>
       </section>
 
-      <section id="timeline">
-        <h2><span class="no serif">넷</span>스프린트 타임라인</h2>
-        <p class="sub">2026년 봄부터 지금까지, 그리고 다음에 올 것.</p>
-        <div class="timeline">
-          <div class="tl">
-            <div class="when">스프린트 1 · ~2026-03</div>
-            <h3>기반 루프</h3>
-            <p>수집 → 먹이주기 → 친구 등록 → 건설 → 밤 방어의 뼈대 완성.</p>
+      <!-- ══════════ 문서 체계 ══════════ -->
+      <section id="docs">
+        <h2>문서 체계 — 기획이 사는 곳</h2>
+        <p class="sub">
+          모든 결정은 문서로 남고, 코드와 문서가 별도 저장소에서 짝을 이룬다. 이
+          보드는 그 요약본이다.
+        </p>
+        <div class="krow">
+          <div class="who">게임 기획서</div>
+          <div class="desc">
+            비전(아이들의 긍정적 성장) · 핵심 컨셉 · 42종 도감 · 먹이·경제
+            수치의 단일 원본.
           </div>
-          <div class="tl">
-            <div class="when">스프린트 2 · ~2026-04-04</div>
-            <h3>도구와 밸런스</h3>
-            <p>채집 도구 체계·드롭 밸런스 확정, 나무 흔들기 타이밍 튜닝.</p>
+          <div class="st">비공개 repo</div>
+        </div>
+        <div class="krow">
+          <div class="who">설계 문서 N6~N64</div>
+          <div class="desc">
+            메이저 사이클마다 1건: 실측 → 설계 → 구현 계획 → 검증 기준. 약 50건
+            누적.
           </div>
-          <div class="tl">
-            <div class="when">스프린트 3 · ~2026-04-10</div>
-            <h3>폴리싱 (v0.3.2)</h3>
-            <p>연출·사운드·UI 다듬기, 플록(무리) 시스템.</p>
+          <div class="st num">50여 건</div>
+        </div>
+        <div class="krow">
+          <div class="who">운영 기록</div>
+          <div class="desc">
+            스프린트 일지 · 버그/폴리시 트래커 · 실수 점수판 — 세션 마감마다
+            갱신.
           </div>
-          <div class="tl now">
-            <div class="when">스프린트 4 · 2026-04-11 ~ 현재</div>
-            <h3>천적 + 경제</h3>
-            <p>
-              적 AI 처음부터 재설계, 전투 히트박스 체계, 그리고 8월의 먹이
-              시스템 대개편 — 보이는 열매가 곧 재고, 다음 새를 미리 알고,
-              좋아하는 간식까지 구해 먹여야 진짜 친구가 된다.
-            </p>
+          <div class="st">상시</div>
+        </div>
+        <div class="krow">
+          <div class="who">게임 코드</div>
+          <div class="desc">
+            Rojo로 파일과 Roblox Studio를 동기화. 커밋 이력이 곧 제작 일지.
           </div>
-          <div class="tl next">
-            <div class="when">다음</div>
-            <h3>동굴 통합 → 멀티플레이</h3>
-            <p>
-              동굴 4→1 대형 통합(위험 채집 접합), 이후 멀티플레이 M1~M4 로드맵.
-            </p>
-          </div>
+          <div class="st">비공개 repo</div>
         </div>
       </section>
-    </main>
 
-    <footer>
-      <div
-        class="wrap"
-        style="
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: 8px;
-          padding: 0 24px;
-        "
-      >
-        <span>Close: Wild Hearts — 기획·제작 보드</span>
-        <span>2026-08-07 갱신 · 세션 마감마다 이음이 갱신</span>
-      </div>
-    </footer>
+      <p class="stamp">
+        <b>2026-08-07</b> 갱신 — 세션 마감마다 이음이 갱신 · 기간 표기는 커밋
+        이력 기준 근사
+      </p>
+    </div>
   </body>
 </html>
