@@ -114,9 +114,7 @@
       .stamp {
         color: var(--sub);
         font-size: 0.72rem;
-        margin: 0;
-        padding-top: 18px;
-        border-top: 1px solid var(--line);
+        margin: 10px 0 0;
       }
       .stamp b {
         color: var(--ink);
@@ -242,7 +240,7 @@
       }
       .g-row {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         height: 30px;
         background: var(--paper);
       }
@@ -307,7 +305,6 @@
         position: relative;
         flex: 1;
         height: 10px;
-        margin-top: 9px;
         margin-right: 12px;
       }
       .seg {
@@ -443,6 +440,10 @@
           먹이를 주고, 거리를 좁혀 친구가 되고, 집을 지어주고, 밤에는
           천적으로부터 지킨다. Roblox · 힐링+서바이벌 · 타겟 10~15세 · 디렉터
           1인 + AI 5역할 팀.
+        </p>
+        <p class="stamp">
+          <b>2026-08-07</b> 갱신 — 사이클 완료·상태 변화 시 이음이 즉시 갱신 ·
+          기간 표기는 커밋 이력 기준 근사
         </p>
         <nav class="secnav">
           <a href="#next">다음 할 일</a><a href="#gantt">일정</a
@@ -773,6 +774,14 @@
           <div class="st"><b class="fin">완료</b></div>
         </div>
         <div class="krow">
+          <div class="who">친구 루프·낮밤 순환</div>
+          <div class="desc">
+            게이지 성립 → 머리 위 플록 합류 · 밤 새집 귀가 · 재접속
+            복원(N53~60). 재접속 복원 수정분 재검증 1건 대기.
+          </div>
+          <div class="st"><b class="fin">완료</b></div>
+        </div>
+        <div class="krow">
           <div class="who">먹이 시스템 대개편</div>
           <div class="desc">
             보이는 열매 = 재고(N61) → 다음 새 선추첨(N62) → 규칙 단순화(N63) →
@@ -835,11 +844,6 @@
           <div class="st">비공개 repo</div>
         </div>
       </section>
-
-      <p class="stamp">
-        <b>2026-08-07</b> 갱신 — 세션 마감마다 이음이 갱신 · 기간 표기는 커밋
-        이력 기준 근사
-      </p>
     </div>
   </body>
 </html>
