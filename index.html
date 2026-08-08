@@ -11,6 +11,14 @@
       · data-key 없는 항목 = 저장 안 됨  · 같은 항목이면 문구가 바뀌어도 키는 유지할 것
       · 항목을 완전히 없앨 때만 키를 버린다 (키 재사용 = 옛 체크가 살아난다)
       스크립트 본문은 </body> 직전 인라인 <script> 참조.
+
+      [토큰 취급 — 절대 규칙] 자동 기록(GitHub 커밋) 기능이 쓰는 개인 접근 토큰은
+      오직 브라우저 localStorage 키 cwh-board:gh-token 에만 존재한다.
+      · 이 파일·이 저장소·커밋 메시지 어디에도 토큰을 적지 말 것 (공개 저장소다)
+      · 토큰은 화면의 "⚙ 자동 기록 설정"에서 각자 브라우저에 직접 넣는다
+      · 코드에 상수로 넣거나, 기본값을 주거나, 로그로 출력하는 변경은 금지
+      · 자동 기록이 만드는 history/*.md 는 공개 저장소에 공개로 커밋된다 —
+        페이지가 원격에 파일을 만드므로 로컬 작업 전 git pull --rebase 를 습관화할 것
     -->
     <style>
       :root {
@@ -534,9 +542,51 @@
         min-height: 3.6em;
         resize: vertical;
       }
+      .ghbar {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: -14px 0 12px;
+      }
+      .ghstat {
+        font-size: 0.7rem;
+        color: var(--sub);
+        font-variant-numeric: tabular-nums;
+      }
+      .ghpanel {
+        max-width: 62ch;
+        margin: 0 0 14px;
+        padding: 11px 13px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+      }
+      .ghpanel p {
+        margin: 0 0 9px;
+        font-size: 0.72rem;
+        line-height: 1.6;
+        color: var(--sub);
+      }
+      .ghpanel input {
+        display: block;
+        width: 100%;
+        margin: 0 0 9px;
+        padding: 6px 9px;
+        background: var(--paper);
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        font-family: inherit;
+        font-size: 0.74rem;
+      }
+      .ghpanel input:focus {
+        outline: none;
+        border-color: var(--mut);
+      }
       .copybtn {
         display: inline-block;
-        margin: -14px 0 12px;
+        margin: 0;
         padding: 4px 10px;
         background: var(--card);
         color: var(--sub);
@@ -668,7 +718,35 @@
           8/2 수정분 재검증은 8/7 통과 완료 (하네스 9/9 + 디렉터 Play). 아래는
           그 직후 반영한 수정 3건과 로그에서 발견된 오픈 2건의 확인 목록.
         </p>
-        <button type="button" class="copybtn" id="copyVerify">기록 복사</button>
+        <div class="ghbar">
+          <button type="button" class="copybtn" id="copyVerify">
+            기록 복사
+          </button>
+          <button type="button" class="copybtn" id="ghSetup">
+            ⚙ 자동 기록 설정
+          </button>
+          <span class="ghstat" id="ghStat">자동 기록: 꺼짐(토큰 없음)</span>
+        </div>
+        <div class="ghpanel" id="ghPanel" hidden>
+          <p>
+            토큰을 넣으면 체크·메모가 바뀔 때마다 60초 뒤
+            <b>history/날짜.md</b> 파일로 자동 커밋됩니다. 토큰은
+            <b>이 브라우저에만</b> 저장되고 소스·커밋에는 절대 들어가지 않습니다
+            (다만 이 주소의 다른 페이지도 읽을 수 있으니, 이 저장소 하나만
+            Contents 읽기·쓰기로 묶은 짧은 만료 토큰만 쓰세요).
+            <b>history 파일은 공개 저장소에 공개로 올라갑니다</b> — 메모에 밖에
+            내보내면 안 되는 내용은 적지 마세요.
+          </p>
+          <input
+            type="password"
+            id="ghToken"
+            placeholder="github_pat_… 붙여넣기"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="button" class="copybtn" id="ghSave">저장</button>
+          <button type="button" class="copybtn" id="ghClear">삭제</button>
+        </div>
         <div class="vlist">
           <div class="vgroup">
             먼저 — B-93 교착 구제 확인 (N67, 접속만 하면 자동)
@@ -1370,6 +1448,13 @@
             /* 사생활 모드 등 저장 불가 — 무시 */
           }
         }
+        function drop(k) {
+          try {
+            localStorage.removeItem(P + k);
+          } catch (e) {
+            /* 무시 */
+          }
+        }
 
         document
           .querySelectorAll('#verify input[type="checkbox"][data-key]')
@@ -1378,6 +1463,7 @@
             if (load(k) === "1") box.checked = true;
             box.addEventListener("change", function () {
               save(k, box.checked ? "1" : "0");
+              markDirty();
             });
           });
 
@@ -1392,6 +1478,7 @@
               clearTimeout(timer);
               timer = setTimeout(function () {
                 save(k, box.value);
+                markDirty();
               }, 300);
             });
           });
@@ -1480,6 +1567,118 @@
             flash();
           }
         });
+
+        /* ── 자동 기록 — 변경 60초 뒤 GitHub에 history/날짜.md 커밋 ──
+           토큰은 localStorage(cwh-board:gh-token)에만. 소스에 넣지 말 것. */
+        var REPO = "suokkim/close-wild-hearts-board";
+        var TKEY = "gh-token";
+        var setupBtn = document.getElementById("ghSetup");
+        var panel = document.getElementById("ghPanel");
+        var statEl = document.getElementById("ghStat");
+        var input = document.getElementById("ghToken");
+        var syncTimer;
+
+        function token() {
+          return load(TKEY) || "";
+        }
+        function stat(msg) {
+          if (statEl) statEl.textContent = "자동 기록: " + msg;
+        }
+        function idle() {
+          stat(token() ? "켜짐 (변경 60초 뒤 저장)" : "꺼짐(토큰 없음)");
+        }
+        function hhmm(d) {
+          return pad(d.getHours()) + ":" + pad(d.getMinutes());
+        }
+        function ymd(d) {
+          return (
+            d.getFullYear() +
+            "-" +
+            pad(d.getMonth() + 1) +
+            "-" +
+            pad(d.getDate())
+          );
+        }
+        function b64(str) {
+          var bytes = new TextEncoder().encode(str),
+            bin = "";
+          for (var i = 0; i < bytes.length; i++)
+            bin += String.fromCharCode(bytes[i]);
+          return btoa(bin);
+        }
+
+        function sync() {
+          var tk = token();
+          if (!tk) return;
+          var now = new Date();
+          var url =
+            "https://api.github.com/repos/" +
+            REPO +
+            "/contents/history/" +
+            ymd(now) +
+            ".md";
+          var head = {
+            Authorization: "Bearer " + tk,
+            Accept: "application/vnd.github+json",
+          };
+          stat("저장 중…");
+          fetch(url + "?ref=main", { headers: head })
+            .then(function (r) {
+              return r.ok ? r.json() : null;
+            })
+            .then(function (prev) {
+              var body = {
+                message: "보드 기록 자동 저장 — " + ymd(now) + " " + hhmm(now),
+                content: b64(report()),
+                branch: "main",
+              };
+              if (prev && prev.sha) body.sha = prev.sha;
+              return fetch(url, {
+                method: "PUT",
+                headers: head,
+                body: JSON.stringify(body),
+              });
+            })
+            .then(function (r) {
+              if (r && r.ok) stat("저장됨 " + hhmm(new Date()));
+              else stat("저장 실패(토큰 확인)");
+            })
+            .catch(function () {
+              stat("저장 실패(토큰 확인)");
+            });
+        }
+        function markDirty() {
+          if (!token()) return;
+          clearTimeout(syncTimer);
+          syncTimer = setTimeout(sync, 60000);
+        }
+
+        if (setupBtn && panel && input) {
+          setupBtn.addEventListener("click", function () {
+            panel.hidden = !panel.hidden;
+            if (!panel.hidden) input.focus();
+          });
+          document
+            .getElementById("ghSave")
+            .addEventListener("click", function () {
+              var v = input.value.trim();
+              if (!v) return;
+              save(TKEY, v);
+              input.value = "";
+              panel.hidden = true;
+              idle();
+              sync();
+            });
+          document
+            .getElementById("ghClear")
+            .addEventListener("click", function () {
+              drop(TKEY);
+              input.value = "";
+              clearTimeout(syncTimer);
+              idle();
+            });
+        }
+        idle();
       })();
     </script>
   </body>
