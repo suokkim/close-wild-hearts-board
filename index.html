@@ -17,8 +17,16 @@
       · 이 파일·이 저장소·커밋 메시지 어디에도 토큰을 적지 말 것 (공개 저장소다)
       · 토큰은 화면의 "⚙ 자동 기록 설정"에서 각자 브라우저에 직접 넣는다
       · 코드에 상수로 넣거나, 기본값을 주거나, 로그로 출력하는 변경은 금지
-      · 자동 기록이 만드는 history/*.md 는 공개 저장소에 공개로 커밋된다 —
-        페이지가 원격에 파일을 만드므로 로컬 작업 전 git pull --rebase 를 습관화할 것
+      · 토큰의 대상 저장소는 아래 기록 저장소 하나여야 한다 (이 보드 저장소가 아니다)
+
+      [기록 저장소 분리 — 2026-08-08] 자동 기록은 이 저장소가 아니라
+      suokkim/close-wild-hearts-board-history (비공개) 의 history/날짜.md 로 커밋된다.
+      · 대상은 스크립트의 REPO 상수 한 줄뿐 — 옮길 일이 생기면 그 문자열만 고친다
+      · 기록이 이 저장소로 돌아오면 안 된다: 이 저장소는 공개이고, 루트가 그대로
+        GitHub Pages 로 발행되어 history/*.md 가 주소만 알면 열리는 상태가 된다
+      · 이 저장소에는 history/ 가 생기지 않으므로 로컬과 어긋날 일이 없지만,
+        기록 저장소를 직접 만질 때는 페이지가 원격에 파일을 만든다는 점을 잊지 말 것
+        (그쪽 작업 전 git pull --rebase)
     -->
     <style>
       :root {
@@ -734,12 +742,14 @@
         <div class="ghpanel" id="ghPanel" hidden>
           <p>
             토큰을 넣으면 체크·메모가 바뀔 때마다 60초 뒤
-            <b>history/날짜.md</b> 파일로 자동 커밋됩니다. 토큰은
-            <b>이 브라우저에만</b> 저장되고 소스·커밋에는 절대 들어가지 않습니다
-            (다만 이 주소의 다른 페이지도 읽을 수 있으니, 이 저장소 하나만
-            Contents 읽기·쓰기로 묶은 짧은 만료 토큰만 쓰세요).
-            <b>history 파일은 공개 저장소에 공개로 올라갑니다</b> — 메모에 밖에
-            내보내면 안 되는 내용은 적지 마세요.
+            <b>close-wild-hearts-board-history</b>(비공개 저장소)에
+            <b>history/날짜.md</b> 파일로 자동 커밋됩니다. 이 보드와는 별개
+            저장소라 <b>기록은 공개되지 않습니다</b>. 토큰을 만들 때
+            <b>대상 저장소를 close-wild-hearts-board-history 하나만</b> 고르고
+            <b>Contents 읽기·쓰기</b> 권한만 주세요 (이 보드 저장소가 아닙니다).
+            토큰은 <b>이 브라우저에만</b> 저장되고 소스·커밋에는 절대 들어가지
+            않습니다 — 다만 이 주소의 다른 페이지도 읽을 수 있으니 만료를 짧게
+            잡으세요.
           </p>
           <input
             type="password"
@@ -1574,9 +1584,10 @@
           }
         });
 
-        /* ── 자동 기록 — 변경 60초 뒤 GitHub에 history/날짜.md 커밋 ──
+        /* ── 자동 기록 — 변경 60초 뒤 비공개 기록 저장소에 history/날짜.md 커밋 ──
+           대상 = close-wild-hearts-board-history (비공개, 이 보드와 별개 저장소).
            토큰은 localStorage(cwh-board:gh-token)에만. 소스에 넣지 말 것. */
-        var REPO = "suokkim/close-wild-hearts-board";
+        var REPO = "suokkim/close-wild-hearts-board-history";
         var TKEY = "gh-token";
         var setupBtn = document.getElementById("ghSetup");
         var panel = document.getElementById("ghPanel");
