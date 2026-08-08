@@ -4,6 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Close: Wild Hearts — 기획·제작 보드</title>
+    <!--
+      [갱신 규칙] Play 확인(#verify) 섹션의 체크박스·메모는 브라우저 localStorage에
+      저장된다(접두어 cwh-board:). 저장 키는 순서가 아니라 요소의 data-key 속성이므로,
+      항목을 추가·수정할 때 반드시 data-key="verify:<짧은-영문-슬러그>"를 함께 달 것.
+      · data-key 없는 항목 = 저장 안 됨  · 같은 항목이면 문구가 바뀌어도 키는 유지할 것
+      · 항목을 완전히 없앨 때만 키를 버린다 (키 재사용 = 옛 체크가 살아난다)
+      스크립트 본문은 </body> 직전 인라인 <script> 참조.
+    -->
     <style>
       :root {
         --paper: #fafafa;
@@ -510,6 +518,29 @@
         text-decoration: line-through;
         opacity: 0.45;
       }
+      .vmemo {
+        display: block;
+        width: 100%;
+        max-width: 62ch;
+        margin: 6px 0 2px;
+        padding: 7px 9px;
+        background: var(--card);
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        font-family: inherit;
+        font-size: 0.76rem;
+        line-height: 1.5;
+        min-height: 3.6em;
+        resize: vertical;
+      }
+      .vmemo::placeholder {
+        color: var(--sub);
+      }
+      .vmemo:focus {
+        outline: none;
+        border-color: var(--mut);
+      }
     </style>
   </head>
   <body>
@@ -624,49 +655,81 @@
           <div class="vgroup">
             먼저 — B-93 교착 구제 확인 (N67, 접속만 하면 자동)
           </div>
+          <textarea
+            class="vmemo"
+            data-key="verify:b93"
+            placeholder="메모…"
+          ></textarea>
           <label
-            ><input type="checkbox" />접속 ~3초 내 포토카드 등장 — 만충 게이지의
-            새가 친구로 성립 (잠겼던 세이브 자동 구제)</label
+            ><input type="checkbox" data-key="verify:n67-photocard" />접속 ~3초
+            내 포토카드 등장 — 만충 게이지의 새가 친구로 성립 (잠겼던 세이브
+            자동 구제)</label
           >
           <label
-            ><input type="checkbox" />성립 후 게이지 0 리셋 · 붓기 프롬프트
-            살아남 (교착 해제)</label
+            ><input type="checkbox" data-key="verify:n67-gauge-reset" />성립 후
+            게이지 0 리셋 · 붓기 프롬프트 살아남 (교착 해제)</label
           >
           <label
-            ><input type="checkbox" />야생 새 있는 중 Stop → 재접속 = 같은 종이
-            다시 예고·스폰 (wildBirdId 저장)</label
+            ><input
+              type="checkbox"
+              data-key="verify:n67-wildbird-respawn"
+            />야생 새 있는 중 Stop → 재접속 = 같은 종이 다시 예고·스폰
+            (wildBirdId 저장)</label
           >
           <div class="vgroup">수정 3건 (8/7 가온, Rojo 반영됨)</div>
+          <textarea
+            class="vmemo"
+            data-key="verify:fix3"
+            placeholder="메모…"
+          ></textarea>
           <label
-            ><input type="checkbox" />먹이통 게이지 세로 전환 — 그릇 위 바가
-            세로(아래→위 채움) · 인접 그릇끼리 겹침 해소 · 거부 메시지 가독성
-            (상단 화면 게이지는 원래대로 복구됨)</label
+            ><input
+              type="checkbox"
+              data-key="verify:fix-bowl-gauge-vertical"
+            />먹이통 게이지 세로 전환 — 그릇 위 바가 세로(아래→위 채움) · 인접
+            그릇끼리 겹침 해소 · 거부 메시지 가독성 (상단 화면 게이지는 원래대로
+            복구됨)</label
           >
           <label
-            ><input type="checkbox" />붓기 부족분 — 새가 절반 먹고 떠난 뒤
-            재붓기 = "이미 충분" 거부(추가 소모 0) · 돌아온 새가 남은 그릇으로
-            성립</label
+            ><input
+              type="checkbox"
+              data-key="verify:fix-refill-shortfall"
+            />붓기 부족분 — 새가 절반 먹고 떠난 뒤 재붓기 = "이미 충분"
+            거부(추가 소모 0) · 돌아온 새가 남은 그릇으로 성립</label
           >
           <label
-            ><input type="checkbox" />적 데미지 ×3 — 접촉·공격 모두 -21 체감 (HP
-            100 기준 5타 — 과격하면 수치 재조정)</label
+            ><input type="checkbox" data-key="verify:fix-enemy-damage-x3" />적
+            데미지 ×3 — 접촉·공격 모두 -21 체감 (HP 100 기준 5타 — 과격하면 수치
+            재조정)</label
           >
           <div class="vgroup">오픈 2건 (로그 발견)</div>
+          <textarea
+            class="vmemo"
+            data-key="verify:open2"
+            placeholder="메모…"
+          ></textarea>
           <label
-            ><input type="checkbox" />B-91: HUD 통나무 수량 36 표시 여부 (0이면
-            템플릿 누락 확정)</label
+            ><input type="checkbox" data-key="verify:b91-log-count" />B-91: HUD
+            통나무 수량 36 표시 여부 (0이면 템플릿 누락 확정)</label
           >
           <label
-            ><input type="checkbox" />B-92: 접속 직후 머리 위 플록 = 3마리인지
-            6마리인지</label
+            ><input type="checkbox" data-key="verify:b92-flock-count" />B-92:
+            접속 직후 머리 위 플록 = 3마리인지 6마리인지</label
           >
           <div class="vgroup">마무리</div>
+          <textarea
+            class="vmemo"
+            data-key="verify:wrapup"
+            placeholder="메모…"
+          ></textarea>
           <label
-            ><input type="checkbox" />외곽 위험지 FruitTree 추가 배치</label
+            ><input type="checkbox" data-key="verify:map-fruittree" />외곽
+            위험지 FruitTree 추가 배치</label
           >
           <label
-            ><input type="checkbox" />place 저장 + publish (git 밖 자산: 도구
-            패치·간식 그릇 파츠·BerryTemplate·맵 배치)</label
+            ><input type="checkbox" data-key="verify:place-publish" />place 저장
+            + publish (git 밖 자산: 도구 패치·간식 그릇 파츠·BerryTemplate·맵
+            배치)</label
           >
         </div>
       </section>
@@ -1270,5 +1333,51 @@
         </div>
       </section>
     </div>
+
+    <!-- Play 확인 체크·메모 저장 (localStorage). 키는 data-key 기준 — head 주석 규칙 참조. -->
+    <script>
+      (function () {
+        var P = "cwh-board:";
+        function load(k) {
+          try {
+            return localStorage.getItem(P + k);
+          } catch (e) {
+            return null;
+          }
+        }
+        function save(k, v) {
+          try {
+            localStorage.setItem(P + k, v);
+          } catch (e) {
+            /* 사생활 모드 등 저장 불가 — 무시 */
+          }
+        }
+
+        document
+          .querySelectorAll('#verify input[type="checkbox"][data-key]')
+          .forEach(function (box) {
+            var k = "check:" + box.dataset.key;
+            if (load(k) === "1") box.checked = true;
+            box.addEventListener("change", function () {
+              save(k, box.checked ? "1" : "0");
+            });
+          });
+
+        document
+          .querySelectorAll("#verify textarea[data-key]")
+          .forEach(function (box) {
+            var k = "memo:" + box.dataset.key,
+              timer;
+            var saved = load(k);
+            if (saved !== null) box.value = saved;
+            box.addEventListener("input", function () {
+              clearTimeout(timer);
+              timer = setTimeout(function () {
+                save(k, box.value);
+              }, 300);
+            });
+          });
+      })();
+    </script>
   </body>
 </html>
