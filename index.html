@@ -534,6 +534,23 @@
         min-height: 3.6em;
         resize: vertical;
       }
+      .copybtn {
+        display: inline-block;
+        margin: -14px 0 12px;
+        padding: 4px 10px;
+        background: var(--card);
+        color: var(--sub);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        font-family: inherit;
+        font-size: 0.72rem;
+        line-height: 1.5;
+        cursor: pointer;
+      }
+      .copybtn:hover {
+        border-color: var(--mut);
+        color: var(--ink);
+      }
       .vmemo::placeholder {
         color: var(--sub);
       }
@@ -651,6 +668,7 @@
           8/2 수정분 재검증은 8/7 통과 완료 (하네스 9/9 + 디렉터 Play). 아래는
           그 직후 반영한 수정 3건과 로그에서 발견된 오픈 2건의 확인 목록.
         </p>
+        <button type="button" class="copybtn" id="copyVerify">기록 복사</button>
         <div class="vlist">
           <div class="vgroup">
             먼저 — B-93 교착 구제 확인 (N67, 접속만 하면 자동)
@@ -1377,6 +1395,91 @@
               }, 300);
             });
           });
+
+        /* ── 기록 복사 — 현재 화면 상태를 마크다운으로 클립보드에 ── */
+        var btn = document.getElementById("copyVerify");
+        var list = document.querySelector("#verify .vlist");
+        if (!btn || !list) return;
+
+        function txt(el) {
+          return el.textContent.replace(/\s+/g, " ").trim();
+        }
+        function pad(n) {
+          return (n < 10 ? "0" : "") + n;
+        }
+        function report() {
+          var d = new Date();
+          var out = [
+            "## Play 확인 기록 — " +
+              d.getFullYear() +
+              "-" +
+              pad(d.getMonth() + 1) +
+              "-" +
+              pad(d.getDate()) +
+              " " +
+              pad(d.getHours()) +
+              ":" +
+              pad(d.getMinutes()),
+          ];
+          var title = null,
+            items = [],
+            memo = "";
+          function flush() {
+            if (title === null) return;
+            out.push("### " + title);
+            out = out.concat(items);
+            out.push("메모: " + (memo.trim() || "—"));
+            items = [];
+            memo = "";
+          }
+          Array.prototype.forEach.call(list.children, function (el) {
+            if (el.classList.contains("vgroup")) {
+              flush();
+              title = txt(el);
+            } else if (el.tagName === "TEXTAREA") {
+              memo = el.value;
+            } else if (el.tagName === "LABEL") {
+              var b = el.querySelector('input[type="checkbox"]');
+              items.push("- [" + (b && b.checked ? "x" : " ") + "] " + txt(el));
+            }
+          });
+          flush();
+          return out.join("\n");
+        }
+        function fallback(text) {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.cssText = "position:fixed;top:0;left:-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = false;
+          try {
+            ok = document.execCommand("copy");
+          } catch (e) {
+            /* 복사 불가 — 무시 */
+          }
+          document.body.removeChild(ta);
+          return ok;
+        }
+        var flashTimer;
+        function flash() {
+          btn.textContent = "복사됨 ✓";
+          clearTimeout(flashTimer);
+          flashTimer = setTimeout(function () {
+            btn.textContent = "기록 복사";
+          }, 1500);
+        }
+        btn.addEventListener("click", function () {
+          var text = report();
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(flash, function () {
+              if (fallback(text)) flash();
+            });
+          } else if (fallback(text)) {
+            flash();
+          }
+        });
       })();
     </script>
   </body>
