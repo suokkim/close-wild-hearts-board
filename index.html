@@ -629,9 +629,12 @@
           1인 + AI 5역할 팀.
         </p>
         <p class="stamp">
-          <b>2026-08-10</b> 갱신 — 사이클 완료·상태 변화 시 이음이 즉시 갱신 ·
-          기간 표기는 커밋 이력 기준 근사
+          <!-- AUTO:stamp — board.py가 실행 시각으로 대체 -->
+          <b>2026-08-10</b> 갱신 — 마크다운을 읽어 그리는 로컬 보드 (새로고침 =
+          항상 최신) · 기간 표기는 커밋 이력 기준 근사
+          <!-- /AUTO:stamp -->
         </p>
+
         <nav class="secnav">
           <a href="#next">다음 할 일</a><a href="#verify">Play 확인</a
           ><a href="#gantt">일정</a><a href="#recent">최근 완료</a
@@ -714,11 +717,12 @@
 
       <!-- ══════════ Play 확인 ══════════ -->
       <section id="verify">
-        <h2>Play 확인 — N70 먹이 UX 안정화 + 후속</h2>
+        <h2>Play 확인 — 다음 세션 최우선 (11종)</h2>
         <p class="sub">
-          8/9 디렉터 Play 확인으로 N68 조리·선호 9항목 + N68B 확인분 + N69 통합
-          먹이통(B-96) 전부 종결 — 후속 B-97~99 · P-20~22 등록. 아래는 8/10 N70
-          먹이 UX 안정화 확인 5종과 남은 후속 1건.
+          8/9 확인분(N68 조리·선호 · N68B · N69 통합 먹이통 B-96)은 전부 종결.
+          아래가 다음 세션에서 볼 것 — <b>N70 먹이 UX 안정화 5종</b> +
+          <b>8/10 2차 디렉터 지시 반영분 6종</b>, 그리고 남은 후속 1건. 체크와
+          메모는 이 브라우저에 저장됩니다.
         </p>
         <div class="ghbar">
           <button type="button" class="copybtn" id="copyVerify">
@@ -781,6 +785,52 @@
           <label
             ><input type="checkbox" data-key="verify:n70-repeat-heart" />반복
             급여 시 하트 표시</label
+          >
+          <div class="vgroup">8/10 2차 — 디렉터 지시 반영분</div>
+          <textarea
+            class="vmemo"
+            data-key="verify:d810-memo"
+            placeholder="메모…"
+          ></textarea>
+          <label
+            ><input
+              type="checkbox"
+              data-key="verify:d810-snack-hidden-none"
+            />간식 칸 숨김 ① — 간식 요건
+            <b>없는</b> 새(참새·되새·십자매·노랑배진박새·노랑턱멧새 등) 스폰 시
+            먹이통에서 간식 칸이 통째로 사라짐 (옛 자물쇠 🔒 표시 없음)</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              data-key="verify:d810-snack-shown-req"
+            />간식 칸 숨김 ② — 간식 요건
+            <b>있는</b> 새(곤줄박이·딱새·휘파람새·카나리아·금화조·찌르레기 등)로
+            바뀌면 간식 칸이 다시 나타남, 씨앗·벌레 칸 위치는 그대로</label
+          >
+          <label
+            ><input type="checkbox" data-key="verify:d810-berry-one" />열매 1개
+            드롭 — 열매나무 흔들기 시 <code>got 1x Berry</code> (씨앗·벌레는 5개
+            유지 확인)</label
+          >
+          <label
+            ><input type="checkbox" data-key="verify:d810-damage-log" />데미지
+            총합 — 적에게 맞을 때 로그에
+            <code>[N47] damagePlayer … -N HP 100→85</code> 형태로 남는지 +
+            총합이 체력 감소와 일치하는지</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              data-key="verify:d810-pause-progress"
+            />일시정지 중 진행(B-104) — 새가 먹는 중 일시정지 → 친구가
+            맺어지는지 재현.
+            <b>실제 게임(Studio 밖)에서도 재현되는지가 판정 기준</b></label
+          >
+          <label
+            ><input type="checkbox" data-key="verify:d810-water-scoop" />물
+            뜨기(B-73) — 복제된 시냇가에서 물통에 물이 떠지는지 (되면
+            종결)</label
           >
           <div class="vgroup">후속 확인</div>
           <textarea

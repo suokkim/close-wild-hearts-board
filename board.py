@@ -15,6 +15,7 @@ import re
 import socketserver
 import sys
 import webbrowser
+from datetime import datetime
 from pathlib import Path
 
 BOARD = Path(__file__).resolve().parent / "index.html"
@@ -170,6 +171,16 @@ def render_recent(sprint):
     return sub + "\n" + "\n".join(rows)
 
 
+def render_stamp():
+    now = datetime.now()
+    weekday = "월화수목금토일"[now.weekday()]
+    return (
+        f'<b data-auto="stamp">{now:%Y-%m-%d}({weekday}) {now:%H:%M:%S}</b> 기준 — '
+        "마크다운을 읽어 그리는 로컬 보드 (새로고침 = 이 시각이 갱신됨) · "
+        "기간 표기는 커밋 이력 기준 근사"
+    )
+
+
 def zone(page, name, body):
     pat = re.compile(rf"(<!-- AUTO:{name}\b[^>]*-->).*?(<!-- /AUTO:{name} -->)", re.S)
     return pat.sub(lambda m: f"{m.group(1)}\n{body}\n{m.group(2)}", page, count=1)
@@ -180,6 +191,7 @@ def render():
     sprint = (TEAM / "CURRENT_SPRINT.md").read_text(encoding="utf-8")
     bugs = (TEAM / "BUGS.md").read_text(encoding="utf-8")
     polish = (TEAM / "POLISH.md").read_text(encoding="utf-8")
+    page = zone(page, "stamp", render_stamp())
     page = zone(page, "next", render_next(sprint))
     page = zone(page, "issues", render_issues(bugs, polish))
     page = zone(page, "recent", render_recent(sprint))
@@ -205,7 +217,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
 def check():
     out = render()
-    for name in ("next", "issues", "recent"):
+    for name in ("stamp", "next", "issues", "recent"):
         assert f'data-auto="{name}"' in out, f"{name} 구간이 생성되지 않았습니다"
     assert out.count('class="krow"') >= 10, "생성된 행이 너무 적습니다"
     assert "<!-- AUTO:next" in out and "</html>" in out, "템플릿이 깨졌습니다"
