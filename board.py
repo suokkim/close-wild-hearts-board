@@ -80,7 +80,13 @@ def render_next(sprint):
         return '<p class="sub" data-auto="next">CURRENT_SPRINT에서 세션 블록을 찾지 못했습니다.</p>'
     head, body = blocks[0]
     lines = body.splitlines()
-    start = next((i for i, l in enumerate(lines) if "재개 SSOT" in l), None)
+    # [8/10 밤] 단순 포함 검색은 본문이 "재개 SSOT"를 언급만 해도 거기서 멈춰버린다
+    # (실수 기록의 "재개 SSOT 미확인으로 …" 줄에 걸려 목록이 통째로 안 그려지고 있었음).
+    # → 제목 줄 자체를 앵커로 (인용부호 "> "를 벗긴 뒤 굵은 제목으로 시작하는 줄)
+    start = next(
+        (i for i, l in enumerate(lines) if l.lstrip("> ").startswith("**재개 SSOT")),
+        None,
+    )
 
     rows = []
     if start is not None:
@@ -171,7 +177,9 @@ def check():
     out = render()
     for name in ("stamp", "next"):
         assert f'data-auto="{name}"' in out, f"{name} 구간이 생성되지 않았습니다"
-    assert out.count('class="krow"') >= 1, "생성된 행이 너무 적습니다"
+    # 하한을 실측치에 맞춰 낮추면 경보가 죽는다 — 실제로 8/10 밤에 이 하한을 1로 내려서
+    # "재개 SSOT 목록이 통째로 안 그려지는" 결함을 --check 가 통과시켜 버렸다. 넉넉히 아래로 잡되 1은 금지.
+    assert out.count('class="krow"') >= 5, "재개 SSOT 목록이 거의 안 그려졌습니다 — 파싱 앵커를 확인하세요"
     assert "<!-- AUTO:next" in out and "</html>" in out, "템플릿이 깨졌습니다"
     print(f"OK — 행 {out.count('class=\"krow\"')}개 생성")
 
