@@ -637,8 +637,8 @@
 
         <nav class="secnav">
           <a href="#next">다음 할 일</a><a href="#verify">Play 확인</a
-          ><a href="#gantt">일정</a><a href="#recent">최근 완료</a
-          ><a href="#tracks">시스템 트랙</a><a href="#birds42">42종 선호</a>
+          ><a href="#gantt">일정</a><a href="#tracks">시스템 트랙</a
+          ><a href="#birds42">42종 선호</a>
         </nav>
         <div class="pulse">
           <div class="chip">
@@ -717,12 +717,16 @@
 
       <!-- ══════════ Play 확인 ══════════ -->
       <section id="verify">
-        <h2>Play 확인 — 다음 세션 최우선 (11종)</h2>
+        <h2>Play 확인 — 다음 세션 최우선 (16종)</h2>
         <p class="sub">
           8/9 확인분(N68 조리·선호 · N68B · N69 통합 먹이통 B-96)은 전부 종결.
-          아래가 다음 세션에서 볼 것 — <b>N70 먹이 UX 안정화 5종</b> +
-          <b>8/10 2차 디렉터 지시 반영분 6종</b>, 그리고 남은 후속 1건. 체크와
-          메모는 이 브라우저에 저장됩니다.
+          <b>UI 연출(마음 점·발견 연출 3초·새소리 볼륨 3)</b>·<b
+            >도주 반경(칸 수 비례 20/22/24)</b
+          >은 8/10 밤 디렉터 확인으로 통과. 아래가 다음 세션에서 볼 것 —
+          <b>N70 먹이 UX 안정화 5종</b> +
+          <b>8/10 2차 디렉터 지시 반영분 6종</b> +
+          <b>8/10 밤 신규 5종(플록 똥·열매 쉼타임·간식 후순위)</b>, 그리고 남은
+          후속 1건. 체크와 메모는 이 브라우저에 저장됩니다.
         </p>
         <div class="ghbar">
           <button type="button" class="copybtn" id="copyVerify">
@@ -831,6 +835,41 @@
             ><input type="checkbox" data-key="verify:d810-water-scoop" />물
             뜨기(B-73) — 복제된 시냇가에서 물통에 물이 떠지는지 (되면
             종결)</label
+          >
+          <div class="vgroup">
+            8/10 밤 — Play 2차 신규 확인 (플록 똥 · 열매 쉼타임 · 간식 후순위)
+          </div>
+          <textarea
+            class="vmemo"
+            data-key="verify:d810n-memo"
+            placeholder="메모…"
+          ></textarea>
+          <label
+            ><input type="checkbox" data-key="verify:d810n-poop-pos" />플록 똥
+            위치 정합 — 떨어지는 위치가 새가 보이는 위치와 일치하는지(옛 위치
+            어긋남 버그 수정분)</label
+          >
+          <label
+            ><input type="checkbox" data-key="verify:d810n-poop-shape" />플록 똥
+            모양 — 갈색 구 대신 작은 흰 박스로 보이는지</label
+          >
+          <label
+            ><input type="checkbox" data-key="verify:d810n-poop-speed" />플록 똥
+            낙하 속도 — 0.45초로 더 빨라졌는지 체감</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              data-key="verify:d810n-fruit-cooldown"
+            />열매 나무 쉼타임 — 흔든 뒤 10초(씨앗·통나무 나무는 그대로
+            5초)</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              data-key="verify:d810n-treat-priority"
+            />선호 간식 후순위 — 씨앗·벌레·물 게이지가 전부 찬 뒤에만 간식을
+            먹는지, 기본 게이지가 덜 찼는데 그릇이 비면 새가 기다리는지</label
           >
           <div class="vgroup">후속 확인</div>
           <textarea
@@ -1019,128 +1058,6 @@
             >일정 미정</span
           >
         </div>
-      </section>
-
-      <!-- ══════════ 최근 완료 ══════════ -->
-      <section id="recent">
-        <h2>최근 완료</h2>
-        <!-- AUTO:recent — board.py가 CURRENT_SPRINT 세션 블록 제목에서 생성 -->
-        <p class="sub">최근 세션에서 끝난 것. 진행 감각 기준점.</p>
-        <div class="krow">
-          <div class="who">멀티 출시 트랙 확정<small>8/10</small></div>
-          <div class="desc">
-            샛길 14건 런칭 후 보류 (선호 확장 · 모닥불 확장 · 낮 천적 · 사망
-            페널티 · 연출 폴리싱 등) + 동굴 4→1 통합 진행 확정. 이후 순서 =
-            안정화 → 동굴 통합 → 멀티 정합 감사(N71) → M1~M4 → 출시.
-          </div>
-          <div class="st"><b class="fin">확정</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">N70 먹이 UX 안정화 당일 완주<small>8/10</small></div>
-          <div class="desc">
-            설계 → 구현 → 검수 PASS. 미발견 💭 표시 · 조리 간식 아이콘 · 먹이통
-            게이지 한 판 3열 · 발견 연출 후 친구 의식 · 반복 급여 하트. 8/10
-            Play 피드백 12건 접수·분류 완료. 디렉터 Play 확인만 잔존.
-          </div>
-          <div class="st"><b class="crit">Play 대기</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">N69 통합 먹이통 당일 완주<small>8/9</small></div>
-          <div class="desc">
-            설계 → 구현 → 검수 → 방어 패치 → 디렉터 Play 확인까지 하루 완주.
-            B-96 교착 종결, 후속 B-97~99 · P-20~22 등록.
-          </div>
-          <div class="st"><b class="fin">통과</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">N68B 사이클 당일 완주<small>8/8 밤</small></div>
-          <div class="desc">
-            조리대 언락 게이트(잠금 프롬프트 · 언락 연출 · 믹싱볼 플레이어별
-            분리) + T1 선호 힌트 말풍선(T2+ 미부착 = 퍼즐 유지) + 버그 3건(적
-            사망 시 도구 소실 · 새집0 헛스윙 · 채집 이름 표시). 설계 → 디렉터
-            전체 승인 → 구현 10파일 → 검수 전 항목 통과(수정 지시 0) → 커밋.
-            Play 확인은 다음 세션.
-          </div>
-          <div class="st"><b class="fin">커밋 완료</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">하네스 Run 15항목<small>8/8</small></div>
-          <div class="desc">
-            N68 신규 5항목 포함 전 항목 자동 검증 통과 — 첫 새 쇠박새 교체 ·
-            꿈틀바 조리 완성 · 발견 소급 공개까지 서버 발화 확인. 게임 코드 에러
-            0.
-          </div>
-          <div class="st"><b class="fin">15/15 PASS</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">디렉터 Play 확인<small>8/8</small></div>
-          <div class="desc">
-            전 항목 통과 — B-93 교착 구제 종결 · 수정 3건(게이지 세로 · 붓기
-            부족분 · 적 데미지 ×3) · 외곽 위험지 FruitTree 배치 · place publish.
-            남은 것은 후속 2건(B-91 HUD 표시 · B-92 플록 마릿수)뿐.
-          </div>
-          <div class="st"><b class="fin">통과</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">하네스 Run 실증<small>8/8</small></div>
-          <div class="desc">
-            전 항목 자동 검증 통과 — 기존 9건 + N67 만충 복원 → 친구 성립 판정
-            신규 1건. B-93 교착 구제 로직의 서버 발화까지 확인. 남은 것은 디렉터
-            Play 시각 확인만.
-          </div>
-          <div class="st"><b class="fin">10/10 PASS</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">8/2 수정분 재검증<small>8/7</small></div>
-          <div class="desc">
-            서버 로직 9항목 = 하네스 9/9 PASS ×2 · 시각 항목 = 디렉터 Play 통과.
-            로그에서 오픈 2건 발견 (B-91 통나무 복원 스킵 · B-92 플록 로그 2회)
-            — Play 확인 섹션으로 이관.
-          </div>
-          <div class="st"><b class="fin">통과</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">자동 검증 하네스<small>N66 · 8/7</small></div>
-          <div class="desc">
-            서버 로직 재검증 자동화 (저장·복원 왕복 5 · 선추첨 · 간식 판정 ·
-            붓기 한도 — 9항목 중 6 완전 + 3 부분). Run 모드 명령 1줄 실행,
-            결과는 로그로 이음이 분석. 디렉터 Play는 시각 확인만 잔존.
-          </div>
-          <div class="st"><b class="fin">9/9 PASS</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">먹이 대개편 4연속 완주<small>N61~N64</small></div>
-          <div class="desc">
-            보이는 열매 = 재고 → 다음 새 선추첨 → 규칙 단순화 → 간식까지 먹여야
-            친구(요건 4축·13종) — 최종 형태 확정.
-          </div>
-          <div class="st"><b class="fin">완료</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">버그 수정 6건</div>
-          <div class="desc">
-            FruitTree 도구 반응 · Berry 줍기 · 포토카드 배지 · 장착 도구
-            저장/복원 · 맵 중복 스폰 · 새집 친구 재접속 소실.
-          </div>
-          <div class="st"><b>재검증 대기</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">정책 확정 3건</div>
-          <div class="desc">
-            친구 성립 시 그릇 보존 · 간식 그릇 잠금+자동 해제 · 검수 선별제(위험
-            영역만).
-          </div>
-          <div class="st"><b class="fin">확정</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">코드 커밋 14건</div>
-          <div class="desc">
-            코드·문서 repo push 완료. git 밖 자산(도구 패치·파츠) 누적분은 8/8
-            place publish로 반영.
-          </div>
-          <div class="st"><b class="fin">publish 완료</b></div>
-        </div>
-        <!-- /AUTO:recent -->
       </section>
 
       <!-- ══════════ 시스템 트랙 ══════════ -->

@@ -155,28 +155,21 @@ def render_issues(bugs, polish):
     return sub + "\n" + "\n".join(rows or ['<div class="krow"><div class="desc">열린 항목 없음.</div></div>'])
 
 
-def render_recent(sprint):
-    rows = []
-    for head, body in sprint_blocks(sprint)[:8]:
-        head = head.replace("← 최신", "").strip()
-        stars = head.count("⭐")
-        head = head.replace("⭐", "").strip()
-        date, _, title = head.partition("—")
-        if not title:
-            date, title = "", head
-        m = re.search(r"^> \*\*하루 요약.*?\*\*:?\s*(.+)$", body, flags=re.M)
-        desc = plain(m.group(1), 180) if m else ""
-        rows.append(krow(plain(title, 70), plain(date, 24), desc, "⭐" * stars or "완료", "fin"))
-    sub = '<p class="sub" data-auto="recent">CURRENT_SPRINT 세션 블록에서 자동 생성 — 최근 8개.</p>'
-    return sub + "\n" + "\n".join(rows)
+# [8/10 디렉터] "최근 완료" 구간 폐기 — 지나간 일은 보드에서 볼 이유가 없다.
+# 이력은 CURRENT_SPRINT.md 세션 블록에 그대로 남아 있으므로 손실 없음. (옛 render_recent 삭제)
 
 
 def render_stamp():
-    now = datetime.now()
-    weekday = "월화수목금토일"[now.weekday()]
+    # [8/10 디렉터] 새로고침마다 시각이 바뀌면 "언제 기준 내용인지"를 알 수 없다.
+    # → 실행 시각(datetime.now) 대신 **읽어온 마크다운 3종의 마지막 수정 시각**으로 고정.
+    #   문서가 안 바뀌면 몇 번을 새로고침해도 같은 시각이 뜬다 = 그 시각이 곧 내용의 기준점.
+    srcs = ["CURRENT_SPRINT.md", "BUGS.md", "POLISH.md"]
+    latest = max((TEAM / f).stat().st_mtime for f in srcs)
+    ts = datetime.fromtimestamp(latest)
+    weekday = "월화수목금토일"[ts.weekday()]
     return (
-        f'<b data-auto="stamp">{now:%Y-%m-%d}({weekday}) {now:%H:%M:%S}</b> 기준 — '
-        "마크다운을 읽어 그리는 로컬 보드 (새로고침 = 이 시각이 갱신됨) · "
+        f'<b data-auto="stamp">{ts:%Y-%m-%d}({weekday}) {ts:%H:%M:%S}</b> 기준 — '
+        "마크다운을 읽어 그리는 로컬 보드 (이 시각 = 문서가 마지막으로 바뀐 때) · "
         "기간 표기는 커밋 이력 기준 근사"
     )
 
@@ -194,7 +187,6 @@ def render():
     page = zone(page, "stamp", render_stamp())
     page = zone(page, "next", render_next(sprint))
     page = zone(page, "issues", render_issues(bugs, polish))
-    page = zone(page, "recent", render_recent(sprint))
     return page
 
 
@@ -217,7 +209,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
 def check():
     out = render()
-    for name in ("stamp", "next", "issues", "recent"):
+    for name in ("stamp", "next", "issues"):
         assert f'data-auto="{name}"' in out, f"{name} 구간이 생성되지 않았습니다"
     assert out.count('class="krow"') >= 10, "생성된 행이 너무 적습니다"
     assert "<!-- AUTO:next" in out and "</html>" in out, "템플릿이 깨졌습니다"
