@@ -662,6 +662,7 @@
       <!-- ══════════ 다음 할 일 ══════════ -->
       <section id="next">
         <h2>다음 할 일 — 재개 시 최우선</h2>
+        <!-- AUTO:next — board.py가 CURRENT_SPRINT 재개 SSOT에서 생성. 아래는 직접 열었을 때의 폴백 -->
         <p class="sub">
           8/10 멀티 출시 트랙 확정 반영. 순서 = 안정화 → 동굴 통합 → 멀티 정합
           감사 → M1~M4 → 출시. 샛길 14건은 런칭 후 보류.
@@ -697,6 +698,18 @@
           <div class="desc">N71 멀티 정합 감사 → 멀티 M1~M4 → 출시.</div>
           <div class="st"><b>순서 확정</b></div>
         </div>
+        <!-- /AUTO:next -->
+      </section>
+
+      <!-- ══════════ 열린 항목 (자동) ══════════ -->
+      <section id="issues">
+        <h2>열린 버그 · 폴리싱</h2>
+        <!-- AUTO:issues — board.py가 BUGS.md·POLISH.md에서 생성 -->
+        <p class="sub">
+          로컬 보드로 실행하면(<code>board</code>) 이 자리에 BUGS·POLISH의 현재
+          상태가 그대로 채워집니다.
+        </p>
+        <!-- /AUTO:issues -->
       </section>
 
       <!-- ══════════ Play 확인 ══════════ -->
@@ -961,6 +974,7 @@
       <!-- ══════════ 최근 완료 ══════════ -->
       <section id="recent">
         <h2>최근 완료</h2>
+        <!-- AUTO:recent — board.py가 CURRENT_SPRINT 세션 블록 제목에서 생성 -->
         <p class="sub">최근 세션에서 끝난 것. 진행 감각 기준점.</p>
         <div class="krow">
           <div class="who">멀티 출시 트랙 확정<small>8/10</small></div>
@@ -1076,6 +1090,7 @@
           </div>
           <div class="st"><b class="fin">publish 완료</b></div>
         </div>
+        <!-- /AUTO:recent -->
       </section>
 
       <!-- ══════════ 시스템 트랙 ══════════ -->
