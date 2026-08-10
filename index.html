@@ -637,8 +637,7 @@
 
         <nav class="secnav">
           <a href="#next">다음 할 일</a><a href="#verify">Play 확인</a
-          ><a href="#gantt">일정</a><a href="#tracks">시스템 트랙</a
-          ><a href="#birds42">42종 선호</a>
+          ><a href="#gantt">일정</a><a href="#birds42">42종 선호</a>
         </nav>
         <div class="pulse">
           <div class="chip">
@@ -704,28 +703,17 @@
         <!-- /AUTO:next -->
       </section>
 
-      <!-- ══════════ 열린 항목 (자동) ══════════ -->
-      <section id="issues">
-        <h2>열린 버그 · 폴리싱</h2>
-        <!-- AUTO:issues — board.py가 BUGS.md·POLISH.md에서 생성 -->
-        <p class="sub">
-          로컬 보드로 실행하면(<code>board</code>) 이 자리에 BUGS·POLISH의 현재
-          상태가 그대로 채워집니다.
-        </p>
-        <!-- /AUTO:issues -->
-      </section>
-
       <!-- ══════════ Play 확인 ══════════ -->
       <section id="verify">
-        <h2>Play 확인 — 다음 세션 최우선 (16종)</h2>
+        <h2>Play 확인 — 다음 세션 최우선 (6종)</h2>
         <p class="sub">
-          8/9 확인분(N68 조리·선호 · N68B · N69 통합 먹이통 B-96)은 전부 종결.
+          8/10 밤 디렉터 확인으로
           <b>UI 연출(마음 점·발견 연출 3초·새소리 볼륨 3)</b>·<b
             >도주 반경(칸 수 비례 20/22/24)</b
-          >은 8/10 밤 디렉터 확인으로 통과. 아래가 다음 세션에서 볼 것 —
-          <b>N70 먹이 UX 안정화 5종</b> +
-          <b>8/10 2차 디렉터 지시 반영분 6종</b> +
-          <b>8/10 밤 신규 5종(플록 똥·열매 쉼타임·간식 후순위)</b>, 그리고 남은
+          >
+          통과. N70·8/10 2차 지시 반영분은 확인 종료로 보고 보드에서 내림(기록은
+          CURRENT_SPRINT에 남아 있음). 아래가 다음 Play에서 볼 것 —
+          <b>플록 똥 3건</b>·<b>열매 나무 쉼타임</b>·<b>간식 후순위</b> + 남은
           후속 1건. 체크와 메모는 이 브라우저에 저장됩니다.
         </p>
         <div class="ghbar">
@@ -760,82 +748,6 @@
           <button type="button" class="copybtn" id="ghClear">삭제</button>
         </div>
         <div class="vlist">
-          <div class="vgroup">
-            N70 먹이 UX 안정화 확인 (8/10 구현·검수 PASS 반영분)
-          </div>
-          <textarea
-            class="vmemo"
-            data-key="verify:n70-memo"
-            placeholder="메모…"
-          ></textarea>
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:n70-hidden-thought"
-            />미발견 종 = 💭 표시</label
-          >
-          <label
-            ><input type="checkbox" data-key="verify:n70-snack-icons" />조리
-            간식 🍫🍡 아이콘 표시</label
-          >
-          <label
-            ><input type="checkbox" data-key="verify:n70-feeder-3col" />먹이통
-            게이지 한 판 3열</label
-          >
-          <label
-            ><input type="checkbox" data-key="verify:n70-discover-rite" />발견
-            연출 후 친구 의식 진행</label
-          >
-          <label
-            ><input type="checkbox" data-key="verify:n70-repeat-heart" />반복
-            급여 시 하트 표시</label
-          >
-          <div class="vgroup">8/10 2차 — 디렉터 지시 반영분</div>
-          <textarea
-            class="vmemo"
-            data-key="verify:d810-memo"
-            placeholder="메모…"
-          ></textarea>
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:d810-snack-hidden-none"
-            />간식 칸 숨김 ① — 간식 요건
-            <b>없는</b> 새(참새·되새·십자매·노랑배진박새·노랑턱멧새 등) 스폰 시
-            먹이통에서 간식 칸이 통째로 사라짐 (옛 자물쇠 🔒 표시 없음)</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:d810-snack-shown-req"
-            />간식 칸 숨김 ② — 간식 요건
-            <b>있는</b> 새(곤줄박이·딱새·휘파람새·카나리아·금화조·찌르레기 등)로
-            바뀌면 간식 칸이 다시 나타남, 씨앗·벌레 칸 위치는 그대로</label
-          >
-          <label
-            ><input type="checkbox" data-key="verify:d810-berry-one" />열매 1개
-            드롭 — 열매나무 흔들기 시 <code>got 1x Berry</code> (씨앗·벌레는 5개
-            유지 확인)</label
-          >
-          <label
-            ><input type="checkbox" data-key="verify:d810-damage-log" />데미지
-            총합 — 적에게 맞을 때 로그에
-            <code>[N47] damagePlayer … -N HP 100→85</code> 형태로 남는지 +
-            총합이 체력 감소와 일치하는지</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:d810-pause-progress"
-            />일시정지 중 진행(B-104) — 새가 먹는 중 일시정지 → 친구가
-            맺어지는지 재현.
-            <b>실제 게임(Studio 밖)에서도 재현되는지가 판정 기준</b></label
-          >
-          <label
-            ><input type="checkbox" data-key="verify:d810-water-scoop" />물
-            뜨기(B-73) — 복제된 시냇가에서 물통에 물이 떠지는지 (되면
-            종결)</label
-          >
           <div class="vgroup">
             8/10 밤 — Play 2차 신규 확인 (플록 똥 · 열매 쉼타임 · 간식 후순위)
           </div>
@@ -1057,78 +969,6 @@
             ></i
             >일정 미정</span
           >
-        </div>
-      </section>
-
-      <!-- ══════════ 시스템 트랙 ══════════ -->
-      <section id="tracks">
-        <h2>시스템 트랙 현황</h2>
-        <p class="sub">
-          스프린트 4에서 굴러가는 큰 축. 완료 = 디렉터 Play 통과 기준.
-        </p>
-        <div class="krow">
-          <div class="who">새 42종 + 길들이기</div>
-          <div class="desc">
-            모델·종별 설정·게이지·도감 T1~T5. 종별 게이지 상한 차등(N61).
-          </div>
-          <div class="st"><b class="fin">완료</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">천적·밤 방어</div>
-          <div class="desc">
-            적 AI 바닥부터 재설계(N28), 웨이브·울타리·동굴 스폰(N26~46).
-          </div>
-          <div class="st"><b class="fin">완료</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">전투 체계</div>
-          <div class="desc">
-            판정 = 히트박스 확정, 수치 단일 원본(CombatConfig), 스윙
-            커밋(N47~51).
-          </div>
-          <div class="st"><b class="fin">완료</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">친구 루프·낮밤 순환</div>
-          <div class="desc">
-            게이지 성립 → 머리 위 플록 합류 · 밤 새집 귀가 · 재접속
-            복원(N53~60). 재접속 복원 수정분 재검증 1건 대기.
-          </div>
-          <div class="st"><b class="fin">완료</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">먹이 시스템 대개편</div>
-          <div class="desc">
-            보이는 열매 = 재고(N61) → 다음 새 선추첨(N62) → 규칙 단순화(N63) →
-            간식까지 먹여야 친구가 되는 요건 4축(N64, 13종·티어 곡선 1~3) →
-            조리·선호(N68) → 통합 먹이통(N69, 8/9 Play 통과) → 먹이 UX
-            안정화(N70, Play 확인 대기).
-          </div>
-          <div class="st"><b class="fin">완료</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">멀티 출시 트랙</div>
-          <div class="desc">
-            현재 국면 = 멀티 출시 집중. 안정화(B-101 어그로 멈춤 · B-94 · B-91)
-            → 동굴 4→1 통합 → 멀티 정합 감사(N71) → M1~M4 → 출시. 샛길 14건은
-            런칭 후 보류.
-          </div>
-          <div class="st"><b class="crit">진행 중</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">다음 새 예고 UI</div>
-          <div class="desc">
-            실루엣 뷰포트 + 미등록 종 "???" 숨김. 8/10 출시 트랙 확정으로 런칭
-            후 보류.
-          </div>
-          <div class="st"><b>런칭 후 보류</b></div>
-        </div>
-        <div class="krow">
-          <div class="who">희귀 채집 축</div>
-          <div class="desc">
-            P4 빛나는 열매·장애물 코스, P5 물가 물고기(어식 7종 승격).
-          </div>
-          <div class="st"><b>대기</b></div>
         </div>
       </section>
 

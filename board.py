@@ -23,8 +23,6 @@ TEAM = Path("/Users/ok/Documents/게임기획-01/close-wild-hearts/team-board")
 PORT = 8787
 
 CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫"
-STATUS = "🆕👀🔨✅❌⏸🚫"
-CLOSED = "✅❌⏸🚫"
 
 
 def inline(s):
@@ -118,52 +116,17 @@ def render_next(sprint):
     return sub + "\n" + "\n".join(rows)
 
 
-def parse_items(text, pattern):
-    """(번호, 제목, 상태이모지, 우선순위) 목록."""
-    items = []
-    matches = list(re.finditer(pattern, text, flags=re.M))
-    for i, m in enumerate(matches):
-        end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
-        body = text[m.end() : end]
-        title = m.group(2).strip()
-        status = next((c for c in title for _ in [0] if c in STATUS), "")
-        pm = re.search(r"\bP[0-3]\b", body)
-        clean = "".join(c for c in title if c not in STATUS).strip()
-        items.append((m.group(1), clean, status, pm.group(0) if pm else ""))
-    return items
-
-
-def render_issues(bugs, polish):
-    rows = []
-    order = {"P0": 0, "P1": 1, "P2": 2, "P3": 3, "": 4}
-
-    open_bugs = [i for i in parse_items(bugs, r"^### (B-\d+) — (.+?)$") if i[2] not in CLOSED]
-    open_bugs.sort(key=lambda i: order[i[3]])
-    for num, title, status, pri in open_bugs:
-        st, cls = (pri or status or "열림"), ("crit" if pri in ("P0", "P1") else "")
-        rows.append(krow(num, "버그", f"{status} {html.escape(title)}".strip(), st, cls))
-
-    open_polish = [i for i in parse_items(polish, r"^## (P-\d+)\. (.+?)$") if i[2] not in CLOSED]
-    for num, title, status, pri in open_polish:
-        rows.append(krow(num, "폴리싱", f"{status} {html.escape(title)}".strip(), pri or "열림"))
-
-    sub = (
-        f'<p class="sub" data-auto="issues">BUGS.md · POLISH.md에서 자동 생성 — '
-        f"열린 버그 {len(open_bugs)}건 · 열린 폴리싱 {len(open_polish)}건 "
-        "(해결 ✅ · 보류 ⏸ 제외).</p>"
-    )
-    return sub + "\n" + "\n".join(rows or ['<div class="krow"><div class="desc">열린 항목 없음.</div></div>'])
-
-
 # [8/10 디렉터] "최근 완료" 구간 폐기 — 지나간 일은 보드에서 볼 이유가 없다.
 # 이력은 CURRENT_SPRINT.md 세션 블록에 그대로 남아 있으므로 손실 없음. (옛 render_recent 삭제)
 
 
 def render_stamp():
     # [8/10 디렉터] 새로고침마다 시각이 바뀌면 "언제 기준 내용인지"를 알 수 없다.
-    # → 실행 시각(datetime.now) 대신 **읽어온 마크다운 3종의 마지막 수정 시각**으로 고정.
+    # → 실행 시각(datetime.now) 대신 **읽어온 CURRENT_SPRINT.md의 마지막 수정 시각**으로 고정.
     #   문서가 안 바뀌면 몇 번을 새로고침해도 같은 시각이 뜬다 = 그 시각이 곧 내용의 기준점.
-    srcs = ["CURRENT_SPRINT.md", "BUGS.md", "POLISH.md"]
+    #   (BUGS·POLISH는 보드에 더는 그려지지 않으므로 8/10 밤 슬림화로 기준에서 뺐다 —
+    #    안 그러면 보드 화면이 그대로인데 갱신 시각만 움직이는 거짓 신호가 된다.)
+    srcs = ["CURRENT_SPRINT.md"]
     latest = max((TEAM / f).stat().st_mtime for f in srcs)
     ts = datetime.fromtimestamp(latest)
     weekday = "월화수목금토일"[ts.weekday()]
@@ -182,11 +145,8 @@ def zone(page, name, body):
 def render():
     page = BOARD.read_text(encoding="utf-8")
     sprint = (TEAM / "CURRENT_SPRINT.md").read_text(encoding="utf-8")
-    bugs = (TEAM / "BUGS.md").read_text(encoding="utf-8")
-    polish = (TEAM / "POLISH.md").read_text(encoding="utf-8")
     page = zone(page, "stamp", render_stamp())
     page = zone(page, "next", render_next(sprint))
-    page = zone(page, "issues", render_issues(bugs, polish))
     return page
 
 
@@ -209,9 +169,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
 def check():
     out = render()
-    for name in ("stamp", "next", "issues"):
+    for name in ("stamp", "next"):
         assert f'data-auto="{name}"' in out, f"{name} 구간이 생성되지 않았습니다"
-    assert out.count('class="krow"') >= 10, "생성된 행이 너무 적습니다"
+    assert out.count('class="krow"') >= 1, "생성된 행이 너무 적습니다"
     assert "<!-- AUTO:next" in out and "</html>" in out, "템플릿이 깨졌습니다"
     print(f"OK — 행 {out.count('class=\"krow\"')}개 생성")
 
