@@ -506,6 +506,13 @@
       .btable tr.combo td:nth-child(3) {
         font-weight: 700;
       }
+      .btable .dim {
+        color: var(--sub);
+        font-size: 0.68rem;
+      }
+      .btable .ctr {
+        text-align: center;
+      }
 
       /* ── 재검증 체크리스트 ── */
       .vgroup {
@@ -974,319 +981,670 @@
 
       <!-- ══════════ 42종 선호 조합 ══════════ -->
       <section id="birds42">
-        <h2>42종 선호 조합 — N65 제안</h2>
+        <h2>42종 친구 맺기 상세 — 마음 칸·먹이·시간</h2>
         <p class="sub">
-          8/8 방향 재조정 반영. 씨앗 3종(해바라기씨·잣·땅콩) = 기본 음식 (선호
-          간식 아님). T1 무선호 4종(쇠박새·진박새·박새·참새) = 디렉터 확정 ✅ —
-          기본 간식 개수로 난도 조절 (개수는 먹는 속도 튜닝 후, 속도 = 티어별
-          2/2.5/3/3.5/4초 확정). 선호 간식 = 채집 재료를 장난감 조리 도구로
-          조리해 제작 (이번 구현 동시 · 시작 4종 확정 =
-          믹싱볼&amp;주걱(무료)·쿠키 모양틀·장난감 냄비·햇볕 건조 선반), 새별
-          선호는 발견 전 ??? 숨김 퍼즐 — 먹여 보고 알아내면 도감 기록. 진한 배경
-          = 2가지 조합 종(가장 어려운 새).
+          표의 모든 숫자는 새 설정 파일에서 자동으로 뽑은 값입니다 (
+          <code>Config/Bird/*.luau</code> 42개 +
+          <code>BirdTamingConfig.luau</code>). 수치를 바꾸면 표도 다시 만들어야
+          합니다. 마음 칸은 종마다 고정이 아닙니다 — 실제 칸 수는 "친구 순번"과
+          "티어 상한" 중 작은 쪽으로 정해집니다. 첫 새는 티어와 무관하게 언제나
+          한 칸이고, 두 번째 새는 두 칸, 세 번째 새부터는 티어 상한까지
+          늘어납니다. 표의 하트는 그 종이 가질 수 있는 최대 칸 수이고, 칸별
+          요구량 줄은 칸이 늘 때마다 요구량이 어떻게 오르는지 보여 줍니다. 칸이
+          하나 늘 때마다 씨앗·벌레·물이 각각 1씩 오르고, 선호 간식은 마지막
+          칸에서만 필요합니다. "먹는 시간"은 새가 먹이를 쪼아 먹는 시간만 계산한
+          값입니다 (총 개수 × 종별 먹는 간격, 간격은 티어별 2·2.5·3·3.5·4초).
+          실제로 친구가 되기까지는 이보다 훨씬 오래 걸립니다 — 새가 다가오고
+          도망가는 왕복, 먹이를 채집해 그릇에 붓는 시간, 밤에 새가 자는 시간이
+          전부 빠져 있기 때문입니다. 이 값은 "최소 하한"으로만 봐 주세요. "채집
+          환산"도 근사치입니다 — 나무 흔들기 1회 = 씨앗·벌레 5개, 물통 1회 =
+          10개 기준으로 나눈 값이라, 실제로는 도구별 흔드는 횟수(막대기
+          5번·나무망치 3번·쇠도끼 1번)와 쉼 시간(5초, 열매나무만 10초)이 더
+          붙습니다. 티어 요약: T1 45~46개(1분 30초) · T2 54~55개(2분 15초) · T3
+          63~65개(3분 9초) · T4 51~53개(2분 58초) · T5 63~66개(4분 12초). 42종을
+          전부 모으면 먹이 2,332개, 순수 먹는 시간만 약 118분입니다. ⚠ T4가
+          T3보다 총 먹이·먹는 시간 모두 낮아 더 쉽습니다 — 티어 난도 역전,
+          POLISH P-35로 등록.
         </p>
         <div class="twrap">
           <table class="btable">
             <tr>
               <th>티어</th>
               <th>종</th>
-              <th>좋아하는 것</th>
-              <th>가능 시점</th>
-              <th>난도</th>
+              <th>마음 칸</th>
+              <th>칸별 요구량 (씨앗·벌레·물)</th>
+              <th>총 먹이</th>
+              <th>선호 간식</th>
+              <th>먹는 시간</th>
+              <th>채집 환산</th>
             </tr>
             <tr>
               <td class="t">T1</td>
-              <td>쇠박새</td>
-              <td>— 선호 없음 · 기본 간식 개수로 ✅ 확정</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★</td>
+              <td>곤줄박이<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 4·4·4<br />❤️❤️ 5·5·5<br />❤️❤️❤️ 6·6·6 <b>+간식1</b></td>
+              <td>
+                <b>46개</b><br /><span class="dim"
+                  >씨앗15 벌레15 물15 간식1</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×1<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td><b>1분 32초</b><br /><span class="dim">46개 × 2초</span></td>
+              <td><span class="dim">나무 3회 · 벌레 3회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T1</td>
-              <td>진박새</td>
-              <td>— 선호 없음 · 기본 간식 개수로 ✅ 확정</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★</td>
+              <td>금화조<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 4·4·4<br />❤️❤️ 5·5·5<br />❤️❤️❤️ 6·6·6 <b>+간식1</b></td>
+              <td>
+                <b>46개</b><br /><span class="dim"
+                  >씨앗15 벌레15 물15 간식1</span
+                >
+              </td>
+              <td>
+                <b>🍡 도토리볼</b> ×1<br /><span class="dim"
+                  >조리 — 땅콩 2 + 열매 1</span
+                >
+              </td>
+              <td><b>1분 32초</b><br /><span class="dim">46개 × 2초</span></td>
+              <td><span class="dim">나무 3회 · 벌레 3회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T1</td>
-              <td>박새</td>
-              <td>— 선호 없음 · 기본 간식 개수로 ✅ 확정</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★</td>
+              <td>딱새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 4·4·4<br />❤️❤️ 5·5·5<br />❤️❤️❤️ 6·6·6 <b>+간식1</b></td>
+              <td>
+                <b>46개</b><br /><span class="dim"
+                  >씨앗15 벌레15 물15 간식1</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×1<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td><b>1분 32초</b><br /><span class="dim">46개 × 2초</span></td>
+              <td><span class="dim">나무 3회 · 벌레 3회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T1</td>
-              <td>곤줄박이</td>
-              <td>🍒 열매 (Berry)</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★</td>
+              <td>박새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 4·4·4<br />❤️❤️ 5·5·5<br />❤️❤️❤️ 6·6·6</td>
+              <td>
+                <b>45개</b><br /><span class="dim">씨앗15 벌레15 물15</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>1분 30초</b><br /><span class="dim">45개 × 2초</span></td>
+              <td><span class="dim">나무 3회 · 벌레 3회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T1</td>
-              <td>참새</td>
-              <td>— 선호 없음 · 기본 간식 개수로 ✅ 확정</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★</td>
+              <td>쇠박새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 4·4·4<br />❤️❤️ 5·5·5<br />❤️❤️❤️ 6·6·6</td>
+              <td>
+                <b>45개</b><br /><span class="dim">씨앗15 벌레15 물15</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>1분 30초</b><br /><span class="dim">45개 × 2초</span></td>
+              <td><span class="dim">나무 3회 · 벌레 3회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T1</td>
-              <td>딱새</td>
-              <td>🍒 열매 (Berry)</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★</td>
+              <td>진박새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 4·4·4<br />❤️❤️ 5·5·5<br />❤️❤️❤️ 6·6·6</td>
+              <td>
+                <b>45개</b><br /><span class="dim">씨앗15 벌레15 물15</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>1분 30초</b><br /><span class="dim">45개 × 2초</span></td>
+              <td><span class="dim">나무 3회 · 벌레 3회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T1</td>
-              <td>휘파람새</td>
-              <td>🐛 벌레 조리 간식 (젤리·바·말랭이)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★</td>
+              <td>참새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 4·4·4<br />❤️❤️ 5·5·5<br />❤️❤️❤️ 6·6·6</td>
+              <td>
+                <b>45개</b><br /><span class="dim">씨앗15 벌레15 물15</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>1분 30초</b><br /><span class="dim">45개 × 2초</span></td>
+              <td><span class="dim">나무 3회 · 벌레 3회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T1</td>
-              <td>카나리아</td>
-              <td>🌰 씨앗 조리 간식 (쿠키·볼·바)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★</td>
+              <td>카나리아<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 4·4·4<br />❤️❤️ 5·5·5<br />❤️❤️❤️ 6·6·6 <b>+간식1</b></td>
+              <td>
+                <b>46개</b><br /><span class="dim"
+                  >씨앗15 벌레15 물15 간식1</span
+                >
+              </td>
+              <td>
+                <b>🍡 도토리볼</b> ×1<br /><span class="dim"
+                  >조리 — 땅콩 2 + 열매 1</span
+                >
+              </td>
+              <td><b>1분 32초</b><br /><span class="dim">46개 × 2초</span></td>
+              <td><span class="dim">나무 3회 · 벌레 3회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T1</td>
-              <td>금화조</td>
-              <td>🌰 씨앗 조리 간식 (쿠키·볼·바)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★</td>
+              <td>휘파람새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 4·4·4<br />❤️❤️ 5·5·5<br />❤️❤️❤️ 6·6·6 <b>+간식1</b></td>
+              <td>
+                <b>46개</b><br /><span class="dim"
+                  >씨앗15 벌레15 물15 간식1</span
+                >
+              </td>
+              <td>
+                <b>🍫 꿈틀바</b> ×1<br /><span class="dim"
+                  >조리 — 밀웜 2 + 잣 1</span
+                >
+              </td>
+              <td><b>1분 32초</b><br /><span class="dim">46개 × 2초</span></td>
+              <td><span class="dim">나무 3회 · 벌레 3회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T2</td>
-              <td>동고비</td>
-              <td>🌰 씨앗 조리 간식 (쿠키·볼·바)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★</td>
+              <td>노랑배진박새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 5·5·5<br />❤️❤️ 6·6·6<br />❤️❤️❤️ 7·7·7</td>
+              <td>
+                <b>54개</b><br /><span class="dim">씨앗18 벌레18 물18</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td>
+                <b>2분 15초</b><br /><span class="dim">54개 × 2.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T2</td>
-              <td>노랑턱멧새</td>
-              <td>🌰 씨앗 조리 간식 (쿠키·볼·바)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★</td>
+              <td>노랑턱멧새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 5·5·5<br />❤️❤️ 6·6·6<br />❤️❤️❤️ 7·7·7</td>
+              <td>
+                <b>54개</b><br /><span class="dim">씨앗18 벌레18 물18</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td>
+                <b>2분 15초</b><br /><span class="dim">54개 × 2.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T2</td>
-              <td>동박새</td>
-              <td>🍯 꿀 → 🍒 열매 재배정 권고</td>
-              <td class="wait">결정 #3 대기</td>
-              <td class="star">★★</td>
+              <td>동고비<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 5·5·5<br />❤️❤️ 6·6·6<br />❤️❤️❤️ 7·7·7</td>
+              <td>
+                <b>54개</b><br /><span class="dim">씨앗18 벌레18 물18</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td>
+                <b>2분 15초</b><br /><span class="dim">54개 × 2.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T2</td>
-              <td>찌르레기</td>
-              <td>🍒 열매 (Berry)</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★★</td>
+              <td>동박새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 5·5·5<br />❤️❤️ 6·6·6<br />❤️❤️❤️ 7·7·7</td>
+              <td>
+                <b>54개</b><br /><span class="dim">씨앗18 벌레18 물18</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td>
+                <b>2분 15초</b><br /><span class="dim">54개 × 2.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T2</td>
-              <td>노랑배진박새</td>
-              <td>🌰 씨앗 조리 간식 (쿠키·볼·바)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★</td>
+              <td>되새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 5·5·5<br />❤️❤️ 6·6·6<br />❤️❤️❤️ 7·7·7</td>
+              <td>
+                <b>54개</b><br /><span class="dim">씨앗18 벌레18 물18</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td>
+                <b>2분 15초</b><br /><span class="dim">54개 × 2.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T2</td>
-              <td>콩새</td>
-              <td>🍒 열매 (Berry)</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★★</td>
+              <td>사랑앵무<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 5·5·5<br />❤️❤️ 6·6·6<br />❤️❤️❤️ 7·7·7 <b>+간식1</b></td>
+              <td>
+                <b>55개</b><br /><span class="dim"
+                  >씨앗18 벌레18 물18 간식1</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×1<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td>
+                <b>2분 18초</b><br /><span class="dim">55개 × 2.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T2</td>
-              <td>되새</td>
-              <td>🌰 씨앗 조리 간식 (쿠키·볼·바)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★</td>
+              <td>십자매<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 5·5·5<br />❤️❤️ 6·6·6<br />❤️❤️❤️ 7·7·7</td>
+              <td>
+                <b>54개</b><br /><span class="dim">씨앗18 벌레18 물18</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td>
+                <b>2분 15초</b><br /><span class="dim">54개 × 2.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T2</td>
-              <td>세키세이잉꼬</td>
-              <td>🍒 열매 (Berry)</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★★</td>
+              <td>찌르레기<br /><span class="dim">희귀</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 5·5·5<br />❤️❤️ 6·6·6<br />❤️❤️❤️ 7·7·7 <b>+간식1</b></td>
+              <td>
+                <b>55개</b><br /><span class="dim"
+                  >씨앗18 벌레18 물18 간식1</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×1<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td>
+                <b>2분 18초</b><br /><span class="dim">55개 × 2.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T2</td>
-              <td>십자매</td>
-              <td>🌰 씨앗 조리 간식 (쿠키·볼·바)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★</td>
+              <td>콩새<br /><span class="dim">희귀</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 5·5·5<br />❤️❤️ 6·6·6<br />❤️❤️❤️ 7·7·7 <b>+간식1</b></td>
+              <td>
+                <b>55개</b><br /><span class="dim"
+                  >씨앗18 벌레18 물18 간식1</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×1<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td>
+                <b>2분 18초</b><br /><span class="dim">55개 × 2.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T3</td>
-              <td>큰유리새</td>
-              <td>🐛 벌레 조리 간식 (젤리·바·말랭이)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★★</td>
+              <td>검은딱새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 6·6·6<br />❤️❤️ 7·7·7<br />❤️❤️❤️ 8·8·8</td>
+              <td>
+                <b>63개</b><br /><span class="dim">씨앗21 벌레21 물21</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>3분 9초</b><br /><span class="dim">63개 × 3초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T3</td>
-              <td>꾀꼬리</td>
-              <td>🍒 열매 (Berry)</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★★★</td>
+              <td>꾀꼬리<br /><span class="dim">희귀</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 6·6·6<br />❤️❤️ 7·7·7<br />❤️❤️❤️ 8·8·8 <b>+간식2</b></td>
+              <td>
+                <b>65개</b><br /><span class="dim"
+                  >씨앗21 벌레21 물21 간식2</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×2<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td><b>3분 15초</b><br /><span class="dim">65개 × 3초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T3</td>
-              <td>오색딱따구리</td>
-              <td>🐛 벌레 조리 간식 (젤리·바·말랭이)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★★</td>
+              <td>모란앵무<br /><span class="dim">희귀</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 6·6·6<br />❤️❤️ 7·7·7<br />❤️❤️❤️ 8·8·8 <b>+간식2</b></td>
+              <td>
+                <b>65개</b><br /><span class="dim"
+                  >씨앗21 벌레21 물21 간식2</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×2<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td><b>3분 15초</b><br /><span class="dim">65개 × 3초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T3</td>
-              <td>호랑지빠귀</td>
-              <td>🍒 열매 (Berry)</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★★★</td>
+              <td>물까치<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 6·6·6<br />❤️❤️ 7·7·7<br />❤️❤️❤️ 8·8·8 <b>+간식2</b></td>
+              <td>
+                <b>65개</b><br /><span class="dim"
+                  >씨앗21 벌레21 물21 간식2</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×2<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td><b>3분 15초</b><br /><span class="dim">65개 × 3초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T3</td>
-              <td>청딱따구리</td>
-              <td>🐛 벌레 조리 간식 (젤리·바·말랭이)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★★</td>
+              <td>오색딱따구리<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 6·6·6<br />❤️❤️ 7·7·7<br />❤️❤️❤️ 8·8·8</td>
+              <td>
+                <b>63개</b><br /><span class="dim">씨앗21 벌레21 물21</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>3분 9초</b><br /><span class="dim">63개 × 3초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T3</td>
-              <td>검은딱새</td>
-              <td>🐛 벌레 조리 간식 (젤리·바·말랭이)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★★</td>
+              <td>청딱따구리<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 6·6·6<br />❤️❤️ 7·7·7<br />❤️❤️❤️ 8·8·8</td>
+              <td>
+                <b>63개</b><br /><span class="dim">씨앗21 벌레21 물21</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>3분 9초</b><br /><span class="dim">63개 × 3초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T3</td>
-              <td>물까치</td>
-              <td>🍒 열매 (Berry)</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★★★</td>
+              <td>큰유리새<br /><span class="dim">전설</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 6·6·6<br />❤️❤️ 7·7·7<br />❤️❤️❤️ 8·8·8</td>
+              <td>
+                <b>63개</b><br /><span class="dim">씨앗21 벌레21 물21</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>3분 9초</b><br /><span class="dim">63개 × 3초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T3</td>
-              <td>모란앵무</td>
-              <td>🍒 열매 (Berry)</td>
-              <td class="now">✅ 지금</td>
-              <td class="star">★★★</td>
+              <td>호랑지빠귀<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️❤️<br /><span class="dim">최대 3칸</span></td>
+              <td>❤️ 6·6·6<br />❤️❤️ 7·7·7<br />❤️❤️❤️ 8·8·8 <b>+간식2</b></td>
+              <td>
+                <b>65개</b><br /><span class="dim"
+                  >씨앗21 벌레21 물21 간식2</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×2<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td><b>3분 15초</b><br /><span class="dim">65개 × 3초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T4</td>
-              <td>물총새</td>
-              <td>🐟 물고기 (SmallFish)</td>
-              <td class="wait">P5 물가</td>
-              <td class="star">★★★★</td>
+              <td>꼬까직박구리<br /><span class="dim">EPIC</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 8·8·8<br />❤️❤️ 9·9·9 <b>+간식2</b></td>
+              <td>
+                <b>53개</b><br /><span class="dim"
+                  >씨앗17 벌레17 물17 간식2</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×2<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td><b>3분 6초</b><br /><span class="dim">53개 × 3.5초</span></td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T4</td>
-              <td>호반새</td>
-              <td>🐟 물고기 (SmallFish)</td>
-              <td class="wait">P5 물가</td>
-              <td class="star">★★★★</td>
+              <td>되지빠귀<br /><span class="dim">EPIC</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 8·8·8<br />❤️❤️ 9·9·9 <b>+간식2</b></td>
+              <td>
+                <b>53개</b><br /><span class="dim"
+                  >씨앗17 벌레17 물17 간식2</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×2<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td><b>3분 6초</b><br /><span class="dim">53개 × 3.5초</span></td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T4</td>
-              <td>파랑새</td>
-              <td>🐛 벌레 조리 간식 (젤리·바·말랭이)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★★★</td>
+              <td>물총새<br /><span class="dim">EPIC</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 8·8·8<br />❤️❤️ 9·9·9</td>
+              <td>
+                <b>51개</b><br /><span class="dim">씨앗17 벌레17 물17</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td>
+                <b>2분 58초</b><br /><span class="dim">51개 × 3.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T4</td>
-              <td>청호반새</td>
-              <td>🐟 물고기 (SmallFish)</td>
-              <td class="wait">P5 물가</td>
-              <td class="star">★★★★</td>
+              <td>왕관앵무<br /><span class="dim">EPIC</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 8·8·8<br />❤️❤️ 9·9·9 <b>+간식2</b></td>
+              <td>
+                <b>53개</b><br /><span class="dim"
+                  >씨앗17 벌레17 물17 간식2</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×2<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td><b>3분 6초</b><br /><span class="dim">53개 × 3.5초</span></td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T4</td>
-              <td>후투티</td>
-              <td>🐛 벌레 조리 간식 (젤리·바·말랭이)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★★★</td>
-            </tr>
-            <tr class="combo">
-              <td class="t">T4</td>
-              <td>되지빠귀</td>
-              <td>🐛 벌레 + 🍒 열매 조합</td>
-              <td class="now">✅ 열매 지금 · 짝 간식 이번 구현</td>
-              <td class="star">★★★★</td>
-            </tr>
-            <tr>
-              <td class="t">T4</td>
-              <td>꼬까직박구리</td>
-              <td>🍒 열매 → ✨ 빛나는 열매 승격</td>
-              <td class="now">✅ 지금 (승격 P4)</td>
-              <td class="star">★★★★</td>
+              <td>청호반새<br /><span class="dim">EPIC</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 8·8·8<br />❤️❤️ 9·9·9</td>
+              <td>
+                <b>51개</b><br /><span class="dim">씨앗17 벌레17 물17</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td>
+                <b>2분 58초</b><br /><span class="dim">51개 × 3.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T4</td>
-              <td>왕관앵무</td>
-              <td>🍒 열매 → ✨ 빛나는 열매 승격</td>
-              <td class="now">✅ 지금 (승격 P4)</td>
-              <td class="star">★★★★</td>
+              <td>파랑새<br /><span class="dim">EPIC</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 8·8·8<br />❤️❤️ 9·9·9</td>
+              <td>
+                <b>51개</b><br /><span class="dim">씨앗17 벌레17 물17</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td>
+                <b>2분 58초</b><br /><span class="dim">51개 × 3.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
+            </tr>
+            <tr>
+              <td class="t">T4</td>
+              <td>호반새<br /><span class="dim">EPIC</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 8·8·8<br />❤️❤️ 9·9·9</td>
+              <td>
+                <b>51개</b><br /><span class="dim">씨앗17 벌레17 물17</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td>
+                <b>2분 58초</b><br /><span class="dim">51개 × 3.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
+            </tr>
+            <tr>
+              <td class="t">T4</td>
+              <td>후투티<br /><span class="dim">EPIC</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 8·8·8<br />❤️❤️ 9·9·9</td>
+              <td>
+                <b>51개</b><br /><span class="dim">씨앗17 벌레17 물17</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td>
+                <b>2분 58초</b><br /><span class="dim">51개 × 3.5초</span>
+              </td>
+              <td><span class="dim">나무 4회 · 벌레 4회 · 물 2통</span></td>
             </tr>
             <tr>
               <td class="t">T5</td>
-              <td>황새</td>
-              <td>🐟 물고기 전용</td>
-              <td class="wait">P5 물가</td>
-              <td class="star">★★★★★</td>
+              <td>긴꼬리딱새<br /><span class="dim">전설</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 10·10·10<br />❤️❤️ 11·11·11</td>
+              <td>
+                <b>63개</b><br /><span class="dim">씨앗21 벌레21 물21</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>4분 12초</b><br /><span class="dim">63개 × 4초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T5</td>
-              <td>두루미</td>
-              <td>🐟 물고기 전용</td>
-              <td class="wait">P5 물가</td>
-              <td class="star">★★★★★</td>
+              <td>두루미<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 10·10·10<br />❤️❤️ 11·11·11</td>
+              <td>
+                <b>63개</b><br /><span class="dim">씨앗21 벌레21 물21</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>4분 12초</b><br /><span class="dim">63개 × 4초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T5</td>
-              <td>재두루미</td>
-              <td>🌰 씨앗 조리 간식 (쿠키·볼·바)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★★★★</td>
+              <td>따오기<br /><span class="dim">희귀</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 10·10·10<br />❤️❤️ 11·11·11</td>
+              <td>
+                <b>63개</b><br /><span class="dim">씨앗21 벌레21 물21</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>4분 12초</b><br /><span class="dim">63개 × 4초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T5</td>
-              <td>저어새</td>
-              <td>🐟 물고기 전용</td>
-              <td class="wait">P5 물가</td>
-              <td class="star">★★★★★</td>
+              <td>오목눈이<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 10·10·10<br />❤️❤️ 11·11·11</td>
+              <td>
+                <b>63개</b><br /><span class="dim">씨앗21 벌레21 물21</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>4분 12초</b><br /><span class="dim">63개 × 4초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T5</td>
-              <td>따오기</td>
-              <td>🐟 물고기 전용</td>
-              <td class="wait">P5 물가</td>
-              <td class="star">★★★★★</td>
-            </tr>
-            <tr class="combo">
-              <td class="t">T5</td>
-              <td>오목눈이</td>
-              <td>🐛 벌레 + 🌰 씨앗 조합</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★★★★</td>
+              <td>재두루미<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 10·10·10<br />❤️❤️ 11·11·11</td>
+              <td>
+                <b>63개</b><br /><span class="dim">씨앗21 벌레21 물21</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>4분 12초</b><br /><span class="dim">63개 × 4초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
             <tr>
               <td class="t">T5</td>
-              <td>긴꼬리딱새</td>
-              <td>🐛 벌레 조리 간식 (젤리·바·말랭이)</td>
-              <td class="wait">이번 구현 동시 (새 간식)</td>
-              <td class="star">★★★★★</td>
+              <td>저어새<br /><span class="dim">희귀</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 10·10·10<br />❤️❤️ 11·11·11</td>
+              <td>
+                <b>63개</b><br /><span class="dim">씨앗21 벌레21 물21</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>4분 12초</b><br /><span class="dim">63개 × 4초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
-            <tr class="combo">
+            <tr>
               <td class="t">T5</td>
-              <td>회색앵무</td>
-              <td>🌰 씨앗 + 🍒 열매 조합</td>
-              <td class="now">✅ 열매 지금 · 짝 간식 이번 구현</td>
-              <td class="star">★★★★★</td>
+              <td>황새<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 10·10·10<br />❤️❤️ 11·11·11</td>
+              <td>
+                <b>63개</b><br /><span class="dim">씨앗21 벌레21 물21</span>
+              </td>
+              <td><span class="dim">선호 없음 — 기본 먹이만</span></td>
+              <td><b>4분 12초</b><br /><span class="dim">63개 × 4초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
+            </tr>
+            <tr>
+              <td class="t">T5</td>
+              <td>회색앵무<br /><span class="dim">일반</span></td>
+              <td class="ctr">❤️❤️<br /><span class="dim">최대 2칸</span></td>
+              <td>❤️ 10·10·10<br />❤️❤️ 11·11·11 <b>+간식3</b></td>
+              <td>
+                <b>66개</b><br /><span class="dim"
+                  >씨앗21 벌레21 물21 간식3</span
+                >
+              </td>
+              <td>
+                <b>🍒 열매</b> ×3<br /><span class="dim"
+                  >채집 — 열매나무 흔들기</span
+                >
+              </td>
+              <td><b>4분 24초</b><br /><span class="dim">66개 × 4초</span></td>
+              <td><span class="dim">나무 5회 · 벌레 5회 · 물 3통</span></td>
             </tr>
           </table>
         </div>
