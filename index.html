@@ -5,11 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Close: Wild Hearts — 기획·제작 보드</title>
     <!--
-      [갱신 규칙] Play 확인(#verify) 섹션의 체크박스·메모는 브라우저 localStorage에
-      저장된다(접두어 cwh-board:). 저장 키는 순서가 아니라 요소의 data-key 속성이므로,
-      항목을 추가·수정할 때 반드시 data-key="verify:<짧은-영문-슬러그>"를 함께 달 것.
+      [갱신 규칙] Play 확인(#verify) · 디렉터 제작·확인 목록(#director-todo) 섹션의
+      체크박스·메모는 브라우저 localStorage에 저장된다(접두어 cwh-board:). 저장 키는
+      순서가 아니라 요소의 data-key 속성이므로, 항목을 추가·수정할 때 반드시
+      data-key="verify:<짧은-영문-슬러그>"(#verify) 또는 data-key="director-todo-<짧은-영문-슬러그>"(#director-todo)를
+      함께 달 것.
       · data-key 없는 항목 = 저장 안 됨  · 같은 항목이면 문구가 바뀌어도 키는 유지할 것
       · 항목을 완전히 없앨 때만 키를 버린다 (키 재사용 = 옛 체크가 살아난다)
+
+      [제거·재사용 금지 키 — 8/11 디렉터 전체 통과 정리] 아래 20개는 #verify에서
+      삭제되었다. 옛 체크 부활을 막기 위해 앞으로 이 문자열은 어떤 항목에도
+      다시 쓰지 말 것 (문구가 같아도 새 슬러그를 만들 것):
+      verify:d810n-poop-pos · verify:d810n-poop-shape · verify:d810n-poop-speed ·
+      verify:d810n-fruit-cooldown · verify:d810n-treat-priority ·
+      verify:b91-hud-log-count · verify:campfire-bright2-0811 ·
+      verify:poop-splat-0811 · verify:n73-flee-regress-0811 ·
+      verify:n73-hide-instant-0811 · verify:n73-oscillate-0811 ·
+      verify:n73-cover-0811 · verify:n76-day-persist-0811 ·
+      verify:n76-night-refill-0811 · verify:n76-stale-guard-0811 ·
+      verify:n76-resetdata-0811 · n77-flight-arc-0811 · n77-flee-startle-0811 ·
+      n77-glide-0811 · n77-redirect-0811
+      (메모 키 verify:d810n-memo · verify:followup 도 함께 제거 — 텍스트 데이터라
+      재사용 위험은 낮지만 동일하게 재사용 금지)
       스크립트 본문은 </body> 직전 인라인 <script> 참조.
 
       [토큰 취급 — 절대 규칙] 자동 기록(GitHub 커밋) 기능이 쓰는 개인 접근 토큰은
@@ -785,13 +802,74 @@
         </div>
       </section>
 
+      <!-- ══════════ 8/11 디렉터 제작·확인 목록 ══════════ -->
+      <section id="director-todo">
+        <h2>디렉터 제작·확인 목록 (8/11)</h2>
+        <p class="sub">
+          디렉터가 직접 처리해야 하는 항목만 모았습니다. 체크는 이 브라우저에
+          저장됩니다.
+        </p>
+        <div class="vlist">
+          <div class="vgroup">A. 지금 바로 (Play 전·중)</div>
+          <label
+            ><input type="checkbox" data-key="director-todo-place-save" />
+            <b>Studio place 저장 (Cmd+S)</b> — 토치·모닥불 템플릿 라이트 하향이
+            Studio 자산 수정이라 저장 안 하면 소실 (8/11 반영분)</label
+          >
+          <label
+            ><input type="checkbox" data-key="director-todo-rojo-connect" />
+            Play 전 Rojo 플러그인 Connect 확인 (서버 재기동됨, 포트 34872) —
+            최신 N78B·N78C 코드 반영 조건</label
+          >
+          <label
+            ><input type="checkbox" data-key="director-todo-play-checklists" />
+            N78B 7건 + N78C 9건 Play 체크리스트 확인 (아래 Play 확인
+            섹션)</label
+          >
+          <label
+            ><input type="checkbox" data-key="director-todo-b9-time-report" />
+            <b>B9 시간 실측치 회신</b> — 첫 새 친구까지 실제 몇 분 걸렸는지
+            (목표 10~15분, 검산표 보정용)</label
+          >
+          <div class="vgroup">B. 제작 필요 (디렉터 본업 자산)</div>
+          <label
+            ><input type="checkbox" data-key="director-todo-enemy-anim-0203" />
+            <b>적 02·03 애니메이션 제작</b> — 6/7 리깅 완료 상태로 대기 중.
+            애니메이션이 나와야 습격·웨이브 개체 다양화(스폰 통합) 진행
+            가능</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              data-key="director-todo-aerial-model-direction"
+            />
+            (런칭 후 대비) 공중 천적 비행 모델 방향 결정 — 새롬 모델링 사이클
+            착수 승인 시점 판단</label
+          >
+          <div class="vgroup">C. 출시 준비 (8월 말 단일 플레이)</div>
+          <label
+            ><input type="checkbox" data-key="director-todo-store-assets" />
+            Roblox 출시 페이지 자산 — 게임 아이콘·썸네일·스토어 설명 문구
+            (게시에 필수)</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              data-key="director-todo-launch-audit-call"
+            />
+            출시 준비 점검 전수 목록화 지시 여부 — 원하면 이음이
+            콘텐츠·버그·데이터 초기화·아이 친화 전 항목 감사 실행</label
+          >
+        </div>
+      </section>
+
       <!-- ══════════ Play 확인 ══════════ -->
       <section id="verify">
-        <h2>Play 확인 — 다음 세션 최우선 (8종)</h2>
+        <h2>Play 확인 — N78B·N78C 천적 페이싱 확인 (16종)</h2>
         <p class="sub">
-          <b>8/11 디렉터 Play 전체 통과</b> — 아래 8/10 밤·8/11 항목(모닥불
-          밝기·플록 똥 스플랫·N73 4건·N76 4건·N77 4건) 전부 확인 완료. 체크와
-          메모는 이 브라우저에 저장됩니다.
+          <b>이전 체크리스트 전체 통과</b> — 8/10 밤·8/11 N73·N76·N77 등 20건은
+          정리되었습니다(아래 안내 참조). 지금은 N78B 끼니 리듬(7건) + N78C 지상
+          습격(9건) 확인이 남았습니다. 체크와 메모는 이 브라우저에 저장됩니다.
         </p>
         <div class="ghbar">
           <button type="button" class="copybtn" id="copyVerify">
@@ -825,171 +903,10 @@
           <button type="button" class="copybtn" id="ghClear">삭제</button>
         </div>
         <div class="vlist">
-          <div class="vgroup">
-            8/10 밤 — Play 2차 신규 확인 (플록 똥 · 열매 쉼타임 · 간식 후순위)
-          </div>
-          <textarea
-            class="vmemo"
-            data-key="verify:d810n-memo"
-            placeholder="메모…"
-          ></textarea>
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:d810n-poop-pos"
-              checked
-            />플록 똥 위치 정합 — 떨어지는 위치가 새가 보이는 위치와
-            일치하는지(옛 위치 어긋남 버그 수정분)</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:d810n-poop-shape"
-              checked
-            />플록 똥 모양 — 갈색 구 대신 작은 흰 박스로 보이는지</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:d810n-poop-speed"
-              checked
-            />플록 똥 낙하 속도 — 0.45초로 더 빨라졌는지 체감</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:d810n-fruit-cooldown"
-              checked
-            />열매 나무 쉼타임 — 흔든 뒤 10초(씨앗·통나무 나무는 그대로
-            5초)</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:d810n-treat-priority"
-              checked
-            />선호 간식 후순위 — 씨앗·벌레·물 게이지가 전부 찬 뒤에만 간식을
-            먹는지, 기본 게이지가 덜 찼는데 그릇이 비면 새가 기다리는지</label
-          >
-          <div class="vgroup">후속 확인</div>
-          <textarea
-            class="vmemo"
-            data-key="verify:followup"
-            placeholder="메모…"
-          ></textarea>
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:b91-hud-log-count"
-              checked
-            />B-91 후속: HUD 통나무 수량 표시 연결 (백팩엔 있음 — 원인 실측 후
-            수정)</label
-          >
-          <div class="vgroup">
-            8/11 — Play 신규 확인 (모닥불 밝기 · 플록 똥 스플랫)
-          </div>
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:campfire-bright2-0811"
-              checked
-            />모닥불 밝기 복귀 확인 — 밤에 모닥불 주변 캐릭터·돌이 하얗게
-            날아가지 않는지 (PointLight 밝기 6→2, 범위 30 유지)</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:poop-splat-0811"
-              checked
-            />플록 새똥 착지 스플랫 확인 — 떨어진 똥이 바닥에 납작한 흰
-            자국(0.45×0.05)으로 변해 잠시 남는지</label
-          >
-          <div class="vgroup">8/11 — N73 "숨으면 봐준다" 확인</div>
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:n73-flee-regress-0811"
-              checked
-            />N73 회귀 — 안 숨고 접근하면 기존처럼 도주하는지</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:n73-hide-instant-0811"
-              checked
-            />N73 즉시 보상 — 숨는 순간 링 안쪽 빨강이 바로 꺼지는지</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:n73-oscillate-0811"
-              checked
-            />N73 진동 — 링 경계·장애물 끝에서 새가 도주/복귀를 떨듯 반복하지
-            않는지</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:n73-cover-0811"
-              checked
-            />N73 은신처 — 먹이통 주변에 실제로 숨을 만한 물체가 충분한지
-            (부족하면 배치 요청)</label
-          >
-          <div class="vgroup">8/11 — N76 채집 노드 재고 재접속 보존 확인</div>
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:n76-day-persist-0811"
-              checked
-            />N76 낮 소진 보존 — 낮에 나무 수확 → 10초 대기 → 나갔다 재접속 →
-            소진 상태 유지되는지 (로그 `[ToolService/N76] 복원`)</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:n76-night-refill-0811"
-              checked
-            />N76 밤 넘김 리필 — 수확 → 밤 진입 → 나갔다 재접속 → 전량
-            리필되는지 (로그 `복원 스킵: phase=NIGHT`)</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:n76-stale-guard-0811"
-              checked
-            />N76 오염 봉합 — 밤 넘김 재접속 → 노드 1개만 수확 → 재퇴장 → 재접속
-            → 나머지 노드 만재 유지되는지</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="verify:n76-resetdata-0811"
-              checked
-            />N76 /resetdata — 실행 즉시 월드 재고 만재 + 재접속 시에도
-            만재인지</label
-          >
-          <div class="vgroup">8/11 — N77 새 비행 자연스러움 확인</div>
-          <label
-            ><input type="checkbox" data-key="n77-flight-arc-0811" checked />N77
-            3단 비행 — 솟구침 → 활공 하강 → 착지 전 제자리 날갯짓이
-            자연스러운지</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="n77-flee-startle-0811"
-              checked
-            />N77 도주 연출 — 들키면 푸드덕 소리+깃털과 함께 플레이어 반대쪽
-            위로 급상승하는지</label
-          >
-          <label
-            ><input type="checkbox" data-key="n77-glide-0811" checked />N77 활공
-            — 하강 때 날갯짓이 느려지는지 / 오르막 활공 어색함 여부</label
-          >
-          <label
-            ><input type="checkbox" data-key="n77-redirect-0811" checked />N77
-            비행 중 들킴 — 먹이통 진입 중 도주 전환이 꼬임 없이 되는지</label
-          >
+          <p class="sub">
+            이전 체크리스트 (8/10 밤·8/11 N73·N76·N77 등 20건) = 8/11 디렉터
+            전체 통과로 정리 — 기록은 BUGS·POLISH·설계서·git 이력 보존
+          </p>
           <div class="vgroup">
             8/11 오후 — 기획 확정(N78 천적 페이싱 · 철학 4원칙) · 제작
             착수(N78B)
@@ -2052,7 +1969,9 @@
         }
 
         document
-          .querySelectorAll('#verify input[type="checkbox"][data-key]')
+          .querySelectorAll(
+            '#verify input[type="checkbox"][data-key], #director-todo input[type="checkbox"][data-key]',
+          )
           .forEach(function (box) {
             var k = "check:" + box.dataset.key;
             if (load(k) === "1") box.checked = true;
