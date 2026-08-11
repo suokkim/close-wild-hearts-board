@@ -714,14 +714,9 @@
       <section id="verify">
         <h2>Play 확인 — 다음 세션 최우선 (8종)</h2>
         <p class="sub">
-          8/10 밤 디렉터 확인으로
-          <b>UI 연출(마음 점·발견 연출 3초·새소리 볼륨 3)</b>·<b
-            >도주 반경(칸 수 비례 20/22/24)</b
-          >
-          통과. N70·8/10 2차 지시 반영분은 확인 종료로 보고 보드에서 내림(기록은
-          CURRENT_SPRINT에 남아 있음). 아래가 다음 Play에서 볼 것 —
-          <b>플록 똥 3건</b>·<b>열매 나무 쉼타임</b>·<b>간식 후순위</b> + 남은
-          후속 1건. 체크와 메모는 이 브라우저에 저장됩니다.
+          <b>8/11 디렉터 Play 전체 통과</b> — 아래 8/10 밤·8/11 항목(모닥불
+          밝기·플록 똥 스플랫·N73 4건·N76 4건·N77 4건) 전부 확인 완료. 체크와
+          메모는 이 브라우저에 저장됩니다.
         </p>
         <div class="ghbar">
           <button type="button" class="copybtn" id="copyVerify">
@@ -764,22 +759,32 @@
             placeholder="메모…"
           ></textarea>
           <label
-            ><input type="checkbox" data-key="verify:d810n-poop-pos" />플록 똥
-            위치 정합 — 떨어지는 위치가 새가 보이는 위치와 일치하는지(옛 위치
-            어긋남 버그 수정분)</label
+            ><input
+              type="checkbox"
+              data-key="verify:d810n-poop-pos"
+              checked
+            />플록 똥 위치 정합 — 떨어지는 위치가 새가 보이는 위치와
+            일치하는지(옛 위치 어긋남 버그 수정분)</label
           >
           <label
-            ><input type="checkbox" data-key="verify:d810n-poop-shape" />플록 똥
-            모양 — 갈색 구 대신 작은 흰 박스로 보이는지</label
+            ><input
+              type="checkbox"
+              data-key="verify:d810n-poop-shape"
+              checked
+            />플록 똥 모양 — 갈색 구 대신 작은 흰 박스로 보이는지</label
           >
           <label
-            ><input type="checkbox" data-key="verify:d810n-poop-speed" />플록 똥
-            낙하 속도 — 0.45초로 더 빨라졌는지 체감</label
+            ><input
+              type="checkbox"
+              data-key="verify:d810n-poop-speed"
+              checked
+            />플록 똥 낙하 속도 — 0.45초로 더 빨라졌는지 체감</label
           >
           <label
             ><input
               type="checkbox"
               data-key="verify:d810n-fruit-cooldown"
+              checked
             />열매 나무 쉼타임 — 흔든 뒤 10초(씨앗·통나무 나무는 그대로
             5초)</label
           >
@@ -787,6 +792,7 @@
             ><input
               type="checkbox"
               data-key="verify:d810n-treat-priority"
+              checked
             />선호 간식 후순위 — 씨앗·벌레·물 게이지가 전부 찬 뒤에만 간식을
             먹는지, 기본 게이지가 덜 찼는데 그릇이 비면 새가 기다리는지</label
           >
@@ -797,8 +803,11 @@
             placeholder="메모…"
           ></textarea>
           <label
-            ><input type="checkbox" data-key="verify:b91-hud-log-count" />B-91
-            후속: HUD 통나무 수량 표시 연결 (백팩엔 있음 — 원인 실측 후
+            ><input
+              type="checkbox"
+              data-key="verify:b91-hud-log-count"
+              checked
+            />B-91 후속: HUD 통나무 수량 표시 연결 (백팩엔 있음 — 원인 실측 후
             수정)</label
           >
           <div class="vgroup">
@@ -808,12 +817,16 @@
             ><input
               type="checkbox"
               data-key="verify:campfire-bright2-0811"
+              checked
             />모닥불 밝기 복귀 확인 — 밤에 모닥불 주변 캐릭터·돌이 하얗게
             날아가지 않는지 (PointLight 밝기 6→2, 범위 30 유지)</label
           >
           <label
-            ><input type="checkbox" data-key="verify:poop-splat-0811" />플록
-            새똥 착지 스플랫 확인 — 떨어진 똥이 바닥에 납작한 흰
+            ><input
+              type="checkbox"
+              data-key="verify:poop-splat-0811"
+              checked
+            />플록 새똥 착지 스플랫 확인 — 떨어진 똥이 바닥에 납작한 흰
             자국(0.45×0.05)으로 변해 잠시 남는지</label
           >
           <div class="vgroup">8/11 — N73 "숨으면 봐준다" 확인</div>
@@ -821,65 +834,86 @@
             ><input
               type="checkbox"
               data-key="verify:n73-flee-regress-0811"
+              checked
             />N73 회귀 — 안 숨고 접근하면 기존처럼 도주하는지</label
           >
           <label
             ><input
               type="checkbox"
               data-key="verify:n73-hide-instant-0811"
+              checked
             />N73 즉시 보상 — 숨는 순간 링 안쪽 빨강이 바로 꺼지는지</label
           >
           <label
-            ><input type="checkbox" data-key="verify:n73-oscillate-0811" />N73
-            진동 — 링 경계·장애물 끝에서 새가 도주/복귀를 떨듯 반복하지
+            ><input
+              type="checkbox"
+              data-key="verify:n73-oscillate-0811"
+              checked
+            />N73 진동 — 링 경계·장애물 끝에서 새가 도주/복귀를 떨듯 반복하지
             않는지</label
           >
           <label
-            ><input type="checkbox" data-key="verify:n73-cover-0811" />N73
-            은신처 — 먹이통 주변에 실제로 숨을 만한 물체가 충분한지 (부족하면
-            배치 요청)</label
+            ><input
+              type="checkbox"
+              data-key="verify:n73-cover-0811"
+              checked
+            />N73 은신처 — 먹이통 주변에 실제로 숨을 만한 물체가 충분한지
+            (부족하면 배치 요청)</label
           >
           <div class="vgroup">8/11 — N76 채집 노드 재고 재접속 보존 확인</div>
           <label
-            ><input type="checkbox" data-key="verify:n76-day-persist-0811" />N76
-            낮 소진 보존 — 낮에 나무 수확 → 10초 대기 → 나갔다 재접속 → 소진
-            상태 유지되는지 (로그 `[ToolService/N76] 복원`)</label
+            ><input
+              type="checkbox"
+              data-key="verify:n76-day-persist-0811"
+              checked
+            />N76 낮 소진 보존 — 낮에 나무 수확 → 10초 대기 → 나갔다 재접속 →
+            소진 상태 유지되는지 (로그 `[ToolService/N76] 복원`)</label
           >
           <label
             ><input
               type="checkbox"
               data-key="verify:n76-night-refill-0811"
+              checked
             />N76 밤 넘김 리필 — 수확 → 밤 진입 → 나갔다 재접속 → 전량
             리필되는지 (로그 `복원 스킵: phase=NIGHT`)</label
           >
           <label
-            ><input type="checkbox" data-key="verify:n76-stale-guard-0811" />N76
-            오염 봉합 — 밤 넘김 재접속 → 노드 1개만 수확 → 재퇴장 → 재접속 →
-            나머지 노드 만재 유지되는지</label
+            ><input
+              type="checkbox"
+              data-key="verify:n76-stale-guard-0811"
+              checked
+            />N76 오염 봉합 — 밤 넘김 재접속 → 노드 1개만 수확 → 재퇴장 → 재접속
+            → 나머지 노드 만재 유지되는지</label
           >
           <label
-            ><input type="checkbox" data-key="verify:n76-resetdata-0811" />N76
-            /resetdata — 실행 즉시 월드 재고 만재 + 재접속 시에도
+            ><input
+              type="checkbox"
+              data-key="verify:n76-resetdata-0811"
+              checked
+            />N76 /resetdata — 실행 즉시 월드 재고 만재 + 재접속 시에도
             만재인지</label
           >
           <div class="vgroup">8/11 — N77 새 비행 자연스러움 확인</div>
           <label
-            ><input type="checkbox" data-key="n77-flight-arc-0811" />N77 3단
-            비행 — 솟구침 → 활공 하강 → 착지 전 제자리 날갯짓이
+            ><input type="checkbox" data-key="n77-flight-arc-0811" checked />N77
+            3단 비행 — 솟구침 → 활공 하강 → 착지 전 제자리 날갯짓이
             자연스러운지</label
           >
           <label
-            ><input type="checkbox" data-key="n77-flee-startle-0811" />N77 도주
-            연출 — 들키면 푸드덕 소리+깃털과 함께 플레이어 반대쪽 위로
-            급상승하는지</label
+            ><input
+              type="checkbox"
+              data-key="n77-flee-startle-0811"
+              checked
+            />N77 도주 연출 — 들키면 푸드덕 소리+깃털과 함께 플레이어 반대쪽
+            위로 급상승하는지</label
           >
           <label
-            ><input type="checkbox" data-key="n77-glide-0811" />N77 활공 — 하강
-            때 날갯짓이 느려지는지 / 오르막 활공 어색함 여부</label
+            ><input type="checkbox" data-key="n77-glide-0811" checked />N77 활공
+            — 하강 때 날갯짓이 느려지는지 / 오르막 활공 어색함 여부</label
           >
           <label
-            ><input type="checkbox" data-key="n77-redirect-0811" />N77 비행 중
-            들킴 — 먹이통 진입 중 도주 전환이 꼬임 없이 되는지</label
+            ><input type="checkbox" data-key="n77-redirect-0811" checked />N77
+            비행 중 들킴 — 먹이통 진입 중 도주 전환이 꼬임 없이 되는지</label
           >
         </div>
       </section>
