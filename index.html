@@ -839,6 +839,29 @@
             은신처 — 먹이통 주변에 실제로 숨을 만한 물체가 충분한지 (부족하면
             배치 요청)</label
           >
+          <div class="vgroup">8/11 — N76 채집 노드 재고 재접속 보존 확인</div>
+          <label
+            ><input type="checkbox" data-key="verify:n76-day-persist-0811" />N76
+            낮 소진 보존 — 낮에 나무 수확 → 10초 대기 → 나갔다 재접속 → 소진
+            상태 유지되는지 (로그 `[ToolService/N76] 복원`)</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              data-key="verify:n76-night-refill-0811"
+            />N76 밤 넘김 리필 — 수확 → 밤 진입 → 나갔다 재접속 → 전량
+            리필되는지 (로그 `복원 스킵: phase=NIGHT`)</label
+          >
+          <label
+            ><input type="checkbox" data-key="verify:n76-stale-guard-0811" />N76
+            오염 봉합 — 밤 넘김 재접속 → 노드 1개만 수확 → 재퇴장 → 재접속 →
+            나머지 노드 만재 유지되는지</label
+          >
+          <label
+            ><input type="checkbox" data-key="verify:n76-resetdata-0811" />N76
+            /resetdata — 실행 즉시 월드 재고 만재 + 재접속 시에도
+            만재인지</label
+          >
         </div>
       </section>
 
