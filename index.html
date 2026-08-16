@@ -27,6 +27,21 @@
       n77-glide-0811 · n77-redirect-0811
       (메모 키 verify:d810n-memo · verify:followup 도 함께 제거 — 텍스트 데이터라
       재사용 위험은 낮지만 동일하게 재사용 금지)
+
+      [제거·재사용 금지 키 — 8/16 디렉터 체크리스트 전면 리셋] 아래 20개는
+      #verify N78B·N78C 천적 페이싱 체크리스트에서 삭제되었다(8/16 — 끼니
+      리듬 v2·지상 습격 회귀 확인 체크리스트로 교체). 옛 체크 부활을 막기
+      위해 앞으로 이 문자열은 어떤 항목에도 다시 쓰지 말 것:
+      n78b-play-b1-sated-exit · n78b-play-b2-digest-pause ·
+      n78b-play-b4-friend-ritual · n78b-play-b5-n73-regress ·
+      n78b-play-b6-meal-resume · n78b-play-b7-b8-supply-night ·
+      n78b-play-b9-time-feel · n78b2-play-b10-accumulate ·
+      n78b2-play-b11-reconnect · n78b2-play-b12-t5-cap ·
+      n78b2-play-b13-firstbird · n78c-play-b9-night-regress ·
+      n78c-play-b1-approach-warn · n78c-play-b2-hide-intercept ·
+      n78c-play-b3-panic-button · n78c-play-b4-capture-chase-rescue ·
+      n78c-play-b5-miss · n78c-play-b6-b7-giveup · n78c-play-b8-budget-feel ·
+      n78c-play-b10-b11-no-regress
       스크립트 본문은 </body> 직전 인라인 <script> 참조.
 
       [토큰 취급 — 절대 규칙] 자동 기록(GitHub 커밋) 기능이 쓰는 개인 접근 토큰은
@@ -1127,11 +1142,12 @@
 
       <!-- ══════════ Play 확인 ══════════ -->
       <section id="verify">
-        <h2>Play 확인 — N78B·N78C 천적 페이싱 확인 (16종)</h2>
+        <h2>Play 확인 — N78B·N78C 천적 페이싱 확인 (10종)</h2>
         <p class="sub">
-          <b>이전 체크리스트 전체 통과</b> — 8/10 밤·8/11 N73·N76·N77 등 20건은
-          정리되었습니다(아래 안내 참조). 지금은 N78B 끼니 리듬(7건) + N78C 지상
-          습격(9건) 확인이 남았습니다. 체크와 메모는 이 브라우저에 저장됩니다.
+          <b>이전 체크리스트 전면 리셋 (8/16)</b> — N78B 7건·v2 추가 4건·N78C
+          9건(총 20건)은 정리되었습니다(아래 안내 참조). 지금은 8/16 끼니 리듬
+          v2(7건) + 지상 습격 회귀 확인(3건)만 남았습니다. 체크와 메모는 이
+          브라우저에 저장됩니다.
         </p>
         <div class="ghbar">
           <button type="button" class="copybtn" id="copyVerify">
@@ -1210,108 +1226,62 @@
             />N78C 지상 습격 설계·구현·검수 완료 (하늘 PASS + 검수 권고 2건 이음
             반영, 8/11)</label
           >
+          <div class="vgroup">8/16 — 끼니 리듬 v2 Play 확인</div>
+          <label
+            ><input type="checkbox" data-key="v0816-meal-flow" />기본 흐름 —
+            쪼기 5회 = 한 끼 → 새가 나무로 올라가 배부름 → 시간이 지나면 다시
+            내려와 먹는지</label
+          >
+          <label
+            ><input type="checkbox" data-key="v0816-meal-t1-ramp" />T1 배부름
+            증가 — 1끼 뒤 약 10초 → 2끼 20초 → 3끼 30초… 끼니마다 10초씩
+            늘어나는지 (로그 수치)</label
+          >
+          <label
+            ><input type="checkbox" data-key="v0816-meal-reconnect" />재접속 —
+            끼니 차수 유지(로그) + 재접속 직후 첫 끼는 즉시 내려오는지</label
+          >
+          <label
+            ><input type="checkbox" data-key="v0816-meal-cap" />고티어 후반 —
+            배부름이 티어 상한에서 멈추는지 (T5 = 270초 고정)</label
+          >
+          <label
+            ><input type="checkbox" data-key="v0816-meal-firstbird" />첫 새 —
+            소화 5·10초 = 사실상 연속 취식, 첫 친구까지 3~6분대인지</label
+          >
+          <label
+            ><input type="checkbox" data-key="v0816-meal-time-report" />실측
+            회신 — T1 친구까지 실제 몇 분 걸리는지 (수치 조정 근거 — 메모로
+            회신)</label
+          >
+          <label
+            ><input type="checkbox" data-key="v0816-meal-supply" />공급 체감 —
+            T1 하루 3~4끼를 먹이 채집이 따라오는지, 노드가 비어 기다리는 구간이
+            생기는지 ("조정 예정" 판단 근거)</label
+          >
           <div class="vgroup">
-            8/11 오후 — N78B Play 확인 체크리스트 (v2 — 8/16 티어×10초 패턴
-            기준)
+            8/16 — 지상 습격 회귀 확인 (8/11 구현분, 개정 전 현재 빌드 기준)
           </div>
           <label
-            ><input type="checkbox" data-key="n78b-play-b1-sated-exit" />B1:
-            쪼기 5회 후 💤 안내 + 평시 속도로 나무 이동 (급가속·놀람
-            아님)</label
+            ><input type="checkbox" data-key="v0816-raid-night-regress" />밤
+            웨이브 기존 동작 회귀 없음 (최우선)</label
           >
           <label
-            ><input type="checkbox" data-key="n78b-play-b2-digest-pause" />B2
-            ⭐: 배부름 시간 — T1 1끼 뒤 약 10초 → 2끼 20초 → 3끼 30초 (끼니마다
-            티어×10초씩 증가, 로그 수치 확인)</label
+            ><input type="checkbox" data-key="v0816-raid-flow" />습격 흐름 —
+            치트 `_G.RAID_FORCE = true` → 경고 → 접근 → 배회 → 낚아채기 → 물고
+            저속 도주까지 이어지는지</label
           >
           <label
-            ><input type="checkbox" data-key="n78b-play-b4-friend-ritual" />B4
-            ⭐: 마지막 쪼기(간식 포함) 친구 의식 정상 (weld·포토카드)</label
+            ><input type="checkbox" data-key="v0816-raid-intervene" />개입 3종 —
+            미리 처치(요격) / 새에게 달려가면 도주(포획 불가) / 물고 갈 때
+            때리면 새 낙하(무손실 복귀)</label
           >
-          <label
-            ><input type="checkbox" data-key="n78b-play-b5-n73-regress" />B5:
-            N73 숨기·들킴·도주 회귀 없음</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78b-play-b6-meal-resume" />B6:
-            끼니 중단(도주) 후 복귀 시 카운트 이어짐</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="n78b-play-b7-b8-supply-night"
-            />B7·B8: 하루 채집 공급량 충분 + 소화 중 밤 경계 정상</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78b-play-b9-time-feel" />B9 ⭐:
-            시간 체감 — 첫 새 10~15분 / T1 세 칸 35~50분</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78b2-play-b10-accumulate" />B10:
-            같은 새 연속 끼니 — 배부름이 차수마다 티어×10초씩 늘어나는지
-            (로그)</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78b2-play-b11-reconnect" />B11:
-            재접속 — 끼니 차수 유지(로그) + 재접속 직후 첫 끼는 즉시
-            내려오는지</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78b2-play-b12-t5-cap" />B12: T5
-            6끼째부터 배부름 270초 고정(상한)인지</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78b2-play-b13-firstbird" />B13:
-            첫 새 — 소화 5·10초 = 사실상 연속 취식, 첫 친구 3~6분대 실측</label
-          >
-          <div class="vgroup">8/11 — N78C 지상 습격 Play 확인 체크리스트</div>
-          <label
-            ><input type="checkbox" data-key="n78c-play-b9-night-regress" />B9
-            ⭐ 밤 회귀 최우선 — 밤 웨이브·코인·퇴각·자동 어그로 기존과
-            동일</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78c-play-b1-approach-warn" />B1
-            접근·경고 — 스폰 울음+안내, 경고선 45 임박 사운드, 걸어오는 모습
-            가시</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78c-play-b2-hide-intercept" />B2
-            은신 요격 — 숨은 채 격퇴 시 새가 계속 먹음 (무손실)</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78c-play-b3-panic-button" />B3
-            패닉 버튼 — 달려가면 새 도주 → 적 빈손 퇴장 (치트 `_G.RAID_FORCE =
-            true`)</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="n78c-play-b4-capture-chase-rescue"
-            />B4 포획·추격·구조 — 물기 2.5초 → 저속 운반 → 1타 낙하·진행
-            보존</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78c-play-b5-miss" />B5 놓침 —
-            현재 칸만 0·완료 칸 보존·재추첨·순한 문구</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78c-play-b6-b7-giveup" />B6·B7
-            울타리 5초 정체 포기 / 소화 중 배회 75초 포기·착지 순간 위험
-            재개</label
-          >
-          <label
-            ><input type="checkbox" data-key="n78c-play-b8-budget-feel" />B8
-            대응 예산 체감 — 접근 속도 5 (17~34초)가 막을 수 있는
-            속도인지</label
-          >
-          <label
-            ><input
-              type="checkbox"
-              data-key="n78c-play-b10-b11-no-regress"
-            />B10·B11 — N73·N78B 회귀 없음 / 운반 중 밤 진입 시 새 정상
-            복구</label
-          >
+          <p class="sub">
+            <span class="dim"
+              >천적 개정(레벨 2종·덤불 스폰·물린 새 회복 루프)은 카드 ⑥ 갈림 8건
+              확정 후 구현 — 위 체크는 현재 빌드 기준.</span
+            >
+          </p>
         </div>
       </section>
 
