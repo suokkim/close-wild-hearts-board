@@ -42,6 +42,10 @@
       n78c-play-b3-panic-button · n78c-play-b4-capture-chase-rescue ·
       n78c-play-b5-miss · n78c-play-b6-b7-giveup · n78c-play-b8-budget-feel ·
       n78c-play-b10-b11-no-regress
+
+      [제거·재사용 금지 키 — 8/16 지상 습격 비활성화] 습격 전면 비활성(별도
+      모델 캐릭터 재작업 예정)으로 아래 3개도 삭제 — 재사용 금지:
+      v0816-raid-night-regress · v0816-raid-flow · v0816-raid-intervene
       스크립트 본문은 </body> 직전 인라인 <script> 참조.
 
       [토큰 취급 — 절대 규칙] 자동 기록(GitHub 커밋) 기능이 쓰는 개인 접근 토큰은
@@ -1142,11 +1146,11 @@
 
       <!-- ══════════ Play 확인 ══════════ -->
       <section id="verify">
-        <h2>Play 확인 — N78B·N78C 천적 페이싱 확인 (10종)</h2>
+        <h2>Play 확인 — 끼니 리듬 v2 확인 (7종)</h2>
         <p class="sub">
-          <b>이전 체크리스트 전면 리셋 (8/16)</b> — N78B 7건·v2 추가 4건·N78C
-          9건(총 20건)은 정리되었습니다(아래 안내 참조). 지금은 8/16 끼니 리듬
-          v2(7건) + 지상 습격 회귀 확인(3건)만 남았습니다. 체크와 메모는 이
+          <b>이전 체크리스트 전면 리셋 (8/16)</b> — 옛 체크 20건은
+          정리되었습니다. 지상 습격 회귀 3건도 습격 비활성화(8/16)로 제외되어,
+          지금은 <b>끼니 리듬 v2 7건</b>만 남았습니다. 체크와 메모는 이
           브라우저에 저장됩니다.
         </p>
         <div class="ghbar">
@@ -1259,27 +1263,12 @@
             T1 하루 3~4끼를 먹이 채집이 따라오는지, 노드가 비어 기다리는 구간이
             생기는지 ("조정 예정" 판단 근거)</label
           >
-          <div class="vgroup">
-            8/16 — 지상 습격 회귀 확인 (8/11 구현분, 개정 전 현재 빌드 기준)
-          </div>
-          <label
-            ><input type="checkbox" data-key="v0816-raid-night-regress" />밤
-            웨이브 기존 동작 회귀 없음 (최우선)</label
-          >
-          <label
-            ><input type="checkbox" data-key="v0816-raid-flow" />습격 흐름 —
-            치트 `_G.RAID_FORCE = true` → 경고 → 접근 → 배회 → 낚아채기 → 물고
-            저속 도주까지 이어지는지</label
-          >
-          <label
-            ><input type="checkbox" data-key="v0816-raid-intervene" />개입 3종 —
-            미리 처치(요격) / 새에게 달려가면 도주(포획 불가) / 물고 갈 때
-            때리면 새 낙하(무손실 복귀)</label
-          >
           <p class="sub">
             <span class="dim"
-              >천적 개정(레벨 2종·덤불 스폰·물린 새 회복 루프)은 카드 ⑥ 갈림 8건
-              확정 후 구현 — 위 체크는 현재 빌드 기준.</span
+              >지상 습격은 8/16 디렉터 지시로 <b>전면 비활성</b>(치트 포함,
+              RaidConfig `Enabled = false`) — 별도 모델 캐릭터 확보 후 카드 ⑥
+              갈림 8건 확정과 함께 재작업 예정. 습격 관련 Play 체크는
+              제외됨.</span
             >
           </p>
         </div>
