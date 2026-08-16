@@ -802,76 +802,30 @@
         </div>
         <div class="krow">
           <div class="who">
-            ⑤ N78B v2 끼니 배부름 누증 1차 수치안<small
-              >8/16 · 디렉터 조정 대기</small
-            >
+            ⑤ N78B v2 끼니 배부름 누증 — 2차 수치안 (8/16 디렉터 패턴:
+            티어×10초)<small>디렉터 조정 대기</small>
           </div>
           <div class="desc">
             ✅ 확정 — 새 한 마리 단위 누증(하루 넘어도 유지) · 티어 스케일 =
             희귀성 연출 · 첫 끼 즉각.<br />
-            ✅ 승인 — 끼니 차수 저장(종별 진행 기록 1필드, 재접속해도 누증 유지,
-            친구 성립 시 소멸).<br />
-            🔍 조정 대기 — 아래 수치 전부(디렉터 검토 후 확정).<br /><br />
-            수식:
-            <code
-              >배부름(초) = Base[티어] + Step × (끼니차수 − 1) ± 랜덤
-              Jitter</code
-            >
-            → 하한 Floor·티어별 Cap으로 자름 → 첫 새만 × 0.5
+            ✅ 승인 — 끼니 차수 저장 (종별 진행 기록 1필드, 재접속해도 누증
+            유지, 친구 성립 시 소멸).<br />
+            🔍 조정 대기 — 디렉터 패턴 반영 완료. 아래 "결정 필요 6건" 회신
+            대기.<br /><br />
+            수식: <code>배부름(초) = 티어 × 10 × 끼니차수 (± 랜덤)</code> — T1 =
+            10초 시작·10초씩 증가, T2 = 20초·20초씩 … T5 = 50초·50초씩.
           </div>
           <div class="st"><b>조정 대기</b></div>
         </div>
         <p class="sub">
-          <b>조정 손잡이</b> — 조정할 값은 아래 상수 6개뿐입니다. 조정 지시를
-          주시면 두 표(끼니별 배부름·총 소요 시간)를 다시 계산해 갱신합니다.
-        </p>
-        <div class="twrap">
-          <table class="btable">
-            <tr>
-              <th>상수</th>
-              <th>1차안</th>
-              <th>뜻</th>
-            </tr>
-            <tr>
-              <td class="t">Base (T1~T5)</td>
-              <td>100 / 110 / 120 / 130 / 140초</td>
-              <td class="dim">첫 배부름 — 희귀할수록 처음부터 김</td>
-            </tr>
-            <tr>
-              <td class="t">Step</td>
-              <td>15초</td>
-              <td class="dim">끼니 한 번 마칠 때마다 늘어나는 양</td>
-            </tr>
-            <tr>
-              <td class="t">Jitter</td>
-              <td>±20초</td>
-              <td class="dim">랜덤 폭 (새다움, "왜 안 와" 방지선)</td>
-            </tr>
-            <tr>
-              <td class="t">Floor</td>
-              <td>90초</td>
-              <td class="dim">하한 — 천적 배회 75초 대기와의 아귀 보호</td>
-            </tr>
-            <tr>
-              <td class="t">Cap (T1~T5)</td>
-              <td>230 / 240 / 250 / 260 / 270초</td>
-              <td class="dim">상한 — 낮 300초보다 짧게 (빈 대기 방지)</td>
-            </tr>
-            <tr>
-              <td class="t">첫 새 배율</td>
-              <td>0.5 (현행 유지)</td>
-              <td class="dim">첫 새 10~15분 유지 장치</td>
-            </tr>
-          </table>
-        </div>
-        <p class="sub">
-          <b>티어 × 끼니 차수 배부름표</b> — 랜덤 제외 중심값, 초 단위.
+          <b>표 1 — 티어 × 끼니 차수 배부름</b> (초, 랜덤 제외. 상한 230~270
+          유지 가정, → = 상한에 잘림)
         </p>
         <div class="twrap">
           <table class="btable">
             <tr>
               <th>티어</th>
-              <th>1끼 후</th>
+              <th>1끼</th>
               <th>2끼</th>
               <th>3끼</th>
               <th>5끼</th>
@@ -879,119 +833,195 @@
               <th>9끼</th>
               <th>12끼</th>
               <th>15끼</th>
+              <th>상한 걸림</th>
             </tr>
             <tr>
-              <td class="t">T1</td>
-              <td>100</td>
-              <td>115</td>
-              <td>130</td>
-              <td>160</td>
-              <td>190</td>
-              <td>220</td>
-              <td>230(상한)</td>
-              <td class="dim">—</td>
-            </tr>
-            <tr>
-              <td class="t">T2</td>
-              <td>110</td>
-              <td>125</td>
-              <td>140</td>
-              <td>170</td>
-              <td>200</td>
-              <td>230</td>
-              <td>240(상한)</td>
-              <td class="dim">—</td>
-            </tr>
-            <tr>
-              <td class="t">T3</td>
+              <td class="t">T1 (×10)</td>
+              <td>10</td>
+              <td>20</td>
+              <td>30</td>
+              <td>50</td>
+              <td>70</td>
+              <td>90</td>
               <td>120</td>
-              <td>135</td>
               <td>150</td>
-              <td>180</td>
-              <td>210</td>
-              <td>240</td>
-              <td>250(상한)</td>
-              <td class="dim">—</td>
+              <td class="dim">안 걸림 (실사용 최대 9끼=90초)</td>
             </tr>
             <tr>
-              <td class="t">T4</td>
-              <td>130</td>
-              <td>145</td>
-              <td>160</td>
-              <td>190</td>
-              <td>220</td>
-              <td>250</td>
-              <td>260(상한)</td>
-              <td>260</td>
-            </tr>
-            <tr>
-              <td class="t">T5</td>
+              <td class="t">T2 (×20)</td>
+              <td>20</td>
+              <td>40</td>
+              <td>60</td>
+              <td>100</td>
               <td>140</td>
-              <td>155</td>
-              <td>170</td>
+              <td>180</td>
+              <td>240</td>
+              <td>300→240</td>
+              <td class="dim">실사용 11끼=220초, 안 걸림</td>
+            </tr>
+            <tr>
+              <td class="t">T3 (×30)</td>
+              <td>30</td>
+              <td>60</td>
+              <td>90</td>
+              <td>150</td>
+              <td>210</td>
+              <td>270→250</td>
+              <td>360→250</td>
+              <td>450→250</td>
+              <td class="dim">9끼부터 250 고정</td>
+            </tr>
+            <tr>
+              <td class="t">T4 (×40)</td>
+              <td>40</td>
+              <td>80</td>
+              <td>120</td>
               <td>200</td>
-              <td>230</td>
-              <td>260</td>
-              <td>270(상한)</td>
-              <td>270</td>
+              <td>280→260</td>
+              <td>360→260</td>
+              <td>480→260</td>
+              <td>600→260</td>
+              <td class="dim">7끼부터 260 고정</td>
+            </tr>
+            <tr>
+              <td class="t">T5 (×50)</td>
+              <td>50</td>
+              <td>100</td>
+              <td>150</td>
+              <td>250</td>
+              <td>350→270</td>
+              <td>450→270</td>
+              <td>600→270</td>
+              <td>750→270</td>
+              <td class="dim">6끼부터 270 고정 (원값 6끼=300초=낮 길이)</td>
             </tr>
           </table>
         </div>
-        <p class="sub"><b>총 소요 시간 재검산</b></p>
+        <p class="sub"><b>표 2 — 총 소요 시간 재검산</b> (상한 유지 가정)</p>
         <div class="twrap">
           <table class="btable">
             <tr>
               <th>구간</th>
-              <th>현행 → 1차안 (실시간 추정)</th>
+              <th>하루 끼니 수</th>
+              <th>게임 일수</th>
+              <th>실시간 추정</th>
               <th>목표 곡선</th>
               <th>판정</th>
             </tr>
             <tr>
               <td class="t">첫 새</td>
-              <td>10~14분 → 9~14분</td>
+              <td>3끼가 한 낮에 다 됨</td>
+              <td>1일</td>
+              <td>3~6분</td>
               <td class="dim">10~15분</td>
-              <td>안</td>
+              <td>미달 — 소화가 사실상 사라짐</td>
             </tr>
             <tr>
               <td class="t">T1</td>
-              <td>33~45 → 35~48분</td>
+              <td>3~4끼</td>
+              <td>3일±</td>
+              <td>13~18분</td>
               <td class="dim">35~50분</td>
-              <td>안</td>
+              <td>대폭 미달</td>
             </tr>
             <tr>
               <td class="t">T2</td>
-              <td>42~55 → 45~58분</td>
+              <td>2~3끼</td>
+              <td>4~5일</td>
+              <td>33~43분</td>
               <td class="dim">42~55분</td>
-              <td>위끝 +3분</td>
+              <td>미달</td>
             </tr>
             <tr>
               <td class="t">T3</td>
-              <td>48~65 → 52~70분</td>
+              <td>2~3 → 1~2끼</td>
+              <td>6~7일</td>
+              <td>50~66분</td>
               <td class="dim">50~70분</td>
-              <td>안</td>
+              <td>적중</td>
             </tr>
             <tr>
               <td class="t">T4</td>
-              <td>55~80 → 58~83분</td>
+              <td>후반 1끼</td>
+              <td>8~9일</td>
+              <td>60~84분</td>
               <td class="dim">55~80분</td>
-              <td>위끝 +3분</td>
+              <td>위끝 +4분</td>
             </tr>
             <tr>
               <td class="t">T5</td>
-              <td>70~95 → 75~102분</td>
+              <td>초반 촘촘 → 6끼부터 1끼/일</td>
+              <td>11~12일</td>
+              <td>78~105분</td>
               <td class="dim">60~100분</td>
-              <td>위끝 +2분</td>
+              <td>위끝 +5분</td>
+            </tr>
+            <tr>
+              <td class="t">(참고) T5 상한 폐지 시</td>
+              <td>후반 소화가 하루 넘김</td>
+              <td>15일+</td>
+              <td>130~170분</td>
+              <td class="dim">60~100분</td>
+              <td>곡선 대파</td>
+            </tr>
+          </table>
+        </div>
+        <p class="sub"><b>표 3 — 구조 갈림 4건</b> (결정 = 디렉터)</p>
+        <div class="twrap">
+          <table class="btable">
+            <tr>
+              <th>#</th>
+              <th>충돌</th>
+              <th>갈림</th>
+            </tr>
+            <tr>
+              <td class="t ctr">1</td>
+              <td>상한: T5 원값이 6끼째 낮 길이(300초) 도달</td>
+              <td class="dim">
+                (가) 230~270 유지 — 곡선 방어, 고티어 후반은 고정값 / (나) 폐지
+                — 패턴 순수, T5 130~170분 = 곡선 재확정 필수 / (다) 절충 단일값
+                270~300
+              </td>
+            </tr>
+            <tr>
+              <td class="t ctr">2</td>
+              <td>랜덤 ±20초가 T1 초반 배부름(10~30초)보다 큼</td>
+              <td class="dim">
+                (가) 비율형 ±15~20% / (나) 고정 ±5~10초 / (다) 제거 — 누증만으로
+                균일함이 이미 깨져 랜덤의 원 목적 충족
+              </td>
+            </tr>
+            <tr>
+              <td class="t ctr">3</td>
+              <td>하한 90초가 디렉터 지시("10초 시작")를 덮어씀</td>
+              <td class="dim">
+                (가) 폐지 — 천적 배회는 파손 없음, 대신 초반 티어 습격 성공률
+                상승 → N78C 쿨타임 재점검 1건 / (나) 유지 = 지시와 모순 (기록용)
+              </td>
+            </tr>
+            <tr>
+              <td class="t ctr">4</td>
+              <td>첫 새 ×0.5 = 5·10초 — 체감 무의미</td>
+              <td class="dim">
+                (가) 유지 / (나) 폐지 / (다) 첫 새 10~15분 목표는 소화가 아닌
+                쪼기 수 등 다른 손잡이로 = 별도 결정
+              </td>
             </tr>
           </table>
         </div>
         <p class="sub">
           <span class="dim"
-            >위끝 초과 = 높은 티어 후반의 뜸함 그 자체(희귀성 연출). 100분
-            상한을 엄수하려면 T5만 Step 12초로 낮추면 회수됨.</span
+            >이 패턴 채택 = 시간 곡선 재확정과 한 몸: 저티어 대폭 단축(T1
+            13~18분 = 티어 격차 극대화·희귀성 극대화)을 수용할지, 기존 곡선(T1
+            35~50분) 유지로 재조정할지가 결정 1순위.</span
           ><br />
           <span class="dim"
-            >후반 배부름이 상한에 붙으면 하루 2끼 → 1~1.5끼로 자연 감속. T5 약
-            9~11 게임일.</span
+            >T1 하루 3~4끼 = 먹이 15~20개/일 — 채집 공급이 못 따라오면 병목이
+            "노드 리젠 빈 대기"로 옮겨감. 채택 시 공급 재검산 1건 필수.</span
+          ><br />
+          <span class="dim"
+            >구현 규모는 1차안과 동일(~30줄). 결정 6건 회신 시 즉시 확정 설계로
+            전환.</span
           >
         </p>
       </section>
