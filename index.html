@@ -50,6 +50,13 @@
       [8/16 v3 전환] 배부름 발동 단위가 끼니(쪼기 5회)에서 마음 한 칸 완성으로
       바뀌면서 아래 1개도 삭제 — 재사용 금지:
       v0816-meal-cap (현 Step=티어×10초에선 상한 도달 불가, 최대 차수 2라 무의미)
+
+      [제거·재사용 금지 키 — 8/17~18 끼니 v4 전환] v3 Play 피드백 8건(P-36~P-43)
+      → v4 (C안 혼합: 쪼기 축당 {8,10,12,17,21} + 칸 {4,4,4,3,3}) 재확정으로
+      옛 v3 체크 7개 삭제 — 재사용 금지:
+      v0816-meal-flow · v0816-meal-t1-ramp · v0816-meal-reconnect ·
+      v0816-meal-firstbird · v0816-meal-time-report · v0816-meal-supply ·
+      v0816-meal-lastset
       스크립트 본문은 </body> 직전 인라인 <script> 참조.
 
       [토큰 취급 — 절대 규칙] 자동 기록(GitHub 커밋) 기능이 쓰는 개인 접근 토큰은
@@ -1191,11 +1198,12 @@
 
       <!-- ══════════ Play 확인 ══════════ -->
       <section id="verify">
-        <h2>Play 확인 — 끼니 리듬 v2 확인 (7종)</h2>
+        <h2>Play 확인 — 끼니 v4 확인 (시나리오 6건 + T1 실측)</h2>
         <p class="sub">
-          <b>이전 체크리스트 전면 리셋 (8/16)</b> — 옛 체크 20건은
-          정리되었습니다. 지상 습격 회귀 3건도 습격 비활성화(8/16)로 제외되어,
-          지금은 <b>끼니 리듬 v2 7건</b>만 남았습니다. 체크와 메모는 이
+          <b>v3 체크 v4 대체 (8/17~18)</b> — v3 Play 피드백 8건(P-36~P-43)으로
+          v4 재확정(C안 혼합: 쪼기 축당 {8,10,12,17,21} + 칸 {4,4,4,3,3} · 가방
+          상한 10 · 복귀 5±2초 · 시작 안내). 옛 v3 체크 7건은 정리, 지금은
+          <b>v4 시나리오 6건 + T1 실측 회신</b>만 남았습니다. 체크와 메모는 이
           브라우저에 저장됩니다.
         </p>
         <div class="ghbar">
@@ -1276,42 +1284,43 @@
             반영, 8/11)</label
           >
           <div class="vgroup">
-            8/16 — 끼니 리듬 v3 Play 확인 (배부름 = 마음 한 칸 단위)
+            8/17~18 — 끼니 v4 Play 확인 (C안 혼합 · 가방 상한 · 복귀 쿨타임 ·
+            안내)
           </div>
           <label
-            ><input type="checkbox" data-key="v0816-meal-flow" />기본 흐름 —
-            마음 한 칸을 다 채우면 새가 나무로 올라가 배부름 💤, 시간이 지나면
-            다시 내려와 다음 칸을 먹는지</label
+            ><input type="checkbox" data-key="v0818-v4-firstbird-speed" />첫 새
+            현행 속도 — 첫 새는 v4 변경(안내·게이트) 영향 없이 현행 속도 그대로
+            친구까지 이어지는지</label
           >
           <label
-            ><input type="checkbox" data-key="v0816-meal-t1-ramp" />T1 배부름
-            증가 — 칸1 완성 뒤 10초 → 칸2 완성 뒤 20초 (로그 '칸 n 완성 → 소화
-            n초' 수치 확인)</label
+            ><input type="checkbox" data-key="v0818-v4-secondbird-guide" />둘째
+            새 안내 1회 — 마음 세트 시작 안내 문구가 둘째 새부터 1회만
+            표시되는지 (반복 노출 ❌)</label
           >
           <label
-            ><input type="checkbox" data-key="v0816-meal-reconnect" />재접속 —
-            재접속 직후엔 즉시 내려와 먹고, 다음 칸 완성 시 소화값이 이어지는지
-            (칸 진행은 기존 저장 그대로)</label
+            ><input type="checkbox" data-key="v0818-v4-set-flash-countdown" />칸
+            완성 연출 — 칸 완성 금빛 플래시 + 나무 위 배부름 💤 카운트다운(남은
+            초)이 함께 보이는지</label
           >
           <label
-            ><input type="checkbox" data-key="v0816-meal-firstbird" />첫 새 —
-            배부름 0회: 한 칸을 연속으로 다 먹으면 💤 없이 바로 친구 의식으로
-            이어지는지</label
+            ><input type="checkbox" data-key="v0818-v4-bagcap-block" />가방 상한
+            — 먹이 10개(FoodBagCap)에서 줍기가 차단되고 안내가 나오는지</label
           >
           <label
-            ><input type="checkbox" data-key="v0816-meal-time-report" />실측
-            회신 — T1 친구까지 실제 몇 분인지 (칸 단위 전환으로 예상 8~15분대 —
-            수치 조정 근거, 메모로 회신)</label
+            ><input type="checkbox" data-key="v0818-v4-return-cooldown" />복귀
+            쿨타임 — 배부름 종료 후 5±2초 안에 새가 내려와 다음 칸을
+            먹는지</label
           >
           <label
-            ><input type="checkbox" data-key="v0816-meal-supply" />공급 체감 —
-            채집이 끊기지 않고 따라오는지, 노드가 비어 기다리는 구간이
-            생기는지</label
+            ><input type="checkbox" data-key="v0818-v4-harness-pass" />하네스
+            PASS — Run(F8) 자동 하네스 전건 PASS (기대값 파생식 교체
+            회귀)</label
           >
           <label
-            ><input type="checkbox" data-key="v0816-meal-lastset" />마지막 칸
-            완성 — 배부름 💤 없이 곧장 친구 의식(웰드·포토카드)으로 이어지는지
-            (발동 지점 이동 핵심 회귀)</label
+            ><input type="checkbox" data-key="v0818-v4-t1-stopwatch" />T1
+            스톱워치 실측 — T1 친구까지 실제 몇 분인지 (예상 20~38분 ·
+            <b>25분 초과 시 보정표 축당 {6,8,10,14,17} 적용 예약</b>, 메모로
+            회신)</label
           >
           <p class="sub">
             <span class="dim"
